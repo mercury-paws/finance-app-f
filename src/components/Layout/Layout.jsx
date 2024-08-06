@@ -1,4 +1,4 @@
-import Logo from "../StartPageComponents/Logo/Logo";
+import Logo from "../Logo/Logo.jsx";
 import css from "./Layout.module.css";
 
 export default function Layout({ children }) {
