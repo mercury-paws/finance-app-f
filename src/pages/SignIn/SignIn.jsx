@@ -6,6 +6,8 @@ import { ErrorMessage } from "formik";
 import { useState } from "react";
 import { FaEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa";
+import { NavLink } from "react-router-dom";
+// import MainPic from "../../components/StartPageComponents/MainPic/MainPic";
 
 const FeedbackSchema = Yup.object().shape({
   email: Yup.string().email("Must be a valid email!").required("Required"),
@@ -32,8 +34,8 @@ function SignIn() {
   const passwordFieldId = useId();
 
   return (
-    <>
-      <h3>Sign In</h3>
+    <div className={css.signInForm}>
+      <h2>Sign In</h2>
       <Formik
         initialValues={initialValues}
         onSubmit={handleSubmit}
@@ -69,8 +71,10 @@ function SignIn() {
           </button>
         </Form>
       </Formik>
-      <p>Don't have an account? Sing Up</p>
-    </>
+      <p>
+        Don't have an account? <NavLink to="/signup">Sing Up</NavLink>{" "}
+      </p>
+    </div>
   );
 }
 

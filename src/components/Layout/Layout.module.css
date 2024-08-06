@@ -1,0 +1,23 @@
+.container {
+  position: relative;
+}
+
+.children {
+  display: flex;
+  flex-direction: row;
+  /* width: 672px; */
+}
+
+.logo {
+  position: absolute;
+  left: 25px;
+  top: 25px;
+}
+
+/* .children > :nth-child(1) {
+  width: 672px;
+}
+
+.children > :nth-child(2) {
+  width: 672px;
+} */

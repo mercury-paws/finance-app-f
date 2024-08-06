@@ -1,14 +1,25 @@
-import HomePicSheet from "../../components/HomePageComponents/HomePicSheet/HomePicSheet.jsx";
-import HomeStatsPage from "../../components/HomePageComponents/HomeStatsPage/HomeStatsPage.jsx";
+import MainPic from "../../components/StartPageComponents/MainPic/MainPic.jsx";
+import WorkSheet from "../../components/StartPageComponents/WorkSheet/WorkSheet.jsx";
+import css from "./HomePage.module.css";
+import { Outlet } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 function HomePage() {
-  return (
-    <>
-      <p>hello, this is the HomePage</p>
+  const location = useLocation();
+  const isAuthPage =
+    location.pathname === "/signup" || location.pathname === "/signin";
 
-      <HomePicSheet />
-      <HomeStatsPage />
-    </>
+  return (
+    <div className={css.startPage}>
+      <div>
+        {!isAuthPage && <WorkSheet />}
+        <Outlet />
+      </div>
+
+      <div>
+        <MainPic />
+      </div>
+    </div>
   );
 }
 
