@@ -1,14 +1,12 @@
 import WaterMainInfo from "../../components/TrackerPageComponents/WaterMainInfo/WaterMainInfo.jsx";
-import HomeStatsPage from "../../components/TrackerPageComponents/HomeStatsPage/HomeStatsPage.jsx";
-
+import WaterDetailedInfo from "../../components/TrackerPageComponents/WaterDetailedInfo/WaterDetailedInfo.jsx";
+import css from "./TrackerPage.module.css";
 function HomePage() {
   return (
-    <>
-      <p>hello, this is the HomePage</p>
-
+    <div className={css.startPage}>
       <WaterMainInfo />
-      <HomeStatsPage />
-    </>
+      <WaterDetailedInfo />
+    </div>
   );
 }
 

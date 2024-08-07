@@ -1,10 +1,14 @@
+import AddWaterBtn from "./AddWaterBtn/AddWaterBtn";
+import WaterDailyNorma from "./WaterDailyNorma/WaterDailyNorma";
+import WaterProgressBar from "./WaterProgressBar/WaterProgressBar";
+
 function WaterMainInfo() {
   return (
-    <>
-      <p>
-        hello, this is the HomePicSheet with the bottle and add water button
-      </p>
-    </>
+    <div>
+      <WaterDailyNorma />
+      <WaterProgressBar />
+      <AddWaterBtn />
+    </div>
   );
 }
 
