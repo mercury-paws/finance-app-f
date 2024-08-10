@@ -1,7 +1,7 @@
-function CalendarItem() {
+function CalendarItem({ day }) {
   return (
     <>
-      <p>1</p>
+      <p>{day}</p>
       <p>100%</p>
     </>
   );
