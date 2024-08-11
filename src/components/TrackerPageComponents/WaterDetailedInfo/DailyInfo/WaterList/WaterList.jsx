@@ -19,7 +19,7 @@ function WaterList() {
           "http://localhost:3000/water-app/water/?year=2024&day=1&month=February",
           {
             headers: {
-              Authorization: `Bearer 5cJvEuMkSIORHkFpSLUiDNqJZH6N00ci9Hf8HSEF`,
+              Authorization: `Bearer m0P5QVWcIlOutiIUU/Hk6R6q5aJNjmtEdfjNow+O`,
             },
           }
         );

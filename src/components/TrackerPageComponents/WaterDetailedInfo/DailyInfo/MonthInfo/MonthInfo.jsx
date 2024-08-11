@@ -3,6 +3,7 @@ import CalendarPagination from "./CalendarPagination/CalendarPagination";
 import css from "./MonthInfo.module.css";
 
 function MonthInfo() {
+  // const date = chooseBiggerDate(day, month)
   return (
     <>
       <div className={css.monthAndPagination}>
