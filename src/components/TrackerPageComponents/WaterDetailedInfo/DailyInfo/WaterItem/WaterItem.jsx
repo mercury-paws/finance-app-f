@@ -1,8 +1,8 @@
-function WaterItem() {
+function WaterItem({ ml, time }) {
   return (
     <>
-      <p>Amount of water</p>
-      <p>Hour</p>
+      <p>{ml} ml</p>
+      <p>{time}</p>
       <button>WaterModal</button>
       <button>DeleteWaterModal</button>
     </>

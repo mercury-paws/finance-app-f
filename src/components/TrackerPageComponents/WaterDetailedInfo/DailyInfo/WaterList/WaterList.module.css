@@ -1,0 +1,29 @@
+.dayData {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+/* Custom scrollbar styles */
+.swiper-container {
+  height: 300px; /* Adjust the height to fit your layout */
+}
+
+.swiper-scrollbar {
+  background: rgba(0, 0, 0, 0.1); /* Background color of scrollbar */
+  border-radius: 10px; /* Round corners of scrollbar */
+  width: 10px; /* Width of the scrollbar */
+  cursor: pointer; /* Cursor changes to pointer on hover */
+  opacity: 0.5; /* Start with the scrollbar less visible */
+  transition: opacity 0.3s; /* Smooth transition for opacity */
+}
+
+.swiper-scrollbar-drag {
+  background: rgba(0, 0, 0, 0.5); /* Background color of the draggable part */
+  border-radius: 10px; /* Round corners of the draggable part */
+}
+
+/* Optional: Hide the scrollbar when not dragging */
+.swiper-scrollbar:hover {
+  opacity: 1; /* Show scrollbar on hover */
+}
