@@ -1,10 +1,10 @@
-function CalendarItem({ day }) {
-  // const chooseDate = () => {
-  //   chosenDate(day);
-  // };
+function CalendarItem({ day, chosenDate }) {
+  const chooseDate = () => {
+    chosenDate(day);
+  };
 
   return (
-    <div>
+    <div onClick={chooseDate}>
       <p>{day}</p>
       <p>100%</p>
     </div>

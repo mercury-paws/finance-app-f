@@ -3,11 +3,16 @@ import ChooseDate from "./ChooseDate/ChooseDate";
 import WaterList from "./WaterList/WaterList";
 import css from "./DailyInfo.module.css";
 
-function DailyInfo() {
+function DailyInfo({ chosenDay, setChosenDay, currentMonth, setCurrentMonth }) {
   return (
     <>
       <div className={css.dateAndBtn}>
-        <ChooseDate />
+        <ChooseDate
+          chosenDay={chosenDay}
+          setChosenDay={setChosenDay}
+          currentMonth={currentMonth}
+          setCurrentMonth={setCurrentMonth}
+        />
         <AddWaterBtn />
       </div>
 

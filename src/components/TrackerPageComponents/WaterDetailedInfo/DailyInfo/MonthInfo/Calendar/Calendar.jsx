@@ -7,7 +7,7 @@ import {
 import { calculateFormattedDate } from "../../../../../../constants/constants.js";
 import { useState, useEffect } from "react";
 
-function Calendar({ currentMonth, currentYear }) {
+function Calendar({ currentMonth, currentYear, chosenDate }) {
   const [days, setDays] = useState([]);
 
   useEffect(() => {
@@ -26,7 +26,7 @@ function Calendar({ currentMonth, currentYear }) {
         {days.map((day) => {
           return (
             <li key={day}>
-              <CalendarItem day={day} />
+              <CalendarItem day={day} chosenDate={chosenDate} />
             </li>
           );
         })}

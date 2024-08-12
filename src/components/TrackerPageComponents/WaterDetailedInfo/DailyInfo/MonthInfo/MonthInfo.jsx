@@ -3,10 +3,14 @@ import CalendarPagination from "./CalendarPagination/CalendarPagination";
 import css from "./MonthInfo.module.css";
 import { useState } from "react";
 
-function MonthInfo() {
+function MonthInfo({
+  chosenDate,
+  currentMonth,
+  setCurrentMonth,
+  currentYear,
+  setCurrentYear,
+}) {
   // const date = chooseBiggerDate(day, month)
-  const [currentMonth, setCurrentMonth] = useState("");
-  const [currentYear, setCurrentYear] = useState("");
 
   return (
     <>
@@ -23,6 +27,7 @@ function MonthInfo() {
       <Calendar
         currentMonth={currentMonth}
         currentYear={currentYear}
+        chosenDate={chosenDate}
         // chosenDate={chosenDate}
       />
     </>

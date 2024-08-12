@@ -1,20 +1,40 @@
 import { useEffect, useState } from "react";
 import { calculateFormattedDate } from "../../../../../constants/constants";
+import { DateSchema } from "yup";
 
-function ChooseDate() {
-  const [currentDate, setCurrentdate] = useState("");
+function ChooseDate({
+  chosenDay,
+  setChosenDay,
+  currentMonth,
+  setCurrentMonth,
+}) {
+  const [currentDate, setCurrentDate] = useState("");
 
   useEffect(() => {
     let date = calculateFormattedDate();
-    if (date !== new Date()) {
-      setCurrentdate(`${date.day} ${date.month}`);
+    const parsedDate = new Date(
+      `${date.month} ${date.day.replace(",", "")}, ${date.year}`
+    );
+    const dateToCompare = new Date();
+
+    if (chosenDay) {
+      setCurrentDate(`${chosenDay}, ${currentMonth}`);
+    } else if (parsedDate.toDateString() === dateToCompare.toDateString()) {
+      setCurrentDate("Today");
+    } else {
+      setCurrentDate(`${date.day}, ${date.month}`);
     }
-    setCurrentdate("Today");
-  }, []);
+  }, [chosenDay]);
+
+  const goToToday = () => {
+    let date = calculateFormattedDate();
+    setCurrentDate("Today");
+    setCurrentMonth(date.month);
+  };
 
   return (
     <>
-      <p>{currentDate}</p>
+      <p onClick={goToToday}>{currentDate}</p>
     </>
   );
 }

@@ -4,17 +4,30 @@ import UserPanel from "./UserPanel/UserPanel.jsx";
 import { useState } from "react";
 
 function WaterDetailedInfo() {
-  // const [chosenDay, setChosenDay] = useState("today");
+  const [chosenDay, setChosenDay] = useState("");
+  const [currentMonth, setCurrentMonth] = useState("");
+  const [currentYear, setCurrentYear] = useState("");
 
-  // let chosenDate = (day) => {
-  //   console.log(day);
-  // };
+  let chosenDate = (day) => {
+    setChosenDay(day);
+  };
 
   return (
     <div>
       <UserPanel />
-      <DailyInfo />
-      <MonthInfo />
+      <DailyInfo
+        chosenDay={chosenDay}
+        setChosenDay={setChosenDay}
+        currentMonth={currentMonth}
+        setCurrentMonth={setCurrentMonth}
+      />
+      <MonthInfo
+        chosenDate={chosenDate}
+        currentMonth={currentMonth}
+        setCurrentMonth={setCurrentMonth}
+        currentYear={currentYear}
+        setCurrentYear={setCurrentYear}
+      />
     </div>
   );
 }
