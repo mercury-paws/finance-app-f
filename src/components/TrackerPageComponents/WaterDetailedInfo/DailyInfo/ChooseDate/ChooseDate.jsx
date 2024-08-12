@@ -6,7 +6,10 @@ function ChooseDate() {
 
   useEffect(() => {
     let date = calculateFormattedDate();
-    setCurrentdate(`${date.day} ${date.month}`);
+    if (date !== new Date()) {
+      setCurrentdate(`${date.day} ${date.month}`);
+    }
+    setCurrentdate("Today");
   }, []);
 
   return (

@@ -23,7 +23,7 @@ export const getMaxDaysInMonth = (month, year) => {
 
 const monthNames = Object.keys(monthDays);
 
-const getMonthNameByIndex = (index) => {
+export const getMonthNameByIndex = (index) => {
   if (index < 0 || index >= monthNames.length) {
     return null;
   }

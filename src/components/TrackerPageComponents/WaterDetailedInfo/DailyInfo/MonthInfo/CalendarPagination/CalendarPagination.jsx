@@ -1,14 +1,19 @@
 import css from "./CalendarPagination.module.css";
 import { FaAngleLeft } from "react-icons/fa";
 import { FaAngleRight } from "react-icons/fa";
-import { calculateFormattedDate } from "../../../../../../constants/constants";
-import { useState, useEffect } from "react";
+import {
+  calculateFormattedDate,
+  getMonthNameByIndex,
+} from "../../../../../../constants/constants";
+import { useEffect } from "react";
 import { getMonthIndex } from "../../../../../../constants/constants";
 
-function CalendarPagination() {
-  const [currentMonth, setCurrentMonth] = useState("");
-  const [currentYear, setCurrentYear] = useState("");
-
+function CalendarPagination({
+  currentMonth,
+  currentYear,
+  setCurrentMonth,
+  setCurrentYear,
+}) {
   const chooseLesserDate = () => {
     let monthIndex = getMonthIndex(currentMonth);
     let year = parseInt(currentYear, 10);
@@ -18,9 +23,8 @@ function CalendarPagination() {
     } else {
       monthIndex--;
     }
-    const date = calculateFormattedDate(monthIndex, year);
-    setCurrentMonth(date.month);
-    setCurrentYear(date.year);
+    setCurrentMonth(getMonthNameByIndex(monthIndex));
+    setCurrentYear(year);
   };
 
   const chooseBiggerDate = () => {
@@ -32,21 +36,16 @@ function CalendarPagination() {
     } else {
       monthIndex++;
     }
-    const date = calculateFormattedDate(monthIndex, year);
 
-    setCurrentMonth(date.month);
-    setCurrentYear(date.year);
-    return {
-      date: date.month,
-      year: date.year,
-    };
+    setCurrentMonth(getMonthNameByIndex(monthIndex));
+    setCurrentYear(year);
   };
 
   useEffect(() => {
     let date = calculateFormattedDate();
     setCurrentMonth(`${date.month}`);
     setCurrentYear(`${date.year}`);
-  }, []);
+  }, [setCurrentMonth, setCurrentYear]);
 
   return (
     <div className={css.pagination}>
