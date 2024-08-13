@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { calculateFormattedDate } from "../../../../../constants/constants";
-import { DateSchema } from "yup";
 
 function ChooseDate({
   chosenDay,
@@ -10,8 +9,15 @@ function ChooseDate({
 }) {
   const [currentDate, setCurrentDate] = useState("");
 
+  let date = calculateFormattedDate();
+
+  const goToToday = () => {
+    // let date = calculateFormattedDate();
+    setCurrentDate("Today");
+    setChosenDay("");
+    setCurrentMonth(date.month);
+  };
   useEffect(() => {
-    let date = calculateFormattedDate();
     const parsedDate = new Date(
       `${date.month} ${date.day.replace(",", "")}, ${date.year}`
     );
@@ -19,18 +25,15 @@ function ChooseDate({
 
     if (chosenDay) {
       setCurrentDate(`${chosenDay}, ${currentMonth}`);
-    } else if (parsedDate.toDateString() === dateToCompare.toDateString()) {
+    } else if (
+      !chosenDay &&
+      parsedDate.toDateString() === dateToCompare.toDateString()
+    ) {
       setCurrentDate("Today");
     } else {
       setCurrentDate(`${date.day}, ${date.month}`);
     }
-  }, [chosenDay]);
-
-  const goToToday = () => {
-    let date = calculateFormattedDate();
-    setCurrentDate("Today");
-    setCurrentMonth(date.month);
-  };
+  }, [chosenDay, currentMonth, date.month, date.day, date.year]);
 
   return (
     <>
