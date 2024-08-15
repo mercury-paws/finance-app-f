@@ -9,6 +9,7 @@ import Edit from "./Modals/Edit/Edit.jsx";
 import Add from "./Modals/Add/Add.jsx";
 import Delete from "./Modals/Delete/Delete.jsx";
 import LogOut from "./Modals/LogOut/LogOut.jsx";
+import Setting from "./Modals/Setting/Setting.jsx";
 // import { lazy, Suspense } from "react";
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
           <Route path="/add" element={<Add />} />
           <Route path="/delete" element={<Delete />} />
           <Route path="/logout" element={<LogOut />} />
+          <Route path="/setting" element={<Setting />} />
           {/* /modal routes to be edited */}
           <Route path="*" element={<NotFound />} />
         </Routes>
