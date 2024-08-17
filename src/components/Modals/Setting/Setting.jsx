@@ -2,6 +2,9 @@ import css from "./Setting.module.css";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { useId } from "react";
+import Modal from "react-modal";
+
+Modal.setAppElement("#root");
 
 const FeedbackSchema = Yup.object().shape({
   picked: Yup.string().required("Required"),
@@ -28,7 +31,7 @@ const initialValues = {
   time: "",
 };
 
-function Setting() {
+function Setting({ isOpen, onRequestClose }) {
   const handleSubmit = (values) => {
     console.log(values);
   };
@@ -41,7 +44,13 @@ function Setting() {
   const timeFieldId = useId();
 
   return (
-    <>
+    <Modal
+      isOpen={isOpen}
+      onRequestClose={onRequestClose}
+      contentLabel="delete"
+      overlayClassName={css.overlay}
+      className={css.modalContent}
+    >
       <Formik
         initialValues={initialValues}
         onSubmit={handleSubmit}
@@ -144,7 +153,7 @@ function Setting() {
           </button>
         </Form>
       </Formik>
-    </>
+    </Modal>
   );
 }
 

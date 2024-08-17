@@ -6,8 +6,7 @@ import { FaMinusCircle } from "react-icons/fa";
 import { Formik, Form, ErrorMessage, Field } from "formik";
 import * as Yup from "yup";
 import { useId, useState } from "react";
-import React from "react";
-import ReactDOM from "react-dom";
+
 import Modal from "react-modal";
 
 Modal.setAppElement("#root");
@@ -65,7 +64,7 @@ function Add({ isOpen, onRequestClose }) {
     <Modal
       isOpen={isOpen}
       onRequestClose={onRequestClose}
-      contentLabel="Image Modal"
+      contentLabel="All"
       overlayClassName={css.overlay}
       className={css.modalContent}
     >

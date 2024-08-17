@@ -1,0 +1,40 @@
+.waterItem {
+  background-color: #fff;
+}
+
+.cupIcon {
+  background-color: transparent;
+  fill: #9be1a0;
+}
+.waterItem {
+  display: flex;
+  flex-direction: row;
+  /* gap: 5px; */
+  justify-content: space-between;
+  align-items: center;
+}
+/* 
+.mlTime {
+  display: flex;
+  flex-direction: column; */
+/* gap: 8px; */
+/* } */
+
+.btnBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.btn {
+  border: none;
+  background-color: transparent;
+}
+.penIcon {
+  fill: black;
+  stroke: black;
+}
+
+.trashIcon {
+  fill: black;
+  stroke: black;
+}
