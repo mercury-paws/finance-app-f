@@ -6,6 +6,11 @@ import { FaMinusCircle } from "react-icons/fa";
 import { Formik, Form, ErrorMessage, Field } from "formik";
 import * as Yup from "yup";
 import { useId, useState } from "react";
+import React from "react";
+import ReactDOM from "react-dom";
+import Modal from "react-modal";
+
+Modal.setAppElement("#root");
 
 const FeedbackSchema = Yup.object().shape({
   time: Yup.string()
@@ -27,7 +32,7 @@ hours = hours < 10 ? `0${hours}` : hours;
 minutes = minutes < 10 ? `0${minutes}` : minutes;
 const time = `${hours}:${minutes}`;
 
-function Add() {
+function Add({ isOpen, onRequestClose }) {
   const [value, setValue] = useState(50);
 
   const initialValues = {
@@ -41,6 +46,7 @@ function Add() {
   const handleSubmit = (values, actions) => {
     console.log(values);
     actions.resetForm();
+    onRequestClose();
   };
 
   let difference = Number(50);
@@ -56,56 +62,72 @@ function Add() {
   };
 
   return (
-    <div>
-      <h4 className={css.header}>Add water</h4>
-      <p className={css.doSmth}>Choose a value:</p>
-      <p className={css.amount}>Amount of water:</p>
-      <div className={css.addWaterBlock}>
-        {<FaMinusCircle className={css.minus} onClick={decreaseValue} />}
-        <p className={css.ml}>50 ml</p>
-        {<FaPlusCircle className={css.plus} onClick={addValue} />}
+    <Modal
+      isOpen={isOpen}
+      onRequestClose={onRequestClose}
+      contentLabel="Image Modal"
+      overlayClassName={css.overlay}
+      className={css.modalContent}
+    >
+      <div>
+        <h4 className={css.header}>Add water</h4>
+        <p className={css.doSmth}>Choose a value:</p>
+        <p className={css.amount}>Amount of water:</p>
+        <div className={css.addWaterBlock}>
+          {<FaMinusCircle className={css.minus} onClick={decreaseValue} />}
+          <p className={css.ml}>50 ml</p>
+          {<FaPlusCircle className={css.plus} onClick={addValue} />}
+        </div>
+
+        <Formik
+          initialValues={initialValues}
+          enableReinitialize={true}
+          onSubmit={handleSubmit}
+          validationSchema={FeedbackSchema}
+        >
+          <Form className={css.form}>
+            <div className={css.timeBlock}>
+              <label className={css.time} htmlFor={timeFieldId}>
+                Recording time:
+              </label>
+              <Field
+                className={css.field}
+                type="text"
+                name="time"
+                id={timeFieldId}
+              />
+
+              <ErrorMessage
+                className={css.error}
+                name="time"
+                component="span"
+              />
+            </div>
+            <div className={css.valueBlock}>
+              <label htmlFor={valueFieldId} className={css.value}>
+                Enter the value of the water used:
+              </label>
+              <Field
+                className={css.field}
+                type="text"
+                name="value"
+                id={valueFieldId}
+                value={value}
+              />
+
+              <ErrorMessage
+                className={css.error}
+                name="value"
+                component="span"
+              />
+            </div>
+            <button className={css.btn} type="submit">
+              Save
+            </button>
+          </Form>
+        </Formik>
       </div>
-
-      <Formik
-        initialValues={initialValues}
-        enableReinitialize={true}
-        onSubmit={handleSubmit}
-        validationSchema={FeedbackSchema}
-      >
-        <Form className={css.form}>
-          <div className={css.timeBlock}>
-            <label className={css.time} htmlFor={timeFieldId}>
-              Recording time:
-            </label>
-            <Field
-              className={css.field}
-              type="text"
-              name="time"
-              id={timeFieldId}
-            />
-
-            <ErrorMessage className={css.error} name="time" component="span" />
-          </div>
-          <div className={css.valueBlock}>
-            <label htmlFor={valueFieldId} className={css.value}>
-              Enter the value of the water used:
-            </label>
-            <Field
-              className={css.field}
-              type="text"
-              name="value"
-              id={valueFieldId}
-              value={value}
-            />
-
-            <ErrorMessage className={css.error} name="value" component="span" />
-          </div>
-          <button className={css.btn} type="submit">
-            Save
-          </button>
-        </Form>
-      </Formik>
-    </div>
+    </Modal>
   );
 }
 
