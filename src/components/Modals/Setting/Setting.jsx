@@ -21,6 +21,10 @@ const FeedbackSchema = Yup.object().shape({
     .min(0, "Must be a valid time from 0 to 24 hours")
     .max(24, "Must be a valid time from 0 to 24 hours")
     .required("Required"),
+  howMuch: Yup.number("Must be a valid number!")
+    .min(0.5, "Too little")
+    .max(5, "Must be a valid time from 0 to 24 hours")
+    .required("Required"),
 });
 
 const initialValues = {
@@ -29,6 +33,7 @@ const initialValues = {
   email: "",
   weight: "",
   time: "",
+  howMuch: "",
 };
 
 function Setting({ isOpen, onRequestClose }) {
@@ -42,6 +47,7 @@ function Setting({ isOpen, onRequestClose }) {
   const emailFieldId = useId();
   const weightFieldId = useId();
   const timeFieldId = useId();
+  const howMuchFieldId = useId();
 
   return (
     <Modal
@@ -136,14 +142,14 @@ function Setting({ isOpen, onRequestClose }) {
             </div>
             <div>The required amount of water in liters per day:</div>
             <div>
-              <label htmlFor={timeFieldId}>
+              <label htmlFor={howMuchFieldId}>
                 Write down how much water you will drink:
               </label>
               <Field
                 className={css.field}
                 type="string"
                 name="howMuch"
-                id={timeFieldId}
+                id={howMuchFieldId}
               />
               <ErrorMessage name="howMuch" component="span" />
             </div>
