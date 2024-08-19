@@ -1,6 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { rootReducer } from "./reducer";
+import waterReducer from "./water/slice.js";
 
-const store = configureStore({
-  reducer: rootReducer,
+export const store = configureStore({
+  reducer: {
+    water: waterReducer,
+
+    // auth: persistedAuthReducer,
+  },
 });

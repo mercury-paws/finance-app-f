@@ -3,35 +3,15 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import css from "./WaterList.module.css";
 import { Swiper, SwiperSlide } from "swiper/react";
-
+import { selectDayWater } from "../../../../../redux/water/selectors";
 import "swiper/css";
 import "swiper/swiper-bundle.css";
 import { Scrollbar } from "swiper/modules";
 // import "swiper/modules/scrollbar/scrollbar.min.css";
+import { useSelector } from "react-redux";
 
 function WaterList() {
-  const [dayData, setDayData] = useState([]);
-
-  useEffect(() => {
-    async function fetchDayData() {
-      try {
-        const response = await axios.get(
-          "http://localhost:3000/water-app/water/?year=2024&day=1&month=February",
-          {
-            headers: {
-              Authorization: `Bearer 9LWhL4YXype3isNrdTKXCJlF7R1PiLY4tI6Vpr44`,
-            },
-          }
-        );
-        setDayData(response.data.data.items);
-        console.log(response.data.data.items);
-      } catch (error) {
-        console.log("Error fetching day data:", error);
-      }
-    }
-
-    fetchDayData();
-  }, []);
+  const foundWaterDayData = useSelector(selectDayWater);
 
   return (
     <>
@@ -53,7 +33,7 @@ function WaterList() {
           },
         }}
       >
-        {dayData.map((data) => (
+        {foundWaterDayData.map((data) => (
           <SwiperSlide key={data._id}>
             <WaterItem ml={data.ml} time={data.time} />
           </SwiperSlide>
