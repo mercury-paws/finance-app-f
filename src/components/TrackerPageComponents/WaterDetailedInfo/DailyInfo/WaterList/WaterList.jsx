@@ -18,7 +18,7 @@ function WaterList(currentMonth, chosenDay, currentYear, chosenDate) {
   // const foundWaterDayData = useSelector(selectDayWater);
 
   const foundWaterDayData = useSelector(selectDayWater);
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   // const currentDay = useMemo(
   //   () => ({
@@ -29,12 +29,12 @@ function WaterList(currentMonth, chosenDay, currentYear, chosenDate) {
   //   [currentMonth.chosenDay, currentMonth]
   // );
 
-  // console.log("currentDay", chosenDay);
+  // console.log("currentDay", currentDay);
 
   // Fetch data whenever currentDay changes
-  useEffect(() => {
-    dispatch(fetchWaterDay(chosenDate));
-  }, [dispatch, chosenDate]);
+  // useEffect(() => {
+  //   dispatch(fetchWaterDay());
+  // }, [dispatch, chosenDate]);
 
   return (
     <>

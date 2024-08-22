@@ -13,6 +13,7 @@ function DailyInfo({
   setCurrentYear,
   chosenDate,
 }) {
+  const [currentDate, setCurrentDate] = useState("");
   return (
     <>
       <div className={css.dateAndBtn}>
@@ -23,6 +24,8 @@ function DailyInfo({
           setCurrentMonth={setCurrentMonth}
           currentYear={currentYear}
           setCurrentYear={setCurrentYear}
+          currentDate={currentDate}
+          setCurrentDate={setCurrentDate}
         />
         <AddWaterBtn />
       </div>
@@ -32,6 +35,7 @@ function DailyInfo({
         currentMonth={currentMonth}
         currentYear={currentYear}
         chosenDate={chosenDate}
+        currentDate={currentDate}
       />
     </>
   );

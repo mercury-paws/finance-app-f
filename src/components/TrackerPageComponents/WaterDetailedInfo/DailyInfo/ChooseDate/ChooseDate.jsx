@@ -8,9 +8,9 @@ function ChooseDate({
   setCurrentMonth,
   setCurrentYear,
   currentYear,
+  currentDate,
+  setCurrentDate,
 }) {
-  const [currentDate, setCurrentDate] = useState("");
-
   let date = calculateFormattedDate();
 
   const goToToday = () => {

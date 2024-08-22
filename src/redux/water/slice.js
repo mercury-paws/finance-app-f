@@ -44,7 +44,8 @@ const slice = createSlice({
         state.loading = true;
       })
       .addCase(addWater.fulfilled, (state, action) => {
-        state.dayItems.push(action.payload);
+        state.items.push(action.payload);
+        state.dayItems = action.payload;
         state.loading = false;
       })
       .addCase(addWater.rejected, (state) => {

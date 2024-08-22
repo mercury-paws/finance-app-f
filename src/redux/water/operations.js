@@ -19,7 +19,7 @@ export const fetchWaterMonth = createAsyncThunk(
       const response = await axios.get("water", {
         params: queryParams,
         headers: {
-          Authorization: `Bearer hqHeEanPzcwgMYPCuGKOWREG20BVxeEapg0svYBD`,
+          Authorization: `Bearer WQ5LZYIWhfVexA/aZZn7EU1uwGUs6jO2n6nLZ0w7`,
         },
       });
       return response.data.data.items;
@@ -40,7 +40,7 @@ export const fetchWaterDay = createAsyncThunk(
       const response = await axios.get("water", {
         params: queryParams,
         headers: {
-          Authorization: `Bearer hqHeEanPzcwgMYPCuGKOWREG20BVxeEapg0svYBD`,
+          Authorization: `Bearer WQ5LZYIWhfVexA/aZZn7EU1uwGUs6jO2n6nLZ0w7`,
         },
       });
       return response.data.data.items;
@@ -58,10 +58,10 @@ export const addWater = createAsyncThunk(
       const response = await axios.post("water/add", newAddWater, {
         params: queryDayParams,
         headers: {
-          Authorization: `Bearer hqHeEanPzcwgMYPCuGKOWREG20BVxeEapg0svYBD`,
+          Authorization: `Bearer WQ5LZYIWhfVexA/aZZn7EU1uwGUs6jO2n6nLZ0w7`,
         },
       });
-      return response.data;
+      return response.data.data.items;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }

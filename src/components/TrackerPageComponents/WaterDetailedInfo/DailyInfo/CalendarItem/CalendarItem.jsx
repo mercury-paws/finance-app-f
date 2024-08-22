@@ -7,6 +7,9 @@ import { useMemo } from "react";
 function CalendarItem({ day, chosenDate, waterAmount, currentMonthYear }) {
   const dispatch = useDispatch();
 
+  // const today = new Date(); // Create a new Date object for the current date and time
+  // const dayNumber = today.getDate();
+
   const currentDay = {
     day,
     month: currentMonthYear.month,
@@ -14,6 +17,7 @@ function CalendarItem({ day, chosenDate, waterAmount, currentMonthYear }) {
     ml: waterAmount,
   };
 
+  // need to amend so that upon loading the fetch water showed the todays day water
   const chooseDate = () => {
     chosenDate(day);
     dispatch(fetchWaterDay(currentDay));
