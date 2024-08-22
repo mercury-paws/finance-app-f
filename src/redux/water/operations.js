@@ -19,7 +19,7 @@ export const fetchWaterMonth = createAsyncThunk(
       const response = await axios.get("water", {
         params: queryParams,
         headers: {
-          Authorization: `Bearer 1LFW6vNfa7iemGtUvYRps7rnwmLlgiLz/RHo3EB+`,
+          Authorization: `Bearer hqHeEanPzcwgMYPCuGKOWREG20BVxeEapg0svYBD`,
         },
       });
       return response.data.data.items;
@@ -40,7 +40,7 @@ export const fetchWaterDay = createAsyncThunk(
       const response = await axios.get("water", {
         params: queryParams,
         headers: {
-          Authorization: `Bearer 1LFW6vNfa7iemGtUvYRps7rnwmLlgiLz/RHo3EB+`,
+          Authorization: `Bearer hqHeEanPzcwgMYPCuGKOWREG20BVxeEapg0svYBD`,
         },
       });
       return response.data.data.items;
@@ -53,9 +53,14 @@ export const fetchWaterDay = createAsyncThunk(
 //Базовий тип екшену це рядок "contacts/addContact"
 export const addWater = createAsyncThunk(
   "water/addWater",
-  async (newContact, thunkAPI) => {
+  async ({ newAddWater, queryDayParams }, thunkAPI) => {
     try {
-      const response = await axios.post("water", newWater);
+      const response = await axios.post("water/add", newAddWater, {
+        params: queryDayParams,
+        headers: {
+          Authorization: `Bearer hqHeEanPzcwgMYPCuGKOWREG20BVxeEapg0svYBD`,
+        },
+      });
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

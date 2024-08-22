@@ -20,6 +20,9 @@ function WaterDetailedInfo() {
         setChosenDay={setChosenDay}
         currentMonth={currentMonth}
         setCurrentMonth={setCurrentMonth}
+        currentYear={currentYear}
+        setCurrentYear={setCurrentYear}
+        chosenDate={chosenDate}
       />
       <MonthInfo
         chosenDate={chosenDate}

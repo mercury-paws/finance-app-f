@@ -9,9 +9,32 @@ import "swiper/swiper-bundle.css";
 import { Scrollbar } from "swiper/modules";
 // import "swiper/modules/scrollbar/scrollbar.min.css";
 import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { fetchWaterDay } from "../../../../../redux/water/operations";
+import { getMonthNameByIndex } from "../../../../../constants/constants";
+import { useMemo } from "react";
 
-function WaterList() {
+function WaterList(currentMonth, chosenDay, currentYear, chosenDate) {
+  // const foundWaterDayData = useSelector(selectDayWater);
+
   const foundWaterDayData = useSelector(selectDayWater);
+  const dispatch = useDispatch();
+
+  // const currentDay = useMemo(
+  //   () => ({
+  //     day: currentMonth.chosenDay,
+  //     month: currentMonth.currentMonth,
+  //     // year: currentMonthYear.year,
+  //   }),
+  //   [currentMonth.chosenDay, currentMonth]
+  // );
+
+  // console.log("currentDay", chosenDay);
+
+  // Fetch data whenever currentDay changes
+  useEffect(() => {
+    dispatch(fetchWaterDay(chosenDate));
+  }, [dispatch, chosenDate]);
 
   return (
     <>

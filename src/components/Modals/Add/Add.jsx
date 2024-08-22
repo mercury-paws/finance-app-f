@@ -6,8 +6,11 @@ import { FaMinusCircle } from "react-icons/fa";
 import { Formik, Form, ErrorMessage, Field } from "formik";
 import * as Yup from "yup";
 import { useId, useState } from "react";
-
+import { getMonthNameByIndex } from "../../../constants/constants";
+import { fetchWaterDay } from "../../../redux/water/operations";
 import Modal from "react-modal";
+import { addWater } from "../../../redux/water/operations";
+import { useDispatch } from "react-redux";
 
 Modal.setAppElement("#root");
 
@@ -18,7 +21,7 @@ const FeedbackSchema = Yup.object().shape({
       "Must be a valid time in the format HH:MM"
     )
     .required("Required"),
-  value: Yup.string()
+  ml: Yup.string()
     .min(0, "Too Small!")
     .max(2000, "Too Much!")
     .required("Required"),
@@ -31,24 +34,48 @@ hours = hours < 10 ? `0${hours}` : hours;
 minutes = minutes < 10 ? `0${minutes}` : minutes;
 const time = `${hours}:${minutes}`;
 
+const day = now.getDate();
+const month = now.getMonth();
+const year = now.getFullYear();
+let monthName = getMonthNameByIndex(month);
+const currentDayQuery = {
+  day,
+  month: monthName,
+  year,
+};
+
 function Add({ isOpen, onRequestClose }) {
+  const dispatch = useDispatch();
   const [value, setValue] = useState(50);
 
   const initialValues = {
     time: `${time}`,
-    value: value,
+    ml: value,
   };
 
   const timeFieldId = useId();
   const valueFieldId = useId();
 
   const handleSubmit = (values, actions) => {
-    console.log(values);
+    console.log(monthName);
+    const formattedValues = {
+      ...values,
+      ml: values.ml.toString(),
+    };
+
+    dispatch(
+      addWater({
+        newAddWater: formattedValues,
+        queryDayParams: currentDayQuery,
+      })
+    );
+    dispatch(fetchWaterDay(currentDayQuery));
+    console.log(values, currentDayQuery);
     actions.resetForm();
     onRequestClose();
   };
 
-  let difference = Number(50);
+  let difference = 50;
 
   const decreaseValue = () => {
     let decreasedValue = value - difference;
@@ -109,16 +136,12 @@ function Add({ isOpen, onRequestClose }) {
               <Field
                 className={css.field}
                 type="text"
-                name="value"
+                name="ml"
                 id={valueFieldId}
                 value={value}
               />
 
-              <ErrorMessage
-                className={css.error}
-                name="value"
-                component="span"
-              />
+              <ErrorMessage className={css.error} name="ml" component="span" />
             </div>
             <button className={css.btn} type="submit">
               Save

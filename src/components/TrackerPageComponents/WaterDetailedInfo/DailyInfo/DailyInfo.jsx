@@ -4,7 +4,15 @@ import WaterList from "./WaterList/WaterList";
 import css from "./DailyInfo.module.css";
 import { useState } from "react";
 
-function DailyInfo({ chosenDay, setChosenDay, currentMonth, setCurrentMonth }) {
+function DailyInfo({
+  chosenDay,
+  setChosenDay,
+  currentMonth,
+  setCurrentMonth,
+  currentYear,
+  setCurrentYear,
+  chosenDate,
+}) {
   return (
     <>
       <div className={css.dateAndBtn}>
@@ -13,11 +21,18 @@ function DailyInfo({ chosenDay, setChosenDay, currentMonth, setCurrentMonth }) {
           setChosenDay={setChosenDay}
           currentMonth={currentMonth}
           setCurrentMonth={setCurrentMonth}
+          currentYear={currentYear}
+          setCurrentYear={setCurrentYear}
         />
         <AddWaterBtn />
       </div>
 
-      <WaterList />
+      <WaterList
+        chosenDay={chosenDay}
+        currentMonth={currentMonth}
+        currentYear={currentYear}
+        chosenDate={chosenDate}
+      />
     </>
   );
 }

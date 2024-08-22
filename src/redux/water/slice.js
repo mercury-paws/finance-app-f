@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { fetchWaterMonth, fetchWaterDay } from "./operations";
-// import { addContact } from "./operations";
+import { addWater } from "./operations";
 // import { deleteContact } from "./operations";
 // import { updateContact } from "./operations";
 // import { logOut } from "../auth/operations";
@@ -41,15 +41,15 @@ const slice = createSlice({
       })
       .addCase(addWater.pending, (state) => {
         state.error = false;
-        state.loading.add = true;
+        state.loading = true;
       })
       .addCase(addWater.fulfilled, (state, action) => {
-        state.items.push(action.payload);
-        state.loading.add = false;
+        state.dayItems.push(action.payload);
+        state.loading = false;
       })
       .addCase(addWater.rejected, (state) => {
         state.error = true;
-        state.loading.add = false;
+        state.loading = false;
       }),
   //   .addCase(deleteContact.pending, (state) => {
   //     state.loading.delete = true;

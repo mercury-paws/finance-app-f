@@ -6,6 +6,8 @@ function ChooseDate({
   setChosenDay,
   currentMonth,
   setCurrentMonth,
+  setCurrentYear,
+  currentYear,
 }) {
   const [currentDate, setCurrentDate] = useState("");
 
@@ -16,6 +18,7 @@ function ChooseDate({
     setCurrentDate("Today");
     setChosenDay("");
     setCurrentMonth(date.month);
+    setCurrentYear(date.year);
   };
   useEffect(() => {
     const parsedDate = new Date(
