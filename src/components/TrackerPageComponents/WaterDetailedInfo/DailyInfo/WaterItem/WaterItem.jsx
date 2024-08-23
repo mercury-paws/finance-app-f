@@ -4,8 +4,10 @@ import { FaTrash } from "react-icons/fa";
 import css from "./WaterItem.module.css";
 import Edit from "../../../../Modals/Edit/Edit.jsx";
 import Delete from "../../../../Modals/Delete/Delete.jsx";
+import { useSelector } from "react-redux";
+import { selectDayWater } from "../../../../../redux/water/selectors.js";
 
-function WaterItem({ ml, time }) {
+function WaterItem({ ml, time, id }) {
   const [editModalOpen, setEditModalOpen] = useState(false);
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
 
@@ -24,6 +26,9 @@ function WaterItem({ ml, time }) {
   const handleDeleteModalClose = () => {
     setDeleteModalOpen(false);
   };
+
+  const foundWaterDayData = useSelector(selectDayWater);
+
   return (
     <div className={css.waterItem}>
       <svg className={css.cupIcon} width="32" height="36">
@@ -47,6 +52,8 @@ function WaterItem({ ml, time }) {
           <Delete
             isOpen={deleteModalOpen}
             onRequestClose={handleDeleteModalClose}
+            foundWaterDayData={foundWaterDayData}
+            id={id}
           />
         )}
       </div>

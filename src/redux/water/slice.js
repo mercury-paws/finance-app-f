@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { fetchWaterMonth, fetchWaterDay } from "./operations";
 import { addWater } from "./operations";
-// import { deleteContact } from "./operations";
+import { deleteWater } from "./operations";
 // import { updateContact } from "./operations";
 // import { logOut } from "../auth/operations";
 
@@ -44,28 +44,49 @@ const slice = createSlice({
         state.loading = true;
       })
       .addCase(addWater.fulfilled, (state, action) => {
-        state.items.push(action.payload);
-        state.dayItems = action.payload;
+        // Ensure action.payload is correctly used
+        const newDayItem = action.payload;
+
+        // Update state.items
+        state.items.push(newDayItem);
+
+        // // Update state.dayItems
+        // const existingDayItemIndex = state.dayItems.findIndex(
+        //   (item) =>
+        //     item.day === newDayItem.day &&
+        //     item.month === newDayItem.month &&
+        //     item.year === newDayItem.year
+        // );
+
+        // if (existingDayItemIndex !== -1) {
+        //   // Update existing day item
+        //   state.dayItems[existingDayItemIndex] = newDayItem;
+        // } else {
+        // Add new day item
+        state.dayItems.push(newDayItem);
+        // }
+
         state.loading = false;
       })
       .addCase(addWater.rejected, (state) => {
         state.error = true;
         state.loading = false;
+      })
+      .addCase(deleteWater.pending, (state) => {
+        state.loading = true;
+        state.error = false;
+      })
+      .addCase(deleteWater.fulfilled, (state, action) => {
+        state.items = state.items.filter((item) => item._id !== action.payload);
+        state.dayItems = state.dayItems.filter(
+          (item) => item._id !== action.payload
+        );
+        state.loading = false;
+      })
+      .addCase(deleteWater.rejected, (state) => {
+        state.loading = false;
+        state.error = true;
       }),
-  //   .addCase(deleteContact.pending, (state) => {
-  //     state.loading.delete = true;
-  //     state.error = false;
-  //   })
-  //   .addCase(deleteContact.fulfilled, (state, action) => {
-  //     state.items = state.items.filter(
-  //       (item) => item.id !== action.payload.id
-  //     );
-  //     state.loading.delete = false;
-  //   })
-  //   .addCase(deleteContact.rejected, (state) => {
-  //     state.loading.delete = false;
-  //     state.error = true;
-  //   })
   //   .addCase(logOut.fulfilled, (state) => {
   //     state.items = [];
   //     state.loading.add = false;

@@ -3,7 +3,7 @@ import { FaPlus } from "react-icons/fa";
 import { useState } from "react";
 import Add from "../../../Modals/Add/Add";
 
-function AddWaterBtn() {
+function AddWaterBtn({ chosenDay, currentMonth, currentYear }) {
   const [modalOpen, setModalOpen] = useState(false);
 
   const handleAddModalOpen = () => {
@@ -18,7 +18,15 @@ function AddWaterBtn() {
       <button className={css.btn} onClick={handleAddModalOpen}>
         <FaPlus className={css.plusIcon} /> Add water
       </button>
-      {modalOpen && <Add isOpen={modalOpen} onRequestClose={closeModal} />}
+      {modalOpen && (
+        <Add
+          isOpen={modalOpen}
+          onRequestClose={closeModal}
+          chosenDay={chosenDay}
+          currentMonth={currentMonth}
+          currentYear={currentYear}
+        />
+      )}
     </div>
   );
 }

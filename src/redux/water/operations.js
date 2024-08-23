@@ -19,7 +19,7 @@ export const fetchWaterMonth = createAsyncThunk(
       const response = await axios.get("water", {
         params: queryParams,
         headers: {
-          Authorization: `Bearer WQ5LZYIWhfVexA/aZZn7EU1uwGUs6jO2n6nLZ0w7`,
+          Authorization: `Bearer A3EW3piBYe0dvhOIjD1SN2A8yWFAJNPIaJX2VL+D`,
         },
       });
       return response.data.data.items;
@@ -40,7 +40,7 @@ export const fetchWaterDay = createAsyncThunk(
       const response = await axios.get("water", {
         params: queryParams,
         headers: {
-          Authorization: `Bearer WQ5LZYIWhfVexA/aZZn7EU1uwGUs6jO2n6nLZ0w7`,
+          Authorization: `Bearer A3EW3piBYe0dvhOIjD1SN2A8yWFAJNPIaJX2VL+D`,
         },
       });
       return response.data.data.items;
@@ -58,10 +58,12 @@ export const addWater = createAsyncThunk(
       const response = await axios.post("water/add", newAddWater, {
         params: queryDayParams,
         headers: {
-          Authorization: `Bearer WQ5LZYIWhfVexA/aZZn7EU1uwGUs6jO2n6nLZ0w7`,
+          Authorization: `Bearer A3EW3piBYe0dvhOIjD1SN2A8yWFAJNPIaJX2VL+D`,
         },
       });
-      return response.data.data.items;
+      console.log({ newAddWater, queryDayParams });
+      console.log(response.data);
+      return response.data.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -69,17 +71,21 @@ export const addWater = createAsyncThunk(
 );
 
 // //Базовий тип екшену це рядок "contacts/deleteContact"
-// export const deleteWater = createAsyncThunk(
-//   "water/deleteWater",
-//   async (contactId, thunkAPI) => {
-//     try {
-//       const response = await axios.delete(`water/${contactId}`);
-//       return response.data;
-//     } catch (error) {
-//       return thunkAPI.rejectWithValue(error.message);
-//     }
-//   }
-// );
+export const deleteWater = createAsyncThunk(
+  "water/deleteWater",
+  async (waterId, thunkAPI) => {
+    try {
+      const response = await axios.delete(`water/${waterId}`, {
+        headers: {
+          Authorization: `Bearer A3EW3piBYe0dvhOIjD1SN2A8yWFAJNPIaJX2VL+D`,
+        },
+      });
+      return response.data._id;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
 
 // // update the existing contact
 

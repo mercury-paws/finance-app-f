@@ -27,7 +27,11 @@ function DailyInfo({
           currentDate={currentDate}
           setCurrentDate={setCurrentDate}
         />
-        <AddWaterBtn />
+        <AddWaterBtn
+          chosenDay={chosenDay}
+          currentMonth={currentMonth}
+          currentYear={currentYear}
+        />
       </div>
 
       <WaterList

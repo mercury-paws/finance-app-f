@@ -15,26 +15,20 @@ import { getMonthNameByIndex } from "../../../../../constants/constants";
 import { useMemo } from "react";
 
 function WaterList(currentMonth, chosenDay, currentYear, chosenDate) {
-  // const foundWaterDayData = useSelector(selectDayWater);
-
   const foundWaterDayData = useSelector(selectDayWater);
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-  // const currentDay = useMemo(
-  //   () => ({
-  //     day: currentMonth.chosenDay,
-  //     month: currentMonth.currentMonth,
-  //     // year: currentMonthYear.year,
-  //   }),
-  //   [currentMonth.chosenDay, currentMonth]
-  // );
-
-  // console.log("currentDay", currentDay);
-
-  // Fetch data whenever currentDay changes
-  // useEffect(() => {
-  //   dispatch(fetchWaterDay());
-  // }, [dispatch, chosenDate]);
+  useEffect(() => {
+    if (chosenDay && currentMonth && currentYear) {
+      dispatch(
+        fetchWaterDay({
+          day: chosenDay,
+          month: currentMonth,
+          year: currentYear,
+        })
+      ).unwrap();
+    }
+  }, [chosenDay, currentMonth, currentYear, dispatch]);
 
   return (
     <>
@@ -58,7 +52,7 @@ function WaterList(currentMonth, chosenDay, currentYear, chosenDate) {
       >
         {foundWaterDayData.map((data) => (
           <SwiperSlide key={data._id}>
-            <WaterItem ml={data.ml} time={data.time} />
+            <WaterItem ml={data.ml} time={data.time} id={data._id} />
           </SwiperSlide>
         ))}
       </Swiper>

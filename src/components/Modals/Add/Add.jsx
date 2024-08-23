@@ -44,7 +44,7 @@ const currentDayQuery = {
   year,
 };
 
-function Add({ isOpen, onRequestClose }) {
+function Add({ isOpen, onRequestClose, chosenDay, currentMonth, currentYear }) {
   const dispatch = useDispatch();
   const [value, setValue] = useState(50);
 
@@ -57,26 +57,34 @@ function Add({ isOpen, onRequestClose }) {
   const valueFieldId = useId();
 
   const handleSubmit = (values, actions) => {
-    console.log(monthName);
     const formattedValues = {
       ...values,
       ml: values.ml.toString(),
     };
 
+    const queryDayParams = {
+      day: chosenDay,
+      month: currentMonth,
+      year: currentYear,
+    };
+
+    console.log(queryDayParams, chosenDay);
+
     dispatch(
       addWater({
         newAddWater: formattedValues,
-        queryDayParams: currentDayQuery,
+        queryDayParams,
       })
-    );
-    dispatch(fetchWaterDay(currentDayQuery));
-    console.log(values, currentDayQuery);
+    ).then(() => {
+      // Refresh the water data for the selected day after adding
+      dispatch(fetchWaterDay(queryDayParams)); // currentDayQuery
+    });
+
     actions.resetForm();
     onRequestClose();
   };
 
   let difference = 50;
-
   const decreaseValue = () => {
     let decreasedValue = value - difference;
     setValue(decreasedValue);

@@ -60,7 +60,7 @@ export const calculateFormattedDate = (monthIndex, year) => {
   const dateParts = date.toLocaleDateString("en-US", options).split(" ");
 
   let formattedDate = {
-    day: `${dateParts[1]}`,
+    day: `${dateParts[1].replace(",", "")}`,
     month: `${dateParts[0]}`,
     year: `${dateParts[2]}`,
   };
