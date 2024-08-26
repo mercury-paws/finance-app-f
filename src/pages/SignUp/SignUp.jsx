@@ -7,6 +7,8 @@ import { useState } from "react";
 import { FaEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { register } from "../../redux/auth/operations";
 // import MainPic from "../../components/StartPageComponents/MainPic/MainPic";
 
 const FeedbackSchema = Yup.object().shape({
@@ -26,6 +28,7 @@ function SignUp() {
   const [submitted, setSubmitted] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [showRepeatPassword, setShowRepeatPassword] = useState(false);
+  let dispatch = useDispatch();
 
   const handleSubmit = (values, actions) => {
     if (values.password !== values.repeatPassword) {
@@ -34,8 +37,12 @@ function SignUp() {
     } else {
       setError("");
       setSubmitted("Passwords match, form submitted");
-      // Here you can handle further form submission, e.g., sending data to the server
-      console.log(values);
+      let newUser = {
+        email: values.email,
+        password: values.password,
+      };
+      // console.log(newUser);
+      dispatch(register(newUser));
       actions.resetForm();
     }
   };

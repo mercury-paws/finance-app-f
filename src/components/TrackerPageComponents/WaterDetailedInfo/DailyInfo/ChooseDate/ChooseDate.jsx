@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { calculateFormattedDate } from "../../../../../constants/constants";
 import { useDispatch } from "react-redux";
 import { fetchWaterDay } from "../../../../../redux/water/operations";
@@ -14,36 +14,32 @@ function ChooseDate({
   setCurrentDate,
 }) {
   let date = calculateFormattedDate();
-  // let dispatch = useDispatch();
+  const [isToday, setIsToday] = useState(false);
 
   const goToToday = () => {
-    // let date = calculateFormattedDate();
-    setCurrentDate("Today");
     setChosenDay(date.day);
     setCurrentMonth(date.month);
     setCurrentYear(date.year);
-
-    // dispatch(
-    //   fetchWaterDay({ day: date.day, month: date.month, year: date.year })
-    // );
+    setIsToday(true);
   };
 
-  useEffect(() => {
-    const parsedDate = new Date(
-      `${date.month} ${date.day.replace(",", "")}, ${date.year}`
-    );
-    const dateToCompare = new Date();
+  const parsedDate = useMemo(() => {
+    return new Date(`${date.month} ${date.day.replace(",", "")}, ${date.year}`);
+  }, [date.month, date.day, date.year]);
 
+  const dateToCompare = useMemo(() => {
+    return new Date();
+  }, []);
+
+  console.log(parsedDate, dateToCompare);
+
+  useEffect(() => {
     if (chosenDay) {
       setCurrentDate(`${chosenDay}, ${currentMonth}`);
-    } else if (
-      !chosenDay &&
-      parsedDate.toDateString() === dateToCompare.toDateString()
-    ) {
-      setCurrentDate("Today");
     } else {
       setCurrentDate(`${date.day}, ${date.month}`);
     }
+    setIsToday(false);
   }, [
     chosenDay,
     currentMonth,
@@ -55,7 +51,13 @@ function ChooseDate({
 
   return (
     <>
-      <p onClick={goToToday}>{currentDate}</p>
+      <p onClick={goToToday}>
+        {isToday ||
+        (!chosenDay &&
+          parsedDate.toDateString() === dateToCompare.toDateString())
+          ? "Today"
+          : currentDate}
+      </p>
     </>
   );
 }

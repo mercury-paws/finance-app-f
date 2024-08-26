@@ -7,6 +7,8 @@ import { useState } from "react";
 import { FaEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { logIn } from "../../redux/auth/operations";
 // import MainPic from "../../components/StartPageComponents/MainPic/MainPic";
 
 const FeedbackSchema = Yup.object().shape({
@@ -21,12 +23,13 @@ const initialValues = {
 
 function SignIn() {
   const [showPassword, setShowPassword] = useState(false);
+  let dispatch = useDispatch();
 
   const toggleShowPassword = () => {
     setShowPassword(!showPassword);
   };
   const handleSubmit = (values, actions) => {
-    console.log(values);
+    dispatch(logIn(values));
     actions.resetForm();
   };
 

@@ -19,7 +19,7 @@ export const fetchWaterMonth = createAsyncThunk(
       const response = await axios.get("water", {
         params: queryParams,
         headers: {
-          Authorization: `Bearer 1iqHki2UFyiZv9NZsYmoE+AguefFHqqF4Fg/gkL0`,
+          Authorization: `Bearer i53lk2+UIINqHEFCgCD/YArmeRlfIKSErnHs3O0L`,
         },
       });
       return response.data.data.items;
@@ -40,7 +40,7 @@ export const fetchWaterDay = createAsyncThunk(
       const response = await axios.get("water", {
         params: queryParams,
         headers: {
-          Authorization: `Bearer 1iqHki2UFyiZv9NZsYmoE+AguefFHqqF4Fg/gkL0`,
+          Authorization: `Bearer i53lk2+UIINqHEFCgCD/YArmeRlfIKSErnHs3O0L`,
         },
       });
       return response.data.data.items;
@@ -58,7 +58,7 @@ export const addWater = createAsyncThunk(
       const response = await axios.post("water/add", newAddWater, {
         params: queryDayParams,
         headers: {
-          Authorization: `Bearer 1iqHki2UFyiZv9NZsYmoE+AguefFHqqF4Fg/gkL0`,
+          Authorization: `Bearer i53lk2+UIINqHEFCgCD/YArmeRlfIKSErnHs3O0L`,
         },
       });
       console.log({ newAddWater, queryDayParams });
@@ -77,7 +77,7 @@ export const deleteWater = createAsyncThunk(
     try {
       const response = await axios.delete(`water/${waterId}`, {
         headers: {
-          Authorization: `Bearer 1iqHki2UFyiZv9NZsYmoE+AguefFHqqF4Fg/gkL0`,
+          Authorization: `Bearer i53lk2+UIINqHEFCgCD/YArmeRlfIKSErnHs3O0L`,
         },
       });
       return response.data._id;
@@ -103,7 +103,7 @@ export const updateWater = createAsyncThunk(
         updateWater,
         {
           headers: {
-            Authorization: `Bearer 1iqHki2UFyiZv9NZsYmoE+AguefFHqqF4Fg/gkL0`,
+            Authorization: `Bearer i53lk2+UIINqHEFCgCD/YArmeRlfIKSErnHs3O0L`,
           },
         }
       );
