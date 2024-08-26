@@ -17,6 +17,7 @@ function WaterDetailedInfo({
   setChosenDay,
 }) {
   let dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(
       fetchWaterDay({ day: chosenDay, month: currentMonth, year: currentYear })

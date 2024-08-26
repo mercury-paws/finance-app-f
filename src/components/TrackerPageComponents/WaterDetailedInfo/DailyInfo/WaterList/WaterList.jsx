@@ -14,7 +14,8 @@ import { fetchWaterDay } from "../../../../../redux/water/operations";
 import { getMonthNameByIndex } from "../../../../../constants/constants";
 import { useMemo } from "react";
 
-function WaterList(currentMonth, chosenDay, currentYear, chosenDate) {
+function WaterList({ currentMonth, chosenDay, currentYear, chosenDate }) {
+  // added {} dunno why was working earlier
   const foundWaterDayData = useSelector(selectDayWater);
   const dispatch = useDispatch();
 
@@ -52,7 +53,14 @@ function WaterList(currentMonth, chosenDay, currentYear, chosenDate) {
       >
         {foundWaterDayData.map((data) => (
           <SwiperSlide key={data._id}>
-            <WaterItem ml={data.ml} time={data.time} id={data._id} />
+            <WaterItem
+              ml={data.ml}
+              time={data.time}
+              id={data._id}
+              currentMonth={currentMonth}
+              chosenDay={chosenDay}
+              currentYear={currentYear}
+            />
           </SwiperSlide>
         ))}
       </Swiper>

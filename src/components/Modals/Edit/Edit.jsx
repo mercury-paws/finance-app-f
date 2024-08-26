@@ -5,8 +5,11 @@ import { FaPlusCircle } from "react-icons/fa";
 import { FaMinusCircle } from "react-icons/fa";
 import { Formik, Form, ErrorMessage, Field } from "formik";
 import * as Yup from "yup";
-import { useId, useState } from "react";
+import { useEffect, useId, useState } from "react";
 import Modal from "react-modal";
+import { useDispatch } from "react-redux";
+import { updateWater } from "../../../redux/water/operations";
+import { fetchWaterDay } from "../../../redux/water/operations";
 
 Modal.setAppElement("#root");
 
@@ -17,27 +20,68 @@ const FeedbackSchema = Yup.object().shape({
       "Must be a valid time in the format HH:MM"
     )
     .required("Required"),
-  value: Yup.string()
+  ml: Yup.string()
     .min(0, "Too Small!")
     .max(2000, "Too Much!")
     .required("Required"),
 });
 
-function Edit({ isOpen, onRequestClose }) {
-  const [value, setValue] = useState(50);
+function Edit({
+  isOpen,
+  onRequestClose,
+  id,
+  currentMonth,
+  chosenDay,
+  currentYear,
+  time,
+  ml,
+}) {
+  let dispatch = useDispatch();
+
+  const [value, setValue] = useState(Number(ml));
 
   const initialValues = {
-    time: `07:00`, // time must be the one in database
-    value: value,
+    time: time,
+    ml: value,
+  };
+
+  const handleSubmit = (values, actions) => {
+    const formattedValues = {
+      ...values,
+      ml: values.ml.toString(),
+    };
+
+    const queryDayParams = {
+      // day: chosenDay,
+      // month: currentMonth,
+      // year: currentYear,
+      id,
+    };
+
+    console.log(queryDayParams, values.ml, time);
+
+    dispatch(
+      updateWater({
+        updateWater: formattedValues,
+        queryDayParams,
+      })
+    ).then(() => {
+      // Refresh the water data for the selected day after adding
+      dispatch(
+        fetchWaterDay({
+          day: chosenDay,
+          month: currentMonth,
+          year: currentYear,
+        })
+      );
+    });
+
+    actions.resetForm();
+    onRequestClose();
   };
 
   const timeFieldId = useId();
   const valueFieldId = useId();
-
-  const handleSubmit = (values, actions) => {
-    console.log(values);
-    actions.resetForm();
-  };
 
   let difference = Number(50);
 
@@ -100,16 +144,12 @@ function Edit({ isOpen, onRequestClose }) {
               <Field
                 className={css.field}
                 type="text"
-                name="value"
+                name="ml"
                 id={valueFieldId}
                 value={value}
               />
 
-              <ErrorMessage
-                className={css.error}
-                name="value"
-                component="span"
-              />
+              <ErrorMessage className={css.error} name="ml" component="span" />
             </div>
             <button className={css.btn} type="submit">
               Save

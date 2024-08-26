@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { fetchWaterMonth, fetchWaterDay } from "./operations";
 import { addWater } from "./operations";
 import { deleteWater } from "./operations";
+import { updateWater } from "./operations";
 // import { updateContact } from "./operations";
 // import { logOut } from "../auth/operations";
 
@@ -86,25 +87,28 @@ const slice = createSlice({
       .addCase(deleteWater.rejected, (state) => {
         state.loading = false;
         state.error = true;
+      })
+      //   .addCase(logOut.fulfilled, (state) => {
+      //     state.items = [];
+      //     state.loading.add = false;
+      //     state.loading.fetch = false;
+      //     state.loading.delete = false;
+      //   })
+      .addCase(updateWater.pending, (state) => {
+        state.loading = true;
+        state.error = false;
+      })
+      .addCase(updateWater.fulfilled, (state, action) => {
+        console.log("Payload:", action.payload);
+        const updatedWater = action.payload;
+        state.items = state.items.map((item) =>
+          item._id === updatedWater._id ? updatedWater : item
+        );
+        state.dayItems = state.dayItems.map((item) =>
+          item._id === updatedWater._id ? updatedWater : item
+        );
+        state.loading = false;
       }),
-  //   .addCase(logOut.fulfilled, (state) => {
-  //     state.items = [];
-  //     state.loading.add = false;
-  //     state.loading.fetch = false;
-  //     state.loading.delete = false;
-  //   })
-  //   .addCase(updateContact.pending, (state) => {
-  //     state.loading.update = true;
-  //     state.error = false;
-  //   })
-  //   .addCase(updateContact.fulfilled, (state, action) => {
-  //     console.log("Payload:", action.payload);
-  //     const updatedContact = action.payload;
-  //     state.items = state.items.map((item) =>
-  //       item.id === updatedContact.id ? updatedContact : item
-  //     );
-  //     state.loading.update = false;
-  //   })
   //   .addCase(updateContact.rejected, (state) => {
   //     state.loading.update = false;
   //     state.error = true;

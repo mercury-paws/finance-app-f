@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { calculateFormattedDate } from "../../../../../constants/constants";
+import { useDispatch } from "react-redux";
+import { fetchWaterDay } from "../../../../../redux/water/operations";
 
 function ChooseDate({
   chosenDay,
@@ -12,14 +14,20 @@ function ChooseDate({
   setCurrentDate,
 }) {
   let date = calculateFormattedDate();
+  // let dispatch = useDispatch();
 
   const goToToday = () => {
     // let date = calculateFormattedDate();
     setCurrentDate("Today");
-    setChosenDay("");
+    setChosenDay(date.day);
     setCurrentMonth(date.month);
     setCurrentYear(date.year);
+
+    // dispatch(
+    //   fetchWaterDay({ day: date.day, month: date.month, year: date.year })
+    // );
   };
+
   useEffect(() => {
     const parsedDate = new Date(
       `${date.month} ${date.day.replace(",", "")}, ${date.year}`
@@ -36,7 +44,14 @@ function ChooseDate({
     } else {
       setCurrentDate(`${date.day}, ${date.month}`);
     }
-  }, [chosenDay, currentMonth, date.month, date.day, date.year]);
+  }, [
+    chosenDay,
+    currentMonth,
+    date.month,
+    date.day,
+    date.year,
+    setCurrentDate,
+  ]);
 
   return (
     <>

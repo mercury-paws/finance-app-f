@@ -7,7 +7,7 @@ import Delete from "../../../../Modals/Delete/Delete.jsx";
 import { useSelector } from "react-redux";
 import { selectDayWater } from "../../../../../redux/water/selectors.js";
 
-function WaterItem({ ml, time, id }) {
+function WaterItem({ ml, time, id, currentMonth, chosenDay, currentYear }) {
   const [editModalOpen, setEditModalOpen] = useState(false);
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
 
@@ -43,7 +43,16 @@ function WaterItem({ ml, time, id }) {
           <FaPen className={css.penIcon} />
         </button>
         {editModalOpen && (
-          <Edit isOpen={editModalOpen} onRequestClose={handleEditModalClose} />
+          <Edit
+            isOpen={editModalOpen}
+            onRequestClose={handleEditModalClose}
+            currentMonth={currentMonth}
+            chosenDay={chosenDay}
+            currentYear={currentYear}
+            id={id}
+            time={time}
+            ml={ml}
+          />
         )}
         <button className={css.btn} onClick={handleDeleteModalOpen}>
           <FaTrash className={css.trashIcon} />

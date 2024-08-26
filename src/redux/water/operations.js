@@ -19,7 +19,7 @@ export const fetchWaterMonth = createAsyncThunk(
       const response = await axios.get("water", {
         params: queryParams,
         headers: {
-          Authorization: `Bearer A3EW3piBYe0dvhOIjD1SN2A8yWFAJNPIaJX2VL+D`,
+          Authorization: `Bearer 1iqHki2UFyiZv9NZsYmoE+AguefFHqqF4Fg/gkL0`,
         },
       });
       return response.data.data.items;
@@ -40,7 +40,7 @@ export const fetchWaterDay = createAsyncThunk(
       const response = await axios.get("water", {
         params: queryParams,
         headers: {
-          Authorization: `Bearer A3EW3piBYe0dvhOIjD1SN2A8yWFAJNPIaJX2VL+D`,
+          Authorization: `Bearer 1iqHki2UFyiZv9NZsYmoE+AguefFHqqF4Fg/gkL0`,
         },
       });
       return response.data.data.items;
@@ -58,7 +58,7 @@ export const addWater = createAsyncThunk(
       const response = await axios.post("water/add", newAddWater, {
         params: queryDayParams,
         headers: {
-          Authorization: `Bearer A3EW3piBYe0dvhOIjD1SN2A8yWFAJNPIaJX2VL+D`,
+          Authorization: `Bearer 1iqHki2UFyiZv9NZsYmoE+AguefFHqqF4Fg/gkL0`,
         },
       });
       console.log({ newAddWater, queryDayParams });
@@ -77,7 +77,7 @@ export const deleteWater = createAsyncThunk(
     try {
       const response = await axios.delete(`water/${waterId}`, {
         headers: {
-          Authorization: `Bearer A3EW3piBYe0dvhOIjD1SN2A8yWFAJNPIaJX2VL+D`,
+          Authorization: `Bearer 1iqHki2UFyiZv9NZsYmoE+AguefFHqqF4Fg/gkL0`,
         },
       });
       return response.data._id;
@@ -89,20 +89,28 @@ export const deleteWater = createAsyncThunk(
 
 // // update the existing contact
 
-// export const updateWater = createAsyncThunk(
-//   "water/update",
-//   async (contact, thunkAPI) => {
-//     try {
-//       const reduxState = thunkAPI.getState();
-//       const savedToken = reduxState.auth.token;
-//       setAuthHeader(savedToken);
-//       const response = await axios.patch(`water/${contact.id}`, {
-//         name: contact.name,
-//         number: contact.number,
-//       });
-//       return response.data;
-//     } catch (error) {
-//       return thunkAPI.rejectWithValue(error.message);
-//     }
-//   }
-// );
+export const updateWater = createAsyncThunk(
+  "water/update",
+  async ({ updateWater, queryDayParams }, thunkAPI) => {
+    console.log(updateWater, queryDayParams);
+    //     try {
+    //       const reduxState = thunkAPI.getState();
+    //       const savedToken = reduxState.auth.token;
+    //       setAuthHeader(savedToken);
+    try {
+      const response = await axios.patch(
+        `water/${queryDayParams.id}`,
+        updateWater,
+        {
+          headers: {
+            Authorization: `Bearer 1iqHki2UFyiZv9NZsYmoE+AguefFHqqF4Fg/gkL0`,
+          },
+        }
+      );
+
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
