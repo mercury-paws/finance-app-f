@@ -4,7 +4,7 @@ import { addWater } from "./operations";
 import { deleteWater } from "./operations";
 import { updateWater } from "./operations";
 // import { updateContact } from "./operations";
-// import { logOut } from "../auth/operations";
+import { logOut } from "../auth/operations";
 
 const slice = createSlice({
   name: "water",
@@ -88,12 +88,10 @@ const slice = createSlice({
         state.loading = false;
         state.error = true;
       })
-      //   .addCase(logOut.fulfilled, (state) => {
-      //     state.items = [];
-      //     state.loading.add = false;
-      //     state.loading.fetch = false;
-      //     state.loading.delete = false;
-      //   })
+      .addCase(logOut.fulfilled, (state) => {
+        state.items = [];
+        state.loading = false;
+      })
       .addCase(updateWater.pending, (state) => {
         state.loading = true;
         state.error = false;

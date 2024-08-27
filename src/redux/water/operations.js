@@ -1,9 +1,9 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-// const setAuthHeader = (token) => {
-//   axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-// };
+const setAuthHeader = (token) => {
+  axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+};
 
 axios.defaults.baseURL = "http://localhost:3000/water-app";
 
@@ -12,15 +12,12 @@ export const fetchWaterMonth = createAsyncThunk(
   "water/fetchWaterMonth",
   async (queryParams, thunkAPI) => {
     try {
-      //   const reduxState = thunkAPI.getState();
-      //   const savedToken = reduxState.auth.token;
-      //   setAuthHeader(savedToken);
+      const reduxState = thunkAPI.getState();
+      const savedToken = reduxState.auth.accessToken;
+      setAuthHeader(savedToken);
 
       const response = await axios.get("water", {
         params: queryParams,
-        headers: {
-          Authorization: `Bearer i53lk2+UIINqHEFCgCD/YArmeRlfIKSErnHs3O0L`,
-        },
       });
       return response.data.data.items;
     } catch (error) {
@@ -33,15 +30,11 @@ export const fetchWaterDay = createAsyncThunk(
   "water/fetchWaterDay",
   async (queryParams, thunkAPI) => {
     try {
-      //   const reduxState = thunkAPI.getState();
-      //   const savedToken = reduxState.auth.token;
-      //   setAuthHeader(savedToken);
-
+      const reduxState = thunkAPI.getState();
+      const savedToken = reduxState.auth.accessToken;
+      setAuthHeader(savedToken);
       const response = await axios.get("water", {
         params: queryParams,
-        headers: {
-          Authorization: `Bearer i53lk2+UIINqHEFCgCD/YArmeRlfIKSErnHs3O0L`,
-        },
       });
       return response.data.data.items;
     } catch (error) {
@@ -55,11 +48,12 @@ export const addWater = createAsyncThunk(
   "water/addWater",
   async ({ newAddWater, queryDayParams }, thunkAPI) => {
     try {
+      const reduxState = thunkAPI.getState();
+      const savedToken = reduxState.auth.accessToken;
+      setAuthHeader(savedToken);
+
       const response = await axios.post("water/add", newAddWater, {
         params: queryDayParams,
-        headers: {
-          Authorization: `Bearer i53lk2+UIINqHEFCgCD/YArmeRlfIKSErnHs3O0L`,
-        },
       });
       console.log({ newAddWater, queryDayParams });
       console.log(response.data);
@@ -75,11 +69,10 @@ export const deleteWater = createAsyncThunk(
   "water/deleteWater",
   async (waterId, thunkAPI) => {
     try {
-      const response = await axios.delete(`water/${waterId}`, {
-        headers: {
-          Authorization: `Bearer i53lk2+UIINqHEFCgCD/YArmeRlfIKSErnHs3O0L`,
-        },
-      });
+      const reduxState = thunkAPI.getState();
+      const savedToken = reduxState.auth.accessToken;
+      setAuthHeader(savedToken);
+      const response = await axios.delete(`water/${waterId}`, {});
       return response.data._id;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -93,19 +86,14 @@ export const updateWater = createAsyncThunk(
   "water/update",
   async ({ updateWater, queryDayParams }, thunkAPI) => {
     console.log(updateWater, queryDayParams);
-    //     try {
-    //       const reduxState = thunkAPI.getState();
-    //       const savedToken = reduxState.auth.token;
-    //       setAuthHeader(savedToken);
+
     try {
+      const reduxState = thunkAPI.getState();
+      const savedToken = reduxState.auth.accessToken;
+      setAuthHeader(savedToken);
       const response = await axios.patch(
         `water/${queryDayParams.id}`,
-        updateWater,
-        {
-          headers: {
-            Authorization: `Bearer i53lk2+UIINqHEFCgCD/YArmeRlfIKSErnHs3O0L`,
-          },
-        }
+        updateWater
       );
 
       return response.data;

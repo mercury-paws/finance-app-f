@@ -9,6 +9,7 @@ import { FaEyeSlash } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { logIn } from "../../redux/auth/operations";
+import toast, { Toaster } from "react-hot-toast";
 // import MainPic from "../../components/StartPageComponents/MainPic/MainPic";
 
 const FeedbackSchema = Yup.object().shape({
@@ -22,6 +23,9 @@ const initialValues = {
 };
 
 function SignIn() {
+  {
+    /* <Toaster/> */
+  }
   const [showPassword, setShowPassword] = useState(false);
   let dispatch = useDispatch();
 
@@ -29,8 +33,18 @@ function SignIn() {
     setShowPassword(!showPassword);
   };
   const handleSubmit = (values, actions) => {
-    dispatch(logIn(values));
-    actions.resetForm();
+    dispatch(logIn(values))
+      .unwrap()
+      .then((data) => {
+        toast.success("Success!");
+        actions.resetForm();
+      })
+      .catch((error) => {
+        toast.error("Login failed: " + error.message);
+        console.error("Login failed:", error);
+        // actions.resetForm();
+      });
+    // actions.resetForm();
   };
 
   const emailFieldId = useId();
@@ -72,6 +86,7 @@ function SignIn() {
           <button className={css.btn} type="submit">
             Sign In
           </button>
+          <Toaster />
         </Form>
       </Formik>
       <p>

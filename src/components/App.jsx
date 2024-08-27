@@ -5,12 +5,16 @@ import SignIn from "../pages/SignIn/SignIn.jsx";
 import { Route, Routes } from "react-router-dom";
 import Layout from "./Layout/Layout.jsx";
 import NotFound from "./NotFound/NotFound.jsx";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { selectIsLoggedIn } from "../redux/auth/selectors.js";
+import { useEffect } from "react";
 // import { lazy, Suspense } from "react";
 
 function App() {
+  // const dispatch = useDispatch();
   let isLoggedIn = useSelector(selectIsLoggedIn);
+
+  //  useEffect(()=>{dispatch(refreshUser())},[dispatch])
 
   return (
     <>
