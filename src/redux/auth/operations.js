@@ -1,6 +1,6 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
-axios.defaults.baseUrl = "http://localhost:3000/water-app";
+axios.defaults.baseURL = "http://localhost:3000/water-app";
 
 const setAuthHeader = (token) => {
   axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
@@ -24,7 +24,9 @@ export const register = createAsyncThunk(
       // console.log(response.data);
       return response.data.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(
+        error.response?.data?.message || error.message
+      );
     }
   }
 );
@@ -41,7 +43,9 @@ export const logIn = createAsyncThunk(
       console.log(response.data.data.accessToken);
       return response.data.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(
+        error.response?.data?.message || error.message
+      );
     }
   }
 );
@@ -54,26 +58,35 @@ export const logOut = createAsyncThunk("auth/logout", async (_, thunkAPI) => {
 
     clearAuthHeader();
   } catch (error) {
-    return thunkAPI.rejectWithValue(error.message);
+    return thunkAPI.rejectWithValue(
+      error.response?.data?.message || error.message
+    );
   }
 });
 
 // GET - refresh @ /users/current
 
-// export const refreshUser = createAsyncThunk(
-//   "auth/refresh",
-//   async (_, thunkAPI) => {
-//     const reduxState = thunkAPI.getState();
-//     const savedToken = reduxState.auth.accessToken;
-//     setAuthHeader(savedToken);
-//     const response = await axios.get("users/current");
-//     return response.data;
-//   },
-//   {
-//     condition(_, thunkAPI) {
-//       const reduxState = thunkAPI.getState();
-//       const savedToken = reduxState.auth.token;
-//       return savedToken !== null;
-//     },
-//   }
-// );
+export const refreshUser = createAsyncThunk(
+  "auth/refresh",
+  async (_, thunkAPI) => {
+    try {
+      const reduxState = thunkAPI.getState();
+      const savedToken = reduxState.auth.accessToken;
+      setAuthHeader(savedToken);
+      const response = await axios.post("/auth/refresh");
+      return response.data.data;
+    } catch (error) {
+      clearAuthHeader();
+      return thunkAPI.rejectWithValue(
+        error.response?.data?.message || error.message
+      );
+    }
+  },
+  {
+    condition(_, thunkAPI) {
+      const reduxState = thunkAPI.getState();
+      const savedToken = reduxState.auth.accessToken;
+      return savedToken !== null;
+    },
+  }
+);

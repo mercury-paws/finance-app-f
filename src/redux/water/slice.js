@@ -91,6 +91,7 @@ const slice = createSlice({
       .addCase(logOut.fulfilled, (state) => {
         state.items = [];
         state.loading = false;
+        state.error = null;
       })
       .addCase(updateWater.pending, (state) => {
         state.loading = true;
