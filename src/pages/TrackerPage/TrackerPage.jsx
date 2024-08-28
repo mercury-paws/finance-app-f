@@ -3,9 +3,19 @@ import WaterDetailedInfo from "../../components/TrackerPageComponents/WaterDetai
 import css from "./TrackerPage.module.css";
 import { useDispatch } from "react-redux";
 import { calculateFormattedDate } from "../../constants/constants.js";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+// import { useSelector } from "react-redux";
+// import { selectIsRefreshing } from "../../redux/auth/selectors.js";
+import { refreshUser } from "../../redux/auth/operations.js";
 
 function HomePage() {
+  const dispatch = useDispatch();
+  // const isRefreshing = useSelector(selectIsRefreshing);
+
+  useEffect(() => {
+    dispatch(refreshUser());
+  }, [dispatch]);
+
   let date = calculateFormattedDate();
 
   const [chosenDay, setChosenDay] = useState(date.day.replace(",", ""));

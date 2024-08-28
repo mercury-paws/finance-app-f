@@ -1,6 +1,9 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
+
+
 axios.defaults.baseURL = "http://localhost:3000/water-app";
+axios.defaults.withCredentials = true;
 
 const setAuthHeader = (token) => {
   axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
@@ -13,7 +16,7 @@ const clearAuthHeader = () => {
   axios.defaults.headers.common["Authorization"] = "";
 };
 
-// POST - register @ /users/signup
+// POST - register @ /auth/register
 
 export const register = createAsyncThunk(
   "auth/register",
@@ -31,7 +34,7 @@ export const register = createAsyncThunk(
   }
 );
 
-// POST - login @ /users/login
+// POST - login @ /auth/login
 
 export const logIn = createAsyncThunk(
   "auth/login",
@@ -39,7 +42,6 @@ export const logIn = createAsyncThunk(
     try {
       const response = await axios.post("/auth/login", userInfo);
       setAuthHeader(response.data.data.accessToken);
-
       console.log(response.data.data.accessToken);
       return response.data.data;
     } catch (error) {
@@ -50,7 +52,7 @@ export const logIn = createAsyncThunk(
   }
 );
 
-// POST - logout @ /users/logout
+// POST - logout @ /auth/logout
 
 export const logOut = createAsyncThunk("auth/logout", async (_, thunkAPI) => {
   try {
@@ -64,19 +66,20 @@ export const logOut = createAsyncThunk("auth/logout", async (_, thunkAPI) => {
   }
 });
 
-// GET - refresh @ /users/current
+// GET - refresh @ /auth/refresh
 
 export const refreshUser = createAsyncThunk(
   "auth/refresh",
   async (_, thunkAPI) => {
     try {
-      const reduxState = thunkAPI.getState();
-      const savedToken = reduxState.auth.accessToken;
-      setAuthHeader(savedToken);
+      // const reduxState = thunkAPI.getState();
+      // const savedToken = reduxState.auth.accessToken;
+      // setAuthHeader(savedToken);
       const response = await axios.post("/auth/refresh");
+      setAuthHeader(response.data.data.accessToken);
       return response.data.data;
     } catch (error) {
-      clearAuthHeader();
+      // clearAuthHeader();
       return thunkAPI.rejectWithValue(
         error.response?.data?.message || error.message
       );
