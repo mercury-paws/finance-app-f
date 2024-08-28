@@ -85,8 +85,6 @@ export const deleteWater = createAsyncThunk(
 export const updateWater = createAsyncThunk(
   "water/update",
   async ({ updateWater, queryDayParams }, thunkAPI) => {
-    console.log(updateWater, queryDayParams);
-
     try {
       const reduxState = thunkAPI.getState();
       const savedToken = reduxState.auth.accessToken;

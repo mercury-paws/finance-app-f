@@ -1,8 +1,10 @@
 import css from "./Setting.module.css";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import { useId } from "react";
+import { useEffect, useId } from "react";
 import Modal from "react-modal";
+import { useDispatch } from "react-redux";
+import { updateUser } from "../../../redux/auth/operations";
 
 Modal.setAppElement("#root");
 
@@ -37,8 +39,24 @@ const initialValues = {
 };
 
 function Setting({ isOpen, onRequestClose }) {
+  const dispatch = useDispatch();
+
   const handleSubmit = (values) => {
-    console.log(values);
+    const formattedValues = {
+      gender: values.picked.toLowerCase(),
+      name: values.name,
+      email: values.email,
+      weight: values.weight,
+      sportTime: values.time,
+      waterVolume: values.howMuch,
+    };
+    dispatch(
+      updateUser({
+        email: values.email,
+        formattedValues,
+      })
+    );
+    onRequestClose();
   };
 
   const pickedWomanFieldId = useId();
@@ -71,7 +89,7 @@ function Setting({ isOpen, onRequestClose }) {
                 id={pickedWomanFieldId}
                 type="radio"
                 name="picked"
-                value="Woman"
+                value="female"
               />
               Woman
             </label>
@@ -80,7 +98,7 @@ function Setting({ isOpen, onRequestClose }) {
                 id={pickedManFieldId}
                 type="radio"
                 name="picked"
-                value="Man"
+                value="male"
               />
               Man
             </label>

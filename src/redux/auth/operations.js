@@ -1,7 +1,6 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-
 axios.defaults.baseURL = "http://localhost:3000/water-app";
 axios.defaults.withCredentials = true;
 
@@ -91,5 +90,26 @@ export const refreshUser = createAsyncThunk(
       const savedToken = reduxState.auth.accessToken;
       return savedToken !== null;
     },
+  }
+);
+
+// update contact /settings
+
+export const updateUser = createAsyncThunk(
+  "auth/settings",
+  async ({ email, formattedValues }, thunkAPI) => {
+    console.log("values", formattedValues);
+    try {
+      const response = await axios.patch("/auth/settings", formattedValues, {
+        params: { email },
+      });
+      // setAuthHeader(response.data.data.accessToken);
+      // console.log(response.data.data.accessToken);
+      return response.data.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(
+        error.response?.data?.message || error.message
+      );
+    }
   }
 );
