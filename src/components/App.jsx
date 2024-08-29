@@ -11,7 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 // import { selectIsLoggedIn } from "../redux/auth/selectors.js";
 import { useEffect } from "react";
 import { refreshUser } from "../redux/auth/operations.js";
-import { selectIsRefreshing } from "../redux/auth/selectors.js";
+import { selectIsRefreshing, selectUser } from "../redux/auth/selectors.js";
 import RestrictedRoute from "./RestrictedRoute.jsx";
 import PrivateRoute from "./PrivateRoute.jsx";
 
@@ -25,36 +25,37 @@ function App() {
 
   return (
     <>
-      <Layout>
-        {/* {isRefreshing ? (
-          <b>Refreshing user, please wait</b>
-        ) : ( */}
-        <Suspense fallback={<div>Loading...</div>}>
-          <Routes>
-            <Route
-              path="/"
-              element={
-                <RestrictedRoute
-                  component={<HomePage />}
-                  redirectTo="/tracker"
-                />
-              }
-            >
-              <Route path="signin" element={<SignIn />} />
-              <Route path="signup" element={<SignUp />} />
-            </Route>
-            <Route
-              path="/tracker"
-              element={
-                <PrivateRoute component={<TrackerPage />} redirectTo="/" />
-              }
-            />
+      {" "}
+      {isRefreshing ? (
+        <b>Refreshing user, please wait</b>
+      ) : (
+        <Layout>
+          <Suspense fallback={<div>Loading...</div>}>
+            <Routes>
+              <Route
+                path="/"
+                element={
+                  <RestrictedRoute
+                    component={<HomePage />}
+                    redirectTo="/tracker"
+                  />
+                }
+              >
+                <Route path="signin" element={<SignIn />} />
+                <Route path="signup" element={<SignUp />} />
+              </Route>
+              <Route
+                path="/tracker"
+                element={
+                  <PrivateRoute component={<TrackerPage />} redirectTo="/" />
+                }
+              />
 
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </Suspense>
-        {/* )} */}
-      </Layout>
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </Suspense>
+        </Layout>
+      )}
     </>
   );
 }

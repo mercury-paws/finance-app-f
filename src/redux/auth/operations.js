@@ -76,6 +76,7 @@ export const refreshUser = createAsyncThunk(
       // setAuthHeader(savedToken);
       const response = await axios.post("/auth/refresh");
       setAuthHeader(response.data.data.accessToken);
+      console.log(response.data.data);
       return response.data.data;
     } catch (error) {
       // clearAuthHeader();
@@ -104,7 +105,7 @@ export const updateUser = createAsyncThunk(
         params: { email },
       });
       // setAuthHeader(response.data.data.accessToken);
-      // console.log(response.data.data.accessToken);
+      console.log(response.data.data);
       return response.data.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(

@@ -12,11 +12,15 @@ import { fetchWaterMonth } from "../../../../../../redux/water/operations.js";
 import { useSelector } from "react-redux";
 import { selectWater } from "../../../../../../redux/water/selectors.js";
 import { useMemo } from "react";
+import { selectUser } from "../../../../../../redux/auth/selectors.js";
 
 function Calendar({ currentMonth, currentYear, chosenDate }) {
   const [days, setDays] = useState([]);
   const dispatch = useDispatch();
   const foundWaterData = useSelector(selectWater);
+  const user = useSelector(selectUser);
+
+  console.log(user.waterVolume);
 
   useEffect(() => {
     let date = calculateFormattedDate(getMonthIndex(currentMonth), currentYear);
@@ -38,17 +42,29 @@ function Calendar({ currentMonth, currentYear, chosenDate }) {
 
   useEffect(() => {
     dispatch(fetchWaterMonth(currentMonthYear));
-  }, [currentMonthYear]);
+  }, [dispatch, currentMonthYear]);
 
   const waterDataByDay = useMemo(() => {
     const waterData = foundWaterData || [];
     const waterMap = {};
     waterData.forEach((item) => {
-      waterMap[item.day] = item.ml;
+      if (waterMap[item.day]) {
+        waterMap[item.day] = String(
+          Math.round(
+            ((Number(waterMap[item.day]) + Number(item.ml)) * 100) /
+              (Number(user.waterVolume) * 1000)
+          )
+        );
+      } else {
+        waterMap[item.day] = String(
+          Math.round((item.ml * 100) / (user.waterVolume * 1000))
+        );
+      }
     });
     return waterMap;
-  }, [foundWaterData]);
+  }, [foundWaterData, user.waterVolume]);
 
+  console.log(waterDataByDay);
   return (
     <>
       <ul className={css.yearList}>

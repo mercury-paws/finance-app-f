@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectWater } from "../../../../../redux/water/selectors";
 import { fetchWaterDay } from "../../../../../redux/water/operations";
 import { useMemo } from "react";
+import css from "./CalendarItem.module.css";
 
 function CalendarItem({ day, chosenDate, waterAmount, currentMonthYear }) {
   const dispatch = useDispatch();
@@ -24,9 +25,9 @@ function CalendarItem({ day, chosenDate, waterAmount, currentMonthYear }) {
   };
 
   return (
-    <div onClick={chooseDate}>
+    <div onClick={chooseDate} className={css.dayInfo}>
       <p>{day}</p>
-      <p>{waterAmount} ml</p>
+      <p>{waterAmount} %</p>
     </div>
   );
 }
