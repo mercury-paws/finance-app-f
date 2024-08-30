@@ -1,7 +1,8 @@
 .overlay {
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+
   background-color: rgb(47, 47, 47, 0.6);
   opacity: 1;
   position: fixed;
@@ -14,20 +15,135 @@
 }
 
 .modalContent {
-  position: static;
-  top: auto;
+  position: fixed;
+  top: 250px;
   left: auto;
   right: auto;
   bottom: auto;
-  margin: auto;
+  margin: 0;
+  padding: 0;
   /* max-width: 100%;
-    max-height: 100%; */
+max-height: 100%; */
   background-color: #fff;
-  height: 244px;
-  width: 516px;
+  height: 267px;
+  width: 343px;
   border-radius: 15px;
   transition: opacity 1s ease;
+}
+
+.deleteContainer {
+  padding: 40px 20px;
+}
+
+.doSmth {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 120%;
+  letter-spacing: -0.01em;
+  text-align: center;
+  margin-bottom: 10px;
+}
+.want {
+  margin-top: 10px;
+
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 129%;
+  letter-spacing: -0.01em;
+  text-align: center;
+}
+
+.btnBlock {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
+  margin-top: 28px;
+  gap: 9px;
+}
+.doBtn {
+  box-sizing: border-box;
+  border-radius: 30px;
+  padding: 14px 129px;
+  width: 304px;
+  height: 46px;
+  border: none;
+  background-color: #9be1a0;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 129%;
+  letter-spacing: -0.01em;
+  text-align: center;
+}
+.cancelBtn {
+  box-sizing: border-box;
+  border-radius: 30px;
+  padding: 14px 129px;
+  width: 304px;
+  height: 46px;
+  border: none;
+  background-color: #f0eff4;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 129%;
+  letter-spacing: -0.01em;
+  text-align: center;
+  color: rgba(50, 63, 71, 0.3);
+}
+
+/* @media screen and (min-width: 768px) */
+@media screen and (min-width: 1200px) {
+  .overlay {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(47, 47, 47, 0.6);
+    opacity: 1;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 99999999;
+    transition: opacity 1s ease;
+  }
+
+  .modalContent {
+    position: static;
+    top: auto;
+    left: auto;
+    right: auto;
+    bottom: auto;
+    margin: auto;
+    /* max-width: 100%;
+  max-height: 100%; */
+    background-color: #fff;
+    height: 244px;
+    width: 516px;
+    border-radius: 15px;
+    transition: opacity 1s ease;
+  }
+
+  .addWaterBlock {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+  }
+  .minus {
+    border: 1px solid black;
+    width: 43px;
+    height: 43px;
+    border-radius: 50%;
+    fill: #fff;
+    background-color: black;
+  }
+
+  .plus {
+    border: 1px solid black;
+    width: 43px;
+    height: 43px;
+    border-radius: 50%;
+    fill: #fff;
+    background-color: black;
+  }
 }

@@ -103,7 +103,7 @@ function Add({ isOpen, onRequestClose, chosenDay, currentMonth, currentYear }) {
       overlayClassName={css.overlay}
       className={css.modalContent}
     >
-      <div>
+      <div className={css.addContainer}>
         <h4 className={css.header}>Add water</h4>
         <p className={css.doSmth}>Choose a value:</p>
         <p className={css.amount}>Amount of water:</p>

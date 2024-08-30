@@ -1,7 +1,8 @@
 .overlay {
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+
   background-color: rgb(47, 47, 47, 0.6);
   opacity: 1;
   position: fixed;
@@ -14,25 +15,54 @@
 }
 
 .modalContent {
-  position: static;
-  top: auto;
+  position: fixed;
+  top: 105px;
   left: auto;
   right: auto;
   bottom: auto;
-  margin: auto;
+  margin: 0 auto;
   /* max-width: 100%;
-  max-height: 100%; */
+max-height: 100%; */
   background-color: #fff;
-  height: 244px;
-  width: 516px;
+  height: 490px;
+  width: 343px;
   border-radius: 15px;
   transition: opacity 1s ease;
+}
+
+.addContainer {
+  padding: 40px 20px;
+}
+.header {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 120%;
+  letter-spacing: -0.01em;
+  margin-bottom: 12px;
+}
+
+.doSmth {
+  margin-top: 12px;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 125%;
+  letter-spacing: -0.01em;
+  margin-bottom: 10px;
+}
+.amount {
+  margin-top: 10px;
+  margin-bottom: 8px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 129%;
+  letter-spacing: -0.01em;
 }
 
 .addWaterBlock {
   display: flex;
   flex-direction: row;
   gap: 8px;
+  margin-bottom: 16px;
 }
 .minus {
   border: 1px solid black;
@@ -42,6 +72,19 @@
   fill: #fff;
   background-color: black;
 }
+.ml {
+  box-sizing: border-box;
+  border-radius: 30px;
+  padding: 11px 20px;
+  width: 81px;
+  height: 40px;
+  background-color: #323f47;
+  color: #fff;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 129%;
+  text-align: center;
+}
 
 .plus {
   border: 1px solid black;
@@ -50,4 +93,111 @@
   border-radius: 50%;
   fill: #fff;
   background-color: black;
+}
+
+.timeBlock {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.time {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 129%;
+  letter-spacing: -0.01em;
+  margin-bottom: 8px;
+}
+.field {
+  box-sizing: border-box;
+  border: 1px solid rgba(47, 47, 47, 0.15);
+  border-radius: 15px;
+  padding: 14px 16px 14px 16px;
+  width: 303px;
+  height: 46px;
+  margin-bottom: 24px;
+}
+.valueBlock {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.value {
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 125%;
+  letter-spacing: -0.01em;
+
+  margin-bottom: 8px;
+}
+
+.btn {
+  box-sizing: border-box;
+  border-radius: 30px;
+  padding: 14px 40px;
+  width: 116px;
+  height: 46px;
+  color: #323f47;
+  background-color: #9be1a0;
+  border: none;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 129%;
+  letter-spacing: -0.01em;
+  text-align: center;
+}
+/* @media screen and (min-width: 768px) */
+@media screen and (min-width: 1200px) {
+  .overlay {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(47, 47, 47, 0.6);
+    opacity: 1;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 99999999;
+    transition: opacity 1s ease;
+  }
+
+  .modalContent {
+    position: static;
+    top: auto;
+    left: auto;
+    right: auto;
+    bottom: auto;
+    margin: auto;
+    /* max-width: 100%;
+  max-height: 100%; */
+    background-color: #fff;
+    height: 244px;
+    width: 516px;
+    border-radius: 15px;
+    transition: opacity 1s ease;
+  }
+
+  .addWaterBlock {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+  }
+  .minus {
+    border: 1px solid black;
+    width: 43px;
+    height: 43px;
+    border-radius: 50%;
+    fill: #fff;
+    background-color: black;
+  }
+
+  .plus {
+    border: 1px solid black;
+    width: 43px;
+    height: 43px;
+    border-radius: 50%;
+    fill: #fff;
+    background-color: black;
+  }
 }

@@ -19,21 +19,23 @@ function Delete({ isOpen, onRequestClose, id }) {
       overlayClassName={css.overlay}
       className={css.modalContent}
     >
-      <>
+      <div className={css.deleteContainer}>
         <h4 className={css.doSmth}>Delete entry</h4>
         <p className={css.want}>Are you sure you want to delete the entry?</p>
-        <button className={css.doBtn} onClick={handleDelete}>
-          Delete
-        </button>
-        <button
-          className={css.cancelBtn}
-          onClick={() => {
-            onRequestClose();
-          }}
-        >
-          Cancel
-        </button>
-      </>
+        <div className={css.btnBlock}>
+          <button className={css.doBtn} onClick={handleDelete}>
+            Delete
+          </button>
+          <button
+            className={css.cancelBtn}
+            onClick={() => {
+              onRequestClose();
+            }}
+          >
+            Cancel
+          </button>
+        </div>
+      </div>
     </Modal>
   );
 }

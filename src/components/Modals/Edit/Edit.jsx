@@ -103,7 +103,7 @@ function Edit({
       overlayClassName={css.overlay}
       className={css.modalContent}
     >
-      <div>
+      <div className={css.editContainer}>
         <h4 className={css.header}>Edit the entered amount of water</h4>
         <p className={css.doSmth}>Correct entered data:</p>
         <p className={css.amount}>Amount of water:</p>

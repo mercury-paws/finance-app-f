@@ -75,108 +75,123 @@ function Setting({ isOpen, onRequestClose }) {
       overlayClassName={css.overlay}
       className={css.modalContent}
     >
-      <Formik
-        initialValues={initialValues}
-        onSubmit={handleSubmit}
-        validationSchema={FeedbackSchema}
-      >
-        <Form>
-          <h1>Setting</h1>
-          <div id="my-radio-group">Your gender identity</div>
-          <div role="group">
-            <label htmlFor={pickedWomanFieldId}>
-              <Field
-                id={pickedWomanFieldId}
-                type="radio"
-                name="picked"
-                value="female"
-              />
-              Woman
-            </label>
-            <label htmlFor={pickedManFieldId}>
-              <Field
-                id={pickedManFieldId}
-                type="radio"
-                name="picked"
-                value="male"
-              />
-              Man
-            </label>
-            <ErrorMessage name="picked" component="span" />
-          </div>
-          <div>
-            <label htmlFor={nameFieldId}>Name</label>
-            <Field
-              className={css.field}
-              type="string"
-              name="name"
-              id={nameFieldId}
-            />
-            <ErrorMessage name="name" component="span" />
-          </div>
-          <div>
-            <label htmlFor={emailFieldId}>Email</label>
-            <Field
-              className={css.field}
-              type="email"
-              name="email"
-              id={emailFieldId}
-            />
-            <ErrorMessage name="email" component="span" />
-          </div>
-          <div>
-            <label htmlFor={weightFieldId}>Your weight in kilograms:</label>
-            <Field
-              className={css.field}
-              type="string"
-              name="weight"
-              id={weightFieldId}
-            />
-            <ErrorMessage name="weight" component="span" />
-          </div>
-          <div>
-            <label htmlFor={timeFieldId}>
-              The time of active participation in sports:
-            </label>
-            <Field
-              className={css.field}
-              type="string"
-              name="time"
-              id={timeFieldId}
-            />
-            <ErrorMessage name="time" component="span" />
-          </div>
-          <div>
-            <h5>My daily norma</h5>
-            <div>For woman:</div>
-            <div>V=(M*0,03) + (T*0,4)</div>
-            <div>For man:</div>
-            <div>V=(M*0,04) + (T*0,6)</div>
-            <div>
-              <span>*</span> V is the volume of the water norm in liters per
-              day, M is your body weight, T is the time of active sports, or
-              another type of activity commensurate in terms of loads (in the
-              absence of these, you must set 0)
+      <div className={css.settingContainer}>
+        <Formik
+          initialValues={initialValues}
+          onSubmit={handleSubmit}
+          validationSchema={FeedbackSchema}
+        >
+          <Form>
+            <h1 className={css.settingsHeader}>Setting</h1>
+            <div className={css.pic}></div>
+            <div id="my-radio-group" className={css.label}>
+              Your gender identity
             </div>
-            <div>The required amount of water in liters per day:</div>
-            <div>
-              <label htmlFor={howMuchFieldId}>
-                Write down how much water you will drink:
+            <div role="group" className={css.genderBlock}>
+              <label htmlFor={pickedWomanFieldId} className={css.value}>
+                <Field
+                  id={pickedWomanFieldId}
+                  type="radio"
+                  name="picked"
+                  value="female"
+                  className={css.radio}
+                />
+                Woman
+              </label>
+              <label htmlFor={pickedManFieldId} className={css.value}>
+                <Field
+                  id={pickedManFieldId}
+                  type="radio"
+                  name="picked"
+                  value="male"
+                />
+                Man
+              </label>
+              <ErrorMessage name="picked" component="span" />
+            </div>
+            <div className={css.fillInForm}>
+              <label htmlFor={nameFieldId} className={css.label}>
+                Name
               </label>
               <Field
                 className={css.field}
                 type="string"
-                name="howMuch"
-                id={howMuchFieldId}
+                name="name"
+                id={nameFieldId}
               />
-              <ErrorMessage name="howMuch" component="span" />
+              <ErrorMessage name="name" component="span" />
             </div>
-          </div>
-          <button className={css.btn} type="submit">
-            Submit
-          </button>
-        </Form>
-      </Formik>
+            <div className={css.fillInForm}>
+              <label htmlFor={emailFieldId} className={css.label}>
+                Email
+              </label>
+              <Field
+                className={css.field}
+                type="email"
+                name="email"
+                id={emailFieldId}
+              />
+              <ErrorMessage name="email" component="span" />
+            </div>
+            <div className={css.fillInForm}>
+              <label htmlFor={weightFieldId} className={css.label}>
+                Your weight in kilograms:
+              </label>
+              <Field
+                className={css.field}
+                type="string"
+                label
+                name="weight"
+                id={weightFieldId}
+              />
+              <ErrorMessage name="weight" component="span" />
+            </div>
+            <div className={css.fillInForm}>
+              <label htmlFor={timeFieldId} className={css.label}>
+                The time of active participation in sports:
+              </label>
+              <Field
+                className={css.field}
+                type="string"
+                name="time"
+                id={timeFieldId}
+              />
+              <ErrorMessage name="time" component="span" />
+            </div>
+            <div className={css.addInfo}>
+              <h5 className={css.dailyNorma}>My daily norma</h5>
+              <p className={css.forWhom}>For woman:</p>
+              <p className={css.formula}>V=(M*0,03) + (T*0,4)</p>
+              <p className={css.forWhom}>For man:</p>
+              <p className={css.formula}>V=(M*0,04) + (T*0,6)</p>
+              <p className={css.calculationInfo}>
+                <span>*</span> V is the volume of the water norm in liters per
+                day, M is your body weight, T is the time of active sports, or
+                another type of activity commensurate in terms of loads (in the
+                absence of these, you must set 0)
+              </p>
+              <p className={css.requiredTime}>
+                The required amount of water in liters per day:
+              </p>
+              <div className={css.howMuchBlock}>
+                <label className={css.howMuchWill} htmlFor={howMuchFieldId}>
+                  Write down how much water you will drink:
+                </label>
+                <Field
+                  className={css.field}
+                  type="string"
+                  name="howMuch"
+                  id={howMuchFieldId}
+                />
+                <ErrorMessage name="howMuch" component="span" />
+              </div>
+            </div>
+            <button className={css.btn} type="submit">
+              Save
+            </button>
+          </Form>
+        </Formik>
+      </div>
     </Modal>
   );
 }
