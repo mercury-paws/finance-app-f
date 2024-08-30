@@ -52,7 +52,7 @@ function SignIn() {
 
   return (
     <div className={css.signInForm}>
-      <h2>Sign In</h2>
+      <h2 className={css.signIn}>Sign In</h2>
       <Formik
         initialValues={initialValues}
         onSubmit={handleSubmit}
@@ -60,7 +60,9 @@ function SignIn() {
       >
         <Form className={css.form}>
           <div>
-            <label htmlFor={emailFieldId}>Email</label>
+            <label htmlFor={emailFieldId} className={css.label}>
+              Email
+            </label>
             <Field
               className={css.field}
               type="email"
@@ -71,7 +73,9 @@ function SignIn() {
             <ErrorMessage name="email" component="span" />
           </div>
           <div>
-            <label htmlFor={passwordFieldId}>Password</label>
+            <label htmlFor={passwordFieldId} className={css.label}>
+              Password
+            </label>
             <Field
               className={css.field}
               type={showPassword ? "text" : "password"}
@@ -89,8 +93,11 @@ function SignIn() {
           <Toaster />
         </Form>
       </Formik>
-      <p>
-        Don't have an account? <NavLink to="/signup">Sing Up</NavLink>{" "}
+      <p className={css.offer}>
+        Don't have an account?{" "}
+        <NavLink to="/signup" className={css.signUp}>
+          Sing Up
+        </NavLink>{" "}
       </p>
     </div>
   );

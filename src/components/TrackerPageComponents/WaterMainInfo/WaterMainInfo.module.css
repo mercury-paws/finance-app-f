@@ -1,0 +1,18 @@
+.waterMainInfo {
+  box-sizing: border-box;
+  padding: 10px;
+
+  width: 343px;
+  border-radius: 30px;
+  height: 416px;
+  background-color: #9be1a0;
+  background-image: linear-gradient(
+      to bottom,
+      rgba(17, 17, 17, 0) 0%,
+      rgba(17, 17, 17, 0) 0%
+    ),
+    url(../../../assets/img/mob/bottleMob.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  margin: 0 auto;
+}

@@ -1,0 +1,23 @@
+.customersContainer {
+  padding-top: 209px;
+  padding-left: 20px;
+}
+.customers {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  border: none;
+  border-radius: 30px;
+  background-color: #fff;
+  width: 160px;
+  height: 48px;
+}
+
+.header {
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 117%;
+}
+.stroke {
+}

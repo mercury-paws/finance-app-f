@@ -1,4 +1,34 @@
 .dailyNorma {
-  padding-top: 155px;
-  padding-left: 62px;
+  box-sizing: border-box;
+  margin-top: 90px;
+  margin-right: 15px;
+  padding: 12px;
+  width: 102px;
+  height: 54px;
+  background-color: #fff;
+  border: none;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.waterVolume {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 100%;
+}
+
+.myDN {
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 100%;
+  color: rgba(47, 47, 47, 0.6);
+}
+
+/* @media screen and (min-width: 768px) */
+@media screen and (min-width: 1200px) {
+  .dailyNorma {
+    padding-top: 155px;
+    padding-left: 62px;
+  }
 }

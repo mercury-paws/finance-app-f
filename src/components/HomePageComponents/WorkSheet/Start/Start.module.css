@@ -1,3 +1,78 @@
 .homePage {
-  padding-top: 188px;
+  padding: 116px 16px 0px 16px;
+  width: 311px;
+
+  border-radius: 30px;
+  height: 335px;
+  background-color: #f0eff4;
+}
+
+/* .startPage > :nth-child(1) {
+  
+}
+
+.startPage > :nth-child(2) {
+  width: 343px;
+  height: 353px;
+  border-radius: 30px;
+  background-color: #f0eff4;
+} */
+
+.homePageSlogan {
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 129%;
+  letter-spacing: 0.06em;
+  color: var(--main-text);
+  padding-bottom: 36px;
+}
+.homePageHeader {
+  font-weight: 700;
+  font-size: 38px;
+  line-height: 100%;
+  letter-spacing: -0.01em;
+  padding-bottom: 64px;
+}
+.homePageRegister {
+  /* width: 116px;
+  height: 46px; */
+  padding: 14px 19px;
+  border: none;
+  border-radius: 30px;
+  background-color: #9be1a0;
+  font-family: var(--font-family);
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 129%;
+  letter-spacing: -0.01em;
+  text-align: center;
+  color: var(--main);
+}
+.homePageSignIn {
+  border: 1px solid #323f47;
+  border-radius: 30px;
+  padding: 14px 28px;
+  /* width: 104px;
+  height: 46px; */
+  font-family: var(--font-family);
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 129%;
+  letter-spacing: -0.01em;
+  text-align: center;
+}
+
+.homePageBtns {
+  display: flex;
+  justify-content: flex-start;
+  align-items: baseline;
+  gap: 10px;
+}
+
+/* @media screen and (min-width: 768px) */
+@media screen and (min-width: 1200px) {
+  .homePage {
+    padding-top: 188px;
+  }
 }

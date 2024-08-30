@@ -2,7 +2,7 @@ import { useEffect, useState, useMemo } from "react";
 import { calculateFormattedDate } from "../../../../../constants/constants";
 import { useDispatch } from "react-redux";
 import { fetchWaterDay } from "../../../../../redux/water/operations";
-
+import css from "./ChooseDate.module.css";
 function ChooseDate({
   chosenDay,
   setChosenDay,
@@ -52,7 +52,7 @@ function ChooseDate({
 
   return (
     <>
-      <p onClick={goToToday}>
+      <p onClick={goToToday} className={css.date}>
         {isToday ||
         (!chosenDay &&
           parsedDate.toDateString() === dateToCompare.toDateString())

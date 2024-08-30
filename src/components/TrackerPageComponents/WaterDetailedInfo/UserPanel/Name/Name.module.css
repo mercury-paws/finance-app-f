@@ -1,0 +1,10 @@
+.name {
+  /* font-family: "Gilroy", sans-serif; */
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 100%;
+  letter-spacing: -0.01em;
+}
+.userName {
+  font-weight: 800;
+}

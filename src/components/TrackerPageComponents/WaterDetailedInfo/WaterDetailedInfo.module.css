@@ -1,0 +1,13 @@
+.waterDeateiledInfo {
+  box-sizing: border-box;
+  width: 343px;
+  height: 770px;
+  padding: 10px;
+  background-color: #f0eff4;
+  width: 343px;
+  border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin: 0 auto;
+}

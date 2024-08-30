@@ -1,5 +1,11 @@
 .waterItem {
+  box-sizing: border-box;
+  padding: 18px;
   background-color: #fff;
+  width: 149px;
+  height: 74px;
+  border: none;
+  border-radius: 15px;
 }
 
 .cupIcon {

@@ -1,0 +1,35 @@
+.settingsRelative {
+  position: relative;
+}
+.settingsContainer {
+  box-sizing: border-box;
+  position: absolute;
+  left: 55%;
+  bottom: -12px;
+  border-radius: 15px;
+  padding: 14px 57px 14px 20px;
+  width: 137px;
+  height: 72px;
+  background-color: #fff;
+  box-shadow: 0 4px 50px 0 rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.setBtn {
+  border: none;
+  background-color: transparent;
+  width: 100px;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 129%;
+}
+.logOut {
+  color: rgba(50, 63, 71, 0.4);
+  border: none;
+  background-color: transparent;
+  width: 100px;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 129%;
+}

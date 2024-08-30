@@ -1,14 +1,27 @@
 .progressBar {
-  padding-top: 215px;
-  padding-left: 187px;
+  box-sizing: border-box;
+  margin-top: 82px;
+  margin-left: 53px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  width: 198px;
+  background-color: #fff;
+  padding: 12px;
+  border: none;
+  border-radius: 15px;
 }
-
 .progressBarContainer {
   height: 7px;
-  width: 200px;
+  width: 174px;
   border: 1px solid #000;
   border-radius: 8px;
   position: relative;
+}
+.today {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 100%;
 }
 
 .progressBarLine {
@@ -16,4 +29,29 @@
 
   height: 7px;
   background-color: teal;
+}
+.progressNumbers {
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 100%;
+  color: rgba(47, 47, 47, 0.6);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+/* @media screen and (min-width: 768px) */
+@media screen and (min-width: 1200px) {
+  .progressBar {
+    padding-top: 215px;
+    padding-left: 187px;
+  }
+
+  .progressBarContainer {
+    height: 7px;
+    width: 200px;
+    border: 1px solid #000;
+    border-radius: 8px;
+    position: relative;
+  }
 }

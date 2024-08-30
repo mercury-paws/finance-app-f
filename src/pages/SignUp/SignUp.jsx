@@ -60,7 +60,7 @@ function SignUp() {
 
   return (
     <div className={css.signUpForm}>
-      <h2>Sign Up</h2>
+      <h2 className={css.signUp}>Sign Up</h2>
       <Formik
         initialValues={initialValues}
         onSubmit={handleSubmit}
@@ -68,7 +68,9 @@ function SignUp() {
       >
         <Form className={css.form}>
           <div>
-            <label htmlFor={emailFieldId}>Email</label>
+            <label htmlFor={emailFieldId} className={css.label}>
+              Email
+            </label>
             <Field
               className={css.field}
               type="email"
@@ -78,7 +80,9 @@ function SignUp() {
             <ErrorMessage name="email" component="span" />
           </div>
           <div>
-            <label htmlFor={passwordFieldId}>Password</label>
+            <label htmlFor={passwordFieldId} className={css.label}>
+              Password
+            </label>
             <Field
               className={css.field}
               type={showPassword ? "text" : "password"}
@@ -92,7 +96,9 @@ function SignUp() {
             <ErrorMessage name="password" component="span" />
           </div>
           <div>
-            <label htmlFor={repeatPasswordFieldId}>Repeat password</label>
+            <label htmlFor={repeatPasswordFieldId} className={css.label}>
+              Repeat password
+            </label>
             <Field
               className={css.field}
               type={showRepeatPassword ? "text" : "password"}
@@ -114,8 +120,11 @@ function SignUp() {
           )}
         </Form>
       </Formik>
-      <p>
-        Already have an account? <NavLink to="/signin">Sing In</NavLink>{" "}
+      <p className={css.offer}>
+        Already have an account?{" "}
+        <NavLink to="/signin" className={css.signIn}>
+          Sign In
+        </NavLink>
       </p>
     </div>
   );

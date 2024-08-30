@@ -15,7 +15,7 @@ function MonthInfo({
   return (
     <>
       <div className={css.monthAndPagination}>
-        <p>Month</p>
+        <p className={css.month}>Month</p>
         <CalendarPagination
           currentMonth={currentMonth}
           setCurrentMonth={setCurrentMonth}

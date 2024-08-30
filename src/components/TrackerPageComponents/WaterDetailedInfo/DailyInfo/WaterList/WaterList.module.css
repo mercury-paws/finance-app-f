@@ -1,21 +1,29 @@
-.dayData {
+.swiperContainer {
   display: flex;
   flex-direction: row;
   gap: 10px;
+  width: 100%;
+  overflow: hidden;
+  height: 95px;
 }
 
 /* Custom scrollbar styles */
 .swiper-container {
-  height: 300px; /* Adjust the height to fit your layout */
+  width: 149px;
 }
-
+.swiper-slide {
+  /* Ensure the slides have appropriate width and margins */
+  width: 149px;
+  margin-bottom: 10px;
+}
 .swiper-scrollbar {
-  background: rgba(0, 0, 0, 0.1); /* Background color of scrollbar */
-  border-radius: 10px; /* Round corners of scrollbar */
-  width: 10px; /* Width of the scrollbar */
-  cursor: pointer; /* Cursor changes to pointer on hover */
-  opacity: 0.5; /* Start with the scrollbar less visible */
-  transition: opacity 0.3s; /* Smooth transition for opacity */
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  width: 30px;
+  cursor: pointer;
+  opacity: 0.5;
+  transition: opacity 0.3s;
+  /* padding-top: 10px; */
 }
 
 .swiper-scrollbar-drag {

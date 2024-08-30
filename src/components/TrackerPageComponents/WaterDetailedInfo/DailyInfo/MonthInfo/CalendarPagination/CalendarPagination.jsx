@@ -49,14 +49,15 @@ function CalendarPagination({
 
   return (
     <div className={css.pagination}>
-      <button onClick={chooseLesserDate}>
-        <FaAngleLeft />
+      <button onClick={chooseLesserDate} className={css.left}>
+        {" "}
+        <FaAngleLeft style={{ width: "14px", height: "20px" }} />
       </button>
-      <p>
+      <p className={css.month}>
         {currentMonth} {currentYear}
       </p>
-      <button onClick={chooseBiggerDate}>
-        <FaAngleRight />
+      <button onClick={chooseBiggerDate} className={css.right}>
+        <FaAngleRight style={{ width: "14px", height: "20px" }} />
       </button>
     </div>
   );

@@ -7,13 +7,13 @@ function WaterDailyNorma() {
 
   return (
     <div className={css.dailyNorma}>
-      <p>
+      <p className={css.waterVolume}>
         {user.waterVolume
           ? user.waterVolume
           : "The average daily norma for a person is 1.5"}{" "}
         L
       </p>
-      <p>My Daily Norma</p>
+      <p className={css.myDN}>My Daily Norma</p>
     </div>
   );
 }

@@ -1,5 +1,15 @@
 .userPanel {
   display: flex;
-  flex-direction: row;
-  gap: 50px;
+  flex-direction: column;
+  gap: 25px;
+  padding-top: 15px;
+}
+
+/* @media screen and (min-width: 768px) */
+@media screen and (min-width: 1200px) {
+  .userPanel {
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+  }
 }

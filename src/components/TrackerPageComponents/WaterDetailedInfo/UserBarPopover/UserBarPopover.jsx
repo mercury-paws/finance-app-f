@@ -27,25 +27,27 @@ function UserBarPopover() {
   };
 
   return (
-    <>
-      <button onClick={handleSettingsModalOpen}>
-        {" "}
-        <FaRegSun /> Settings
-      </button>
-      {modalSettingsOpen && (
-        <Setting
-          isOpen={modalSettingsOpen}
-          onRequestClose={closeSettingsModal}
-        />
-      )}
-      <button className={css.logOut} onClick={handleLogoutModalOpen}>
-        {" "}
-        <FaSignOutAlt /> Log out
-      </button>
-      {modalLogoutOpen && (
-        <LogOut isOpen={modalLogoutOpen} onRequestClose={closeLogoutModal} />
-      )}
-    </>
+    <div className={css.settingsRelative}>
+      <div className={css.settingsContainer}>
+        <button onClick={handleSettingsModalOpen} className={css.setBtn}>
+          {" "}
+          <FaRegSun /> Settings
+        </button>
+        {modalSettingsOpen && (
+          <Setting
+            isOpen={modalSettingsOpen}
+            onRequestClose={closeSettingsModal}
+          />
+        )}
+        <button className={css.logOut} onClick={handleLogoutModalOpen}>
+          {" "}
+          <FaSignOutAlt /> Log out
+        </button>
+        {modalLogoutOpen && (
+          <LogOut isOpen={modalLogoutOpen} onRequestClose={closeLogoutModal} />
+        )}
+      </div>
+    </div>
   );
 }
 

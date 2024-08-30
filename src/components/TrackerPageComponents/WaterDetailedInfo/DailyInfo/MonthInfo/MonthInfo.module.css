@@ -1,5 +1,13 @@
 .monthAndPagination {
   display: flex;
   flex-direction: row;
-  gap: 100px;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 25px;
+}
+.month {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 120%;
+  letter-spacing: -0.01em;
 }

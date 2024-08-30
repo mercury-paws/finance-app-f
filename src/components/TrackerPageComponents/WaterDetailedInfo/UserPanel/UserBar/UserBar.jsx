@@ -3,7 +3,7 @@ import UserBarPopover from "../../UserBarPopover/UserBarPopover";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { selectUser } from "../../../../../redux/auth/selectors";
-
+import css from "./UserBar.module.css";
 function UserBar() {
   const user = useSelector(selectUser);
   const [userBar, setUserBar] = useState(false);
@@ -13,14 +13,13 @@ function UserBar() {
   };
 
   return (
-    <>
-      <button onClick={toggleUserBarPopover}>
-        img
-        {user.name ? user.name : "User"}
-        <FaAngleDown />
+    <div className={css.btnContainer}>
+      <button onClick={toggleUserBarPopover} className={css.btn}>
+        {user.name ? user.name : "User"} img
+        <FaAngleDown className={css.angleDown} />
       </button>
-      {userBar && <UserBarPopover />}
-    </>
+      {userBar && <UserBarPopover className={css.barPopover} />}
+    </div>
   );
 }
 

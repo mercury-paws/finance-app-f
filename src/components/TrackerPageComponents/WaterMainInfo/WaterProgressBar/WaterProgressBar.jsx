@@ -21,14 +21,16 @@ function WaterProgressBar() {
 
   return (
     <div className={css.progressBar}>
-      <p>ProgressBar today</p>
+      <p className={css.today}>Today</p>
       <div className={css.progressBarContainer}>
         <div
           className={css.progressBarLine}
           style={{ width: `${progressBar}%` }}
         ></div>
       </div>
-      <p>0% 50% 100%</p>
+      <p className={css.progressNumbers}>
+        <span>0%</span> <span>50%</span> <span>100%</span>
+      </p>
     </div>
   );
 }

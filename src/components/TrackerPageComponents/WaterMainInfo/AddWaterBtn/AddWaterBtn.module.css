@@ -1,24 +1,49 @@
 .AddWaterBtn {
-  padding-left: 462px;
-  padding-top: 56px;
+  padding-left: 170px;
+  padding-top: 35px;
 }
-
 .btn {
   border-radius: 30px;
-  padding: 18px 30px;
-  width: 178px;
-  height: 60px;
+  padding: 14px 20px;
+  width: 140px;
+  height: 46px;
   background-color: #323f47;
-
-  font-family: var(--font-family);
   font-weight: 700;
-  font-size: 16px;
-  line-height: 150%;
+  font-size: 14px;
+  line-height: 129%;
   letter-spacing: -0.01em;
   text-align: center;
   color: #fff;
   display: flex;
   justify-content: center;
   gap: 10px;
-  align-items: baseline;
+  align-items: center;
+  border: none;
+}
+
+/* @media screen and (min-width: 768px) */
+@media screen and (min-width: 1200px) {
+  .AddWaterBtn {
+    padding-left: 462px;
+    padding-top: 56px;
+  }
+  .btn {
+    border-radius: 30px;
+    padding: 18px 30px;
+    width: 178px;
+    height: 60px;
+    background-color: #323f47;
+
+    font-family: var(--font-family);
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 150%;
+    letter-spacing: -0.01em;
+    text-align: center;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    align-items: baseline;
+  }
 }

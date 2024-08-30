@@ -1,12 +1,14 @@
 import css from "./AddInfo.module.css";
 function AddInfo() {
   return (
-    <>
-      <p>hello, this is the AddInfo</p>
-      <p>Habit drive</p>
-      <button>View statistics</button>
-      <p>Personal rate settings</p>
-    </>
+    <div className={css.addInfo}>
+      <div className={css.dotDriveContainer}>
+        <div className={css.dot}></div>
+        <p className={css.drive}>Habit drive</p>
+      </div>
+      <button className={css.statistics}>View statistics</button>
+      <p className={css.rating}>Personal rate settings</p>
+    </div>
   );
 }
 

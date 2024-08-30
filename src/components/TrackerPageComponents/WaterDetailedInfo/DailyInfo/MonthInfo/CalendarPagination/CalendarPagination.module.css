@@ -1,5 +1,29 @@
 .pagination {
   display: flex;
   flex-direction: row;
-  gap: 15px;
+  gap: 16px;
+  width: 200px;
+  justify-content: center;
+  align-items: center;
+}
+
+.right {
+  border: none;
+  background-color: transparent;
+}
+
+.left {
+  border: none;
+  background-color: transparent;
+}
+
+.month {
+  width: 150px;
+  text-align: center;
+
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 129%;
+  letter-spacing: -0.01em;
+  text-align: center;
 }

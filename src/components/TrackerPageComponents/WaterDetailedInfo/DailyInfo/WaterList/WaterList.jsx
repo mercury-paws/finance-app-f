@@ -32,7 +32,7 @@ function WaterList({ currentMonth, chosenDay, currentYear, chosenDate }) {
   }, [chosenDay, currentMonth, currentYear, dispatch]);
 
   return (
-    <>
+    <div className={css.swiperContainer}>
       <Swiper
         spaceBetween={10}
         scrollbar={{ draggable: true }}
@@ -40,8 +40,8 @@ function WaterList({ currentMonth, chosenDay, currentYear, chosenDate }) {
         onSlideChange={() => console.log("slide change")}
         modules={[Scrollbar]}
         breakpoints={{
-          640: {
-            slidesPerView: 1,
+          320: {
+            slidesPerView: 2,
           },
           768: {
             slidesPerView: 2,
@@ -64,7 +64,7 @@ function WaterList({ currentMonth, chosenDay, currentYear, chosenDate }) {
           </SwiperSlide>
         ))}
       </Swiper>
-    </>
+    </div>
   );
 }
 

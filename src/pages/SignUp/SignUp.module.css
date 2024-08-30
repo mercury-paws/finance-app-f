@@ -1,3 +1,69 @@
 .signUpForm {
-  padding-top: 169px;
+  padding: 216px 16px 216px 16px;
+  /* width: 311px; */
+  width: 311px;
+  border-radius: 30px;
+
+  background-color: #f0eff4;
+}
+
+.signUp {
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 100%;
+  letter-spacing: -0.01em;
+}
+.form {
+  margin: 32px 0px 32px 0px;
+  display: flex;
+  flex-direction: column;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 129%;
+  letter-spacing: -0.01em;
+  gap: 16px;
+}
+
+.label {
+  display: block;
+  padding-bottom: 8px;
+}
+
+.field {
+  box-sizing: border-box;
+  border: 1px solid rgba(47, 47, 47, 0.2);
+  border-radius: 15px;
+  padding: 16px 184px 16px 16px;
+  width: 311px;
+  height: 50px;
+}
+
+.btn {
+  box-sizing: border-box;
+
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 129%;
+  letter-spacing: -0.01em;
+  text-align: center;
+  background-color: #9be1a0;
+  border-radius: 30px;
+
+  width: 311px;
+  height: 50px;
+}
+.offer {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 129%;
+  letter-spacing: -0.01em;
+  color: rgba(47, 47, 47, 0.5);
+  text-align: center;
+}
+
+.signIn {
+  font-weight: 700;
+  font-size: 14px;
+  text-decoration: underline;
+  color: #000;
 }

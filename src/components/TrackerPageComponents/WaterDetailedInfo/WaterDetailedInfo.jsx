@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { calculateFormattedDate } from "../../../constants/constants.js";
 import { fetchWaterDay } from "../../../redux/water/operations.js";
+import css from "./WaterDetailedInfo.module.css";
 
 function WaterDetailedInfo({
   chosenDay,
@@ -29,7 +30,7 @@ function WaterDetailedInfo({
   };
 
   return (
-    <div>
+    <div className={css.waterDeateiledInfo}>
       <UserPanel />
       <DailyInfo
         chosenDay={chosenDay}

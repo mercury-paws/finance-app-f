@@ -1,0 +1,64 @@
+.addInfo {
+  padding-top: 8px;
+  padding-left: 159px;
+  width: 168px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 4px;
+  row-gap: 4px;
+}
+.dotDriveContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 9px 12px;
+  background-color: #323f47;
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+}
+.drive {
+  font-weight: 700;
+  font-size: 8px;
+  line-height: 100%;
+  letter-spacing: -0.01em;
+}
+
+.dot {
+  background-color: #9be1a0;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+.statistics {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 9px 12px;
+  background-color: #9be1a0;
+  color: #323f47;
+  border: none;
+  border-radius: 30px;
+  font-weight: 700;
+  font-size: 8px;
+  line-height: 100%;
+  letter-spacing: -0.01em;
+}
+.rating {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 9px 12px;
+  background-color: #fff;
+  color: #323f47;
+  border: none;
+  border-radius: 30px;
+  font-weight: 700;
+  font-size: 8px;
+  line-height: 100%;
+  letter-spacing: -0.01em;
+}

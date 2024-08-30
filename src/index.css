@@ -1,6 +1,11 @@
 :root {
   font-family: "Poppins", sans-serif;
+  color: #323f47;
+  /* background-color: #f0eff4; */
 }
+
+/* @media screen and (min-width: 768px) */
+/* @media screen and (min-width: 1200px) */
 
 /* a {
   font-weight: 500;
@@ -12,13 +17,12 @@ a:hover {
 } */
 
 body {
-  color: #111111;
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
   letter-spacing: -0.02em;
-  background-color: #fafafa;
+  background-color: #fff;
 }
 a {
   text-decoration-line: none;
@@ -72,7 +76,7 @@ img {
 }
 
 .stroke {
-  color: #fd9222;
+  color: #9be1a0;
 }
 button {
   cursor: pointer;

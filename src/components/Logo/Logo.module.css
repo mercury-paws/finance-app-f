@@ -1,3 +1,7 @@
+.logoContainer {
+  position: relative;
+}
+
 .logo {
   font-family: "Poppins", sans-serif;
   color: #323f47;
@@ -7,4 +11,7 @@
   letter-spacing: -0.01em;
   text-transform: uppercase;
   margin: 0;
+  position: absolute;
+  left: 18px;
+  top: 15px;
 }
