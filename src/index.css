@@ -80,4 +80,5 @@ img {
 }
 button {
   cursor: pointer;
+  border: none;
 }

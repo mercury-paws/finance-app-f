@@ -19,6 +19,7 @@ function WaterList({ currentMonth, chosenDay, currentYear, chosenDate }) {
   const foundWaterDayData = useSelector(selectDayWater);
   const dispatch = useDispatch();
 
+  console.log(foundWaterDayData);
   useEffect(() => {
     if (chosenDay && currentMonth && currentYear) {
       dispatch(
@@ -32,38 +33,44 @@ function WaterList({ currentMonth, chosenDay, currentYear, chosenDate }) {
   }, [chosenDay, currentMonth, currentYear, dispatch]);
 
   return (
-    <div className={css.swiperContainer}>
-      <Swiper
-        spaceBetween={10}
-        scrollbar={{ draggable: true }}
-        onSwiper={(swiper) => console.log(swiper)}
-        onSlideChange={() => console.log("slide change")}
-        modules={[Scrollbar]}
-        breakpoints={{
-          320: {
-            slidesPerView: 2,
-          },
-          768: {
-            slidesPerView: 2,
-          },
-          1024: {
-            slidesPerView: 3,
-          },
-        }}
-      >
-        {foundWaterDayData.map((data) => (
-          <SwiperSlide key={data._id}>
-            <WaterItem
-              ml={data.ml}
-              time={data.time}
-              id={data._id}
-              currentMonth={currentMonth}
-              chosenDay={chosenDay}
-              currentYear={currentYear}
-            />
-          </SwiperSlide>
-        ))}
-      </Swiper>
+    <div className={css.containerDay}>
+      {foundWaterDayData.length > 0 ? (
+        <div className={css.swiperContainer}>
+          <Swiper
+            spaceBetween={10}
+            scrollbar={{ draggable: true }}
+            onSwiper={(swiper) => console.log(swiper)}
+            onSlideChange={() => console.log("slide change")}
+            modules={[Scrollbar]}
+            breakpoints={{
+              320: {
+                slidesPerView: 2,
+              },
+              768: {
+                slidesPerView: 2,
+              },
+              1024: {
+                slidesPerView: 3,
+              },
+            }}
+          >
+            {foundWaterDayData.map((data) => (
+              <SwiperSlide key={data._id}>
+                <WaterItem
+                  ml={data.ml}
+                  time={data.time}
+                  id={data._id}
+                  currentMonth={currentMonth}
+                  chosenDay={chosenDay}
+                  currentYear={currentYear}
+                />
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
+      ) : (
+        <p className={css.noData}>No data yet</p>
+      )}
     </div>
   );
 }

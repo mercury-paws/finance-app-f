@@ -17,6 +17,10 @@ function WaterProgressBar() {
     (Number(progress) * 100) / (Number(user.waterVolume) * 1000)
   );
 
+  if (progressBar > 100) {
+    progressBar = 100;
+  }
+
   console.log(progressBar);
 
   return (

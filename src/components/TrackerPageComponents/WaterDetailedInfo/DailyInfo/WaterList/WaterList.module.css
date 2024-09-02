@@ -1,10 +1,13 @@
+.containerDay {
+  height: 95px;
+}
+
 .swiperContainer {
-  display: flex;
+  /* display: flex;
   flex-direction: row;
-  gap: 10px;
+  gap: 10px; */
   width: 100%;
   overflow: hidden;
-  height: 95px;
 }
 
 /* Custom scrollbar styles */
@@ -34,4 +37,9 @@
 /* Optional: Hide the scrollbar when not dragging */
 .swiper-scrollbar:hover {
   opacity: 1; /* Show scrollbar on hover */
+}
+
+.noData {
+  text-align: center;
+  padding-top: 15px;
 }

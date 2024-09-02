@@ -1,10 +1,11 @@
 import css from "./Setting.module.css";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Formik, Form, Field, ErrorMessage, useFormikContext } from "formik";
 import * as Yup from "yup";
-import { useEffect, useId } from "react";
+import { useState, useEffect, useId } from "react";
 import Modal from "react-modal";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { updateUser } from "../../../redux/auth/operations";
+import { selectUser } from "../../../redux/auth/selectors";
 
 Modal.setAppElement("#root");
 
@@ -39,7 +40,33 @@ const initialValues = {
 };
 
 function Setting({ isOpen, onRequestClose }) {
+  const [waterToDrink, setWaterToDrink] = useState();
   const dispatch = useDispatch();
+  const user = useSelector(selectUser);
+  console.log(user.name);
+
+  const FormValuesDisplay = () => {
+    const { values } = useFormikContext();
+
+    useEffect(() => {
+      if (values.picked) {
+        const timer = setTimeout(() => {
+          let calculatedWater = 0;
+          if (values.picked === "female") {
+            calculatedWater =
+              Number(values.weight) * 0.03 + Number(values.time) * 0.4;
+          } else if (values.picked === "male") {
+            calculatedWater =
+              Number(values.weight) * 0.04 + Number(values.time) * 0.6;
+          }
+          setWaterToDrink(calculatedWater);
+        }, 2000); // Delay of 100 milliseconds
+
+        // Cleanup timeout if component unmounts or values change
+        return () => clearTimeout(timer);
+      }
+    }, [values.picked, values.weight, values.time]); // Depend on values to recalculate
+  };
 
   const handleSubmit = (values) => {
     const formattedValues = {
@@ -115,7 +142,7 @@ function Setting({ isOpen, onRequestClose }) {
               </label>
               <Field
                 className={css.field}
-                type="string"
+                type="text"
                 name="name"
                 id={nameFieldId}
               />
@@ -139,8 +166,7 @@ function Setting({ isOpen, onRequestClose }) {
               </label>
               <Field
                 className={css.field}
-                type="string"
-                label
+                type="text"
                 name="weight"
                 id={weightFieldId}
               />
@@ -152,7 +178,7 @@ function Setting({ isOpen, onRequestClose }) {
               </label>
               <Field
                 className={css.field}
-                type="string"
+                type="text"
                 name="time"
                 id={timeFieldId}
               />
@@ -171,7 +197,14 @@ function Setting({ isOpen, onRequestClose }) {
                 absence of these, you must set 0)
               </p>
               <p className={css.requiredTime}>
-                The required amount of water in liters per day:
+                The required amount of water in liters per day:{" "}
+                {waterToDrink ? (
+                  <span style={{ color: "#9be1a0", fontWeight: "700" }}>
+                    {Math.round(waterToDrink * 10) / 10}
+                  </span>
+                ) : (
+                  "__"
+                )}
               </p>
               <div className={css.howMuchBlock}>
                 <label className={css.howMuchWill} htmlFor={howMuchFieldId}>
@@ -179,13 +212,14 @@ function Setting({ isOpen, onRequestClose }) {
                 </label>
                 <Field
                   className={css.field}
-                  type="string"
+                  type="text"
                   name="howMuch"
                   id={howMuchFieldId}
                 />
                 <ErrorMessage name="howMuch" component="span" />
               </div>
             </div>
+            <FormValuesDisplay />
             <button className={css.btn} type="submit">
               Save
             </button>

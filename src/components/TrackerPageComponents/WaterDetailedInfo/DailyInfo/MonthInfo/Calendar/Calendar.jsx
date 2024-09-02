@@ -44,32 +44,36 @@ function Calendar({ currentMonth, currentYear, chosenDate }) {
     dispatch(fetchWaterMonth(currentMonthYear));
   }, [dispatch, currentMonthYear]);
 
+  console.log("foundWaterData", foundWaterData);
+
   const waterDataByDay = useMemo(() => {
     const waterData = foundWaterData || [];
     const waterMap = {};
+
     waterData.forEach((item) => {
       if (waterMap[item.day]) {
-        waterMap[item.day] = String(
-          Math.round(
-            ((Number(waterMap[item.day]) + Number(item.ml)) * 100) /
-              (Number(user.waterVolume) * 1000)
-          )
-        );
+        waterMap[item.day] = Number(waterMap[item.day]) + Number(item.ml);
       } else {
-        waterMap[item.day] = String(
-          Math.round((item.ml * 100) / (user.waterVolume * 1000))
-        );
+        waterMap[item.day] = Number(item.ml);
       }
     });
+
+    Object.keys(waterMap).forEach((day) => {
+      waterMap[day] = String(
+        Math.round((waterMap[day] * 100) / (user.waterVolume * 1000))
+      );
+    });
+
+    console.log("waterMap", waterMap);
     return waterMap;
   }, [foundWaterData, user.waterVolume]);
 
-  console.log(waterDataByDay);
   return (
     <>
       <ul className={css.yearList}>
         {days.map((day) => {
           const waterAmount = waterDataByDay[day] || 0;
+
           return (
             <li key={day}>
               <CalendarItem

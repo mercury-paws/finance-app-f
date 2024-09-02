@@ -12,6 +12,10 @@ function CalendarItem({ day, chosenDate, waterAmount, currentMonthYear }) {
   // const today = new Date(); // Create a new Date object for the current date and time
   // const dayNumber = today.getDate();
 
+  if (waterAmount > 100) {
+    waterAmount = 100;
+  }
+
   const currentDay = {
     day,
     month: currentMonthYear.month,
