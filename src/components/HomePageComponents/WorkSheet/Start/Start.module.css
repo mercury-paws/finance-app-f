@@ -70,7 +70,52 @@
   gap: 10px;
 }
 
-/* @media screen and (min-width: 768px) */
+@media screen and (min-width: 768px) {
+  .homePage {
+    box-sizing: border-box;
+    padding: 106px 63px 0px 63px;
+    width: 704px;
+    height: 498px;
+  }
+
+  .homePageSlogan {
+    font-size: 16px;
+    line-height: 150%;
+    letter-spacing: 0.06em;
+    padding-bottom: 16px;
+  }
+  .homePageHeader {
+    font-size: 64px;
+    line-height: 109%;
+    letter-spacing: -0.01em;
+    padding-bottom: 32px;
+    width: 547px;
+  }
+  .homePageRegister {
+    width: 169px;
+    height: 60px;
+    padding: 18px 40px;
+    box-sizing: border-box;
+    font-size: 16px;
+    line-height: 150%;
+    letter-spacing: -0.01em;
+    text-align: center;
+  }
+  .homePageSignIn {
+    padding: 18px 40px;
+    width: 135px;
+    height: 60px;
+    box-sizing: border-box;
+    font-size: 16px;
+    line-height: 150%;
+    letter-spacing: -0.01em;
+    text-align: center;
+  }
+
+  .homePageBtns {
+    gap: 16px;
+  }
+}
 @media screen and (min-width: 1200px) {
   .homePage {
     padding-top: 188px;

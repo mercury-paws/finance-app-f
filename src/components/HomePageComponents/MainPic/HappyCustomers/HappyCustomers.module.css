@@ -19,5 +19,20 @@
   font-size: 12px;
   line-height: 117%;
 }
-.stroke {
+
+@media screen and (min-width: 768px) {
+  .customersContainer {
+    padding-top: 283px;
+    padding-left: 32px;
+  }
+  .customers {
+    width: 237px;
+    height: 67px;
+  }
+
+  .header {
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 149%;
+  }
 }

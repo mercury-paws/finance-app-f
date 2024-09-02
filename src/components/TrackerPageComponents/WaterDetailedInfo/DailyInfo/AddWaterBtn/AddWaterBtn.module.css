@@ -25,3 +25,18 @@
   stroke: #000;
   stroke-width: 1.5px;
 }
+
+@media screen and (min-width: 768px) {
+  .btn {
+    box-sizing: border-box;
+    width: 154px;
+    height: 30px;
+    gap: 15px;
+    font-size: 18px;
+  }
+
+  .plusIcon {
+    padding: 8px;
+    stroke-width: 1.5px;
+  }
+}

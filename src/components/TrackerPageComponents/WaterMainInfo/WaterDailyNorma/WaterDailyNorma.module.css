@@ -25,7 +25,27 @@
   color: rgba(47, 47, 47, 0.6);
 }
 
-/* @media screen and (min-width: 768px) */
+@media screen and (min-width: 768px) {
+  .dailyNorma {
+    margin-top: 125px;
+    margin-right: 32px;
+    padding: 14px;
+    width: 129px;
+    height: 78px;
+    border-radius: 15px;
+  }
+  .waterVolume {
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 149%;
+  }
+
+  .myDN {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 187%;
+  }
+}
 @media screen and (min-width: 1200px) {
   .dailyNorma {
     padding-top: 155px;

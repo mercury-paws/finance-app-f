@@ -9,7 +9,7 @@ import { useState, useEffect } from "react";
 import { refreshUser } from "../../redux/auth/operations.js";
 import { selectUser } from "../../redux/auth/selectors.js";
 import { selectIsRefreshing } from "../../redux/auth/selectors.js";
-
+import Logo from "../../components/Logo/Logo.jsx";
 function HomePage() {
   // const user = useSelector(selectUser);
   // const dispatch = useDispatch();
@@ -31,6 +31,9 @@ function HomePage() {
         <b>Refreshing user, please wait</b>
       ) : ( */}
       <div className={css.startPage}>
+        <div className={css.logo}>
+          <Logo />
+        </div>
         <WaterMainInfo
           chosenDay={chosenDay}
           setCurrentDate={setCurrentDate}

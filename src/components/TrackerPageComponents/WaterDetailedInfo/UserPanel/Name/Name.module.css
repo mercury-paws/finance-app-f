@@ -8,3 +8,15 @@
 .userName {
   font-weight: 800;
 }
+
+@media screen and (min-width: 768px) {
+  .name {
+    /* font-family: "Gilroy", sans-serif; */
+
+    font-size: 36px;
+    line-height: 106%;
+  }
+  .userName {
+    font-weight: 700;
+  }
+}

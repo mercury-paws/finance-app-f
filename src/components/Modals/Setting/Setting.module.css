@@ -46,8 +46,8 @@
   height: 103px;
   margin-bottom: 40px;
 }
-.radio.active {
-  color: teal;
+.radio {
+  accent-color: #9be1a0;
 }
 .fillInForm {
   display: flex;
@@ -82,6 +82,11 @@
   width: 303px;
   height: 46px;
 }
+
+.field::placeholder {
+  color: teal;
+}
+
 .dailyNorma {
   font-weight: 700;
   font-size: 16px;

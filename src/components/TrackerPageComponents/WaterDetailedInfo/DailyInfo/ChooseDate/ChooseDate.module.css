@@ -4,3 +4,10 @@
   line-height: 120%;
   letter-spacing: -0.01em;
 }
+
+@media screen and (min-width: 768px) {
+  .date {
+    font-size: 28px;
+    line-height: 114%;
+  }
+}

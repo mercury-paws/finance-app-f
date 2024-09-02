@@ -4,9 +4,9 @@ import css from "./Layout.module.css";
 export default function Layout({ children }) {
   return (
     <div className={css.container}>
-      <div className={css.logo}>
+      {/* <div className={css.logo}>
         <Logo />
-      </div>
+      </div> */}
       <div className={css.children}>{children}</div>
     </div>
   );

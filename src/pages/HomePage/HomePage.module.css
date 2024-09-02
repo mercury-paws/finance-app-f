@@ -22,13 +22,14 @@
 } */
 
 @media screen and (min-width: 768px) {
+  .startPage {
+    width: 704px;
+  }
 }
 
 @media screen and (min-width: 1200px) {
   .startPage {
-    display: flex;
-    flex-direction: row;
-    gap: 15px;
+    width: 704px;
   }
 
   .startPage > :nth-child(1) {

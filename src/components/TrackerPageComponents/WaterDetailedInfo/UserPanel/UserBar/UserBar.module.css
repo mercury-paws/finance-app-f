@@ -17,3 +17,15 @@
   color: #fff;
   border-radius: 30px;
 }
+@media screen and (min-width: 768px) {
+  .btn {
+    box-sizing: border-box;
+    width: 157px;
+    height: 56px;
+    gap: 10px;
+    font-size: 16px;
+    line-height: 150%;
+    padding: 6px 12px;
+    margin-left: 483px;
+  }
+}

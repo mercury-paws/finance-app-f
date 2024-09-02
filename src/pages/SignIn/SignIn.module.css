@@ -1,7 +1,7 @@
 .signInForm {
   padding: 216px 16px 216px 16px;
-  /* width: 311px; */
   width: 311px;
+
   border-radius: 30px;
 
   background-color: #f0eff4;
@@ -65,4 +65,41 @@
   font-weight: 700;
   text-decoration: underline;
   color: #000;
+}
+
+@media screen and (min-width: 768px) {
+  .signInForm {
+    box-sizing: border-box;
+    padding: 281px 134px 216px 134px;
+    width: 704px;
+  }
+
+  .signIn {
+    font-size: 36px;
+    line-height: 106%;
+  }
+  .form {
+    margin: 32px 0px 32px 0px;
+    font-size: 16px;
+    line-height: 150%;
+    gap: 20px;
+  }
+
+  .field {
+    padding: 16px 293px 16px 16px;
+    width: 436px;
+    height: 56px;
+  }
+
+  .btn {
+    font-size: 16px;
+    line-height: 150%;
+
+    width: 436px;
+    height: 60px;
+  }
+  .offer {
+    font-size: 16px;
+    line-height: 150%;
+  }
 }

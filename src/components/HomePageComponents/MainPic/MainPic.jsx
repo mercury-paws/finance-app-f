@@ -4,7 +4,7 @@ import css from "./MainPic.module.css";
 function MainPic() {
   return (
     <div className={css.mainPic}>
-      <div>
+      <div className={css.pic}>
         <HappyCustomers />
         <AddInfo />
       </div>

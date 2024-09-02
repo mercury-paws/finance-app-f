@@ -53,11 +53,7 @@ function ChooseDate({
   return (
     <>
       <p onClick={goToToday} className={css.date}>
-        {isToday ||
-        (!chosenDay &&
-          parsedDate.toDateString() === dateToCompare.toDateString())
-          ? "Today"
-          : currentDate}
+        {currentDate}
       </p>
     </>
   );

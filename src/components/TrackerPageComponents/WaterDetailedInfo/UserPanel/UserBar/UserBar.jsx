@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { selectUser } from "../../../../../redux/auth/selectors";
 import css from "./UserBar.module.css";
+
 function UserBar() {
   const user = useSelector(selectUser);
   const [userBar, setUserBar] = useState(false);

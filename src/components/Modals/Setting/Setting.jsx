@@ -30,20 +30,20 @@ const FeedbackSchema = Yup.object().shape({
     .required("Required"),
 });
 
-const initialValues = {
-  picked: "",
-  name: "",
-  email: "",
-  weight: "",
-  time: "",
-  howMuch: "",
-};
-
 function Setting({ isOpen, onRequestClose }) {
   const [waterToDrink, setWaterToDrink] = useState();
+
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
   console.log(user.name);
+  const initialValues = {
+    picked: user.gender || "",
+    name: user.name || "",
+    email: user.email || "",
+    weight: user.weight || "",
+    time: user.sportTime || "",
+    howMuch: user.waterVolume || "",
+  };
 
   const FormValuesDisplay = () => {
     const { values } = useFormikContext();
@@ -131,6 +131,7 @@ function Setting({ isOpen, onRequestClose }) {
                   type="radio"
                   name="picked"
                   value="male"
+                  className={css.radio}
                 />
                 Man
               </label>

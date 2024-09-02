@@ -27,3 +27,17 @@
   letter-spacing: -0.01em;
   text-align: center;
 }
+
+@media screen and (min-width: 768px) {
+  .pagination {
+    gap: 16px;
+    width: 200px;
+  }
+
+  .month {
+    width: 155px;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 150%;
+  }
+}

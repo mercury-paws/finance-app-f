@@ -1,5 +1,5 @@
 .AddWaterBtn {
-  padding-left: 170px;
+  padding-left: 180px;
   padding-top: 35px;
 }
 .btn {
@@ -21,7 +21,19 @@
   border: none;
 }
 
-/* @media screen and (min-width: 768px) */
+@media screen and (min-width: 768px) {
+  .AddWaterBtn {
+    padding-left: 462px;
+    padding-top: 36px;
+  }
+  .btn {
+    padding: 18px 30px;
+    width: 178px;
+    height: 60px;
+    font-size: 16px;
+    line-height: 150%;
+  }
+}
 @media screen and (min-width: 1200px) {
   .AddWaterBtn {
     padding-left: 462px;

@@ -1,4 +1,5 @@
 import css from "./AddInfo.module.css";
+import { Link } from "react-router-dom";
 function AddInfo() {
   return (
     <div className={css.addInfo}>
@@ -6,7 +7,9 @@ function AddInfo() {
         <div className={css.dot}></div>
         <p className={css.drive}>Habit drive</p>
       </div>
-      <button className={css.statistics}>View statistics</button>
+      <Link to="/signin" className={css.statistics}>
+        View statistics
+      </Link>
       <p className={css.rating}>Personal rate settings</p>
     </div>
   );

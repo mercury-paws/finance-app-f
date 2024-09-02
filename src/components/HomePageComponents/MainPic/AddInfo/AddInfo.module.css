@@ -1,5 +1,5 @@
 .addInfo {
-  padding-top: 8px;
+  padding-top: 6px;
   padding-left: 159px;
   width: 168px;
   display: flex;
@@ -61,4 +61,29 @@
   font-size: 8px;
   line-height: 100%;
   letter-spacing: -0.01em;
+}
+
+@media screen and (min-width: 768px) {
+  .addInfo {
+    padding-top: 0px;
+    padding-left: 430px;
+    width: 242px;
+    gap: 10px;
+    row-gap: 10px;
+  }
+  .dotDriveContainer {
+    padding: 11px 16px;
+  }
+  .drive {
+    font-size: 12px;
+  }
+
+  .statistics {
+    padding: 11px 16px;
+    font-size: 12px;
+  }
+  .rating {
+    padding: 11px 16px;
+    font-size: 12px;
+  }
 }

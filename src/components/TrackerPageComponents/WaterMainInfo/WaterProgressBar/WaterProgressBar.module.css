@@ -26,9 +26,8 @@
 
 .progressBarLine {
   position: absolute;
-
   height: 7px;
-  background-color: teal;
+  background-color: #9be1a0;
 }
 .progressNumbers {
   font-weight: 400;
@@ -40,7 +39,36 @@
   justify-content: space-between;
 }
 
-/* @media screen and (min-width: 768px) */
+@media screen and (min-width: 768px) {
+  .progressBar {
+    margin-top: 68px;
+    margin-left: 158px;
+    gap: 7px;
+    width: 295px;
+    padding: 20px;
+  }
+  .progressBarContainer {
+    border: 2px solid #000;
+    height: 8px;
+    width: 255px;
+    border-radius: 9px;
+    position: relative;
+  }
+  .today {
+    font-size: 15px;
+    line-height: 149%;
+  }
+
+  .progressBarLine {
+    position: absolute;
+    height: 8px;
+    border-radius: 9px;
+  }
+  .progressNumbers {
+    font-size: 12px;
+    line-height: 187%;
+  }
+}
 @media screen and (min-width: 1200px) {
   .progressBar {
     padding-top: 215px;
