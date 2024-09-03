@@ -38,8 +38,8 @@
 
 @media screen and (min-width: 768px) {
   .settingsContainer {
-    left: 300px;
-    bottom: -12px;
+    left: -170px;
+    bottom: -13px;
     padding: 14px 57px 14px 20px;
     width: 157px;
     height: 82px;

@@ -44,3 +44,62 @@
   fill: black;
   stroke: black;
 }
+
+.ml {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 100%;
+}
+.time {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 100%;
+  color: rgba(47, 47, 47, 0.6);
+}
+@media screen and (min-width: 768px) {
+  .waterItem {
+    box-sizing: border-box;
+    padding: 20px;
+
+    width: 192px;
+    height: 86px;
+    border: none;
+    border-radius: 15px;
+  }
+
+  .cupIcon {
+    background-color: transparent;
+    fill: #9be1a0;
+  }
+  .waterItem {
+    display: flex;
+    flex-direction: row;
+    /* gap: 5px; */
+    justify-content: space-between;
+    align-items: center;
+  }
+  /* 
+  .mlTime {
+    display: flex;
+    flex-direction: column; */
+  /* gap: 8px; */
+  /* } */
+
+  .btnBlock {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  .ml {
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 149%;
+  }
+  .time {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 187%;
+    color: rgba(47, 47, 47, 0.6);
+  }
+}
+/* @media screen and (min-width: 1200px) */

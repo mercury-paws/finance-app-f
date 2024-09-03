@@ -35,8 +35,8 @@ function WaterItem({ ml, time, id, currentMonth, chosenDay, currentYear }) {
         <use href="../../../../../../public/symbol-defs.svg#cup"></use>
       </svg>
       <div className={css.mlTime}>
-        <p>{ml} ml</p>
-        <p>{time}</p>
+        <p className={css.ml}>{ml} ml</p>
+        <p className={css.time}>{time}</p>
       </div>
       <div className={css.btnBlock}>
         <button className={css.btn} onClick={handleEditModalOpen}>

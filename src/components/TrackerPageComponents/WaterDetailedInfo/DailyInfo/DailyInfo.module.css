@@ -10,7 +10,7 @@
 @media screen and (min-width: 768px) {
   .dateAndBtn {
     gap: 50px;
-    padding-top: 32px;
+    /* padding-top: 16px; */
   }
 }
 @media screen and (min-width: 1200px) {

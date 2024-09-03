@@ -164,7 +164,99 @@
   text-align: center;
   border: none;
 }
-/* @media screen and (min-width: 768px) */
+@media screen and (min-width: 768px) {
+  .modalContent {
+    top: 64px;
+    max-height: 1300px;
+    height: 1336px;
+    width: 648px;
+  }
+
+  .settingContainer {
+    padding: 40px 40px;
+  }
+  .settingsHeader {
+    font-size: 28px;
+    line-height: 114%;
+
+    margin-bottom: 20px;
+  }
+  .pic {
+    height: 134px;
+    margin-bottom: 35px;
+  }
+
+  .fillInForm {
+    gap: 8px;
+    margin-bottom: 24px;
+  }
+  .label {
+    font-size: 18px;
+    line-height: 133%;
+  }
+  .genderBlock {
+    gap: 40px;
+    margin-bottom: 24px;
+  }
+  .value {
+    font-size: 16px;
+    line-height: 129%;
+  }
+  .field {
+    padding: 16px 16px;
+    width: 568px;
+    height: 56px;
+  }
+
+  .dailyNorma {
+    font-size: 18px;
+    line-height: 133%;
+    margin-bottom: 14px;
+  }
+  .addInfo {
+    margin-bottom: 40px;
+  }
+
+  .forWhom {
+    font-size: 16px;
+    line-height: 150%;
+    margin-bottom: 5px;
+  }
+  .formula {
+    margin-bottom: 12px;
+    font-size: 16px;
+    line-height: 150%;
+  }
+  .calculationInfo {
+    padding: 16px;
+    font-size: 16px;
+    line-height: 150%;
+    width: 568px;
+    margin-bottom: 14px;
+  }
+  .requiredTime {
+    font-size: 16px;
+    line-height: 150%;
+    width: 568px;
+    margin-bottom: 14px;
+  }
+  .howMuchBlock {
+    gap: 8px;
+  }
+  .howMuchWill {
+    font-size: 18px;
+    line-height: 133%;
+  }
+  .btn {
+    padding: 16px 50px;
+    width: 141px;
+    height: 56px;
+
+    font-size: 16px;
+    line-height: 150%;
+    letter-spacing: -0.01em;
+  }
+}
 @media screen and (min-width: 1200px) {
   .overlay {
     display: flex;
