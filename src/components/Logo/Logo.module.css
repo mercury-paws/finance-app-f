@@ -21,3 +21,10 @@
     top: 45px;
   }
 }
+
+@media screen and (min-width: 1380px) {
+  .logo {
+    left: 42px;
+    top: 32px;
+  }
+}

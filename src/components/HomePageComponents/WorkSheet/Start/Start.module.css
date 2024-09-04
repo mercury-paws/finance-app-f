@@ -116,8 +116,17 @@
     gap: 16px;
   }
 }
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: 1380px) {
   .homePage {
-    padding-top: 188px;
+    box-sizing: border-box;
+    padding: 188px 63px 0px 63px;
+    width: 672px;
+    height: 736px;
+  }
+
+  .homePageHeader {
+    font-size: 80px;
+    line-height: 95%;
+    padding-top: 16px;
   }
 }

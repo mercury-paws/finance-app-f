@@ -27,22 +27,24 @@
   }
 }
 
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: 1380px) {
   .startPage {
-    width: 704px;
+    width: 1376px;
+    flex-direction: row;
+    gap: 32;
   }
 
-  .startPage > :nth-child(1) {
+  /* .startPage > :nth-child(2) {
     width: 672px;
     border-radius: 30px;
     height: 736px;
     background-color: #f0eff4;
   }
 
-  .startPage > :nth-child(2) {
+  .startPage > :nth-child(3) {
     width: 672px;
     height: 736px;
     border-radius: 30px;
     background-color: #f0eff4;
-  }
+  } */
 }

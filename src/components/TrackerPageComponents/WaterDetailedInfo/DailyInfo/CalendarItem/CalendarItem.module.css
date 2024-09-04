@@ -35,7 +35,15 @@
 .highWater {
   background-color: #fff;
 }
+.todayLowWater {
+  color: #9be1a0;
+  background-color: #000;
+}
 
+.todayHighWater {
+  color: #9be1a0;
+  background-color: #fff;
+}
 @media screen and (min-width: 768px) {
   .dayInfo {
     width: 38px;

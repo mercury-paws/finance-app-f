@@ -101,5 +101,14 @@
     line-height: 187%;
     color: rgba(47, 47, 47, 0.6);
   }
+  .penIcon {
+    width: 18px;
+    height: 18px;
+  }
+
+  .trashIcon {
+    width: 18px;
+    height: 18px;
+  }
 }
 /* @media screen and (min-width: 1200px) */

@@ -20,3 +20,12 @@
     gap: 32px;
   }
 }
+
+@media screen and (min-width: 1380px) {
+  .waterDeateiledInfo {
+    width: 672px;
+    height: 736px;
+    padding: 32px;
+    gap: 32px;
+  }
+}

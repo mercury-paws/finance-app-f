@@ -5,12 +5,16 @@ import { fetchWaterDay } from "../../../../../redux/water/operations";
 import { useMemo } from "react";
 import css from "./CalendarItem.module.css";
 import clsx from "clsx";
+import { getMonthIndex } from "../../../../../constants/constants";
 
 function CalendarItem({ day, chosenDate, waterAmount, currentMonthYear }) {
   const dispatch = useDispatch();
 
-  // const today = new Date(); // Create a new Date object for the current date and time
-  // const dayNumber = today.getDate();
+  const today = new Date(); // Create a new Date object for the current date and time
+  const dayNumber = today.getDate();
+  const monthNumber = today.getMonth() + 1;
+  const yearNumber = today.getFullYear();
+  const monthNumberCalc = getMonthIndex(currentMonthYear.month) + 1;
 
   if (waterAmount > 100) {
     waterAmount = 100;
@@ -30,7 +34,16 @@ function CalendarItem({ day, chosenDate, waterAmount, currentMonthYear }) {
   };
 
   const getClassName = (amount) => {
+    if (
+      Number(day) === Number(dayNumber) &&
+      Number(monthNumber) === Number(monthNumberCalc) &&
+      Number(yearNumber) === Number(currentMonthYear.year)
+    ) {
+      if (amount < 100) return css.todayLowWater;
+      return css.todayHighWater;
+    }
     if (amount < 100) return css.lowWater;
+
     return css.highWater;
   };
 

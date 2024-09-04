@@ -13,12 +13,9 @@
     /* padding-top: 16px; */
   }
 }
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: 1380px) {
   .dateAndBtn {
-    display: flex;
-    flex-direction: row;
     gap: 50px;
-    justify-content: center;
-    align-items: baseline;
+    margin-top: 10px;
   }
 }

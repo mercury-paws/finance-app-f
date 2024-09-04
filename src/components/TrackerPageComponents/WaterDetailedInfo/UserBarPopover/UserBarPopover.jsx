@@ -31,7 +31,7 @@ function UserBarPopover() {
       <div className={css.settingsContainer}>
         <button onClick={handleSettingsModalOpen} className={css.setBtn}>
           {" "}
-          <FaRegSun /> Settings
+          <FaRegSun className={css.FaRegSun} /> Settings
         </button>
         {modalSettingsOpen && (
           <Setting
@@ -41,7 +41,7 @@ function UserBarPopover() {
         )}
         <button className={css.logOut} onClick={handleLogoutModalOpen}>
           {" "}
-          <FaSignOutAlt /> Log out
+          <FaSignOutAlt className={css.FaSignOutAlt} /> Log out
         </button>
         {modalLogoutOpen && (
           <LogOut isOpen={modalLogoutOpen} onRequestClose={closeLogoutModal} />

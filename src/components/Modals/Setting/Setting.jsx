@@ -28,14 +28,18 @@ const FeedbackSchema = Yup.object().shape({
     .min(0.5, "Too little")
     .max(5, "Must be a valid time from 0 to 24 hours")
     .required("Required"),
+  photo: Yup.mixed().required("Photo is required"),
 });
 
 function Setting({ isOpen, onRequestClose }) {
   const [waterToDrink, setWaterToDrink] = useState();
+  // const [selectedImage, setSelectedImage] = useState(null);
 
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
+
   console.log(user.name);
+
   const initialValues = {
     picked: user.gender || "",
     name: user.name || "",
@@ -43,6 +47,7 @@ function Setting({ isOpen, onRequestClose }) {
     weight: user.weight || "",
     time: user.sportTime || "",
     howMuch: user.waterVolume || "",
+    photo: user.photo || "",
   };
 
   const FormValuesDisplay = () => {
@@ -60,9 +65,8 @@ function Setting({ isOpen, onRequestClose }) {
               Number(values.weight) * 0.04 + Number(values.time) * 0.6;
           }
           setWaterToDrink(calculatedWater);
-        }, 2000); // Delay of 100 milliseconds
+        }, 2000);
 
-        // Cleanup timeout if component unmounts or values change
         return () => clearTimeout(timer);
       }
     }, [values.picked, values.weight, values.time]); // Depend on values to recalculate
@@ -76,6 +80,7 @@ function Setting({ isOpen, onRequestClose }) {
       weight: values.weight,
       sportTime: values.time,
       waterVolume: values.howMuch,
+      photo: values.photo,
     };
     dispatch(
       updateUser({
@@ -93,6 +98,7 @@ function Setting({ isOpen, onRequestClose }) {
   const weightFieldId = useId();
   const timeFieldId = useId();
   const howMuchFieldId = useId();
+  const photoFieldId = useId();
 
   return (
     <Modal
@@ -108,116 +114,131 @@ function Setting({ isOpen, onRequestClose }) {
           onSubmit={handleSubmit}
           validationSchema={FeedbackSchema}
         >
-          <Form>
+          {/* {({ setFieldValue }) => ( */}
+          <Form encType="multipart/form-data">
             <h1 className={css.settingsHeader}>Setting</h1>
-            <div className={css.pic}></div>
-            <div id="my-radio-group" className={css.label}>
-              Your gender identity
-            </div>
-            <div role="group" className={css.genderBlock}>
-              <label htmlFor={pickedWomanFieldId} className={css.value}>
-                <Field
-                  id={pickedWomanFieldId}
-                  type="radio"
-                  name="picked"
-                  value="female"
-                  className={css.radio}
-                />
-                Woman
-              </label>
-              <label htmlFor={pickedManFieldId} className={css.value}>
-                <Field
-                  id={pickedManFieldId}
-                  type="radio"
-                  name="picked"
-                  value="male"
-                  className={css.radio}
-                />
-                Man
-              </label>
-              <ErrorMessage name="picked" component="span" />
-            </div>
-            <div className={css.fillInForm}>
-              <label htmlFor={nameFieldId} className={css.label}>
-                Name
-              </label>
-              <Field
-                className={css.field}
-                type="text"
-                name="name"
-                id={nameFieldId}
+            <div className={css.pic}>
+              <input
+                id={photoFieldId}
+                name="photo"
+                type="file"
+                // onChange={(event) => {
+                //   setFieldValue("photo", event.target.files[0]);
+                //   console.log(event.target.files[0]);
+                // }}
               />
-              <ErrorMessage name="name" component="span" />
             </div>
-            <div className={css.fillInForm}>
-              <label htmlFor={emailFieldId} className={css.label}>
-                Email
-              </label>
-              <Field
-                className={css.field}
-                type="email"
-                name="email"
-                id={emailFieldId}
-              />
-              <ErrorMessage name="email" component="span" />
-            </div>
-            <div className={css.fillInForm}>
-              <label htmlFor={weightFieldId} className={css.label}>
-                Your weight in kilograms:
-              </label>
-              <Field
-                className={css.field}
-                type="text"
-                name="weight"
-                id={weightFieldId}
-              />
-              <ErrorMessage name="weight" component="span" />
-            </div>
-            <div className={css.fillInForm}>
-              <label htmlFor={timeFieldId} className={css.label}>
-                The time of active participation in sports:
-              </label>
-              <Field
-                className={css.field}
-                type="text"
-                name="time"
-                id={timeFieldId}
-              />
-              <ErrorMessage name="time" component="span" />
-            </div>
-            <div className={css.addInfo}>
-              <h5 className={css.dailyNorma}>My daily norma</h5>
-              <p className={css.forWhom}>For woman:</p>
-              <p className={css.formula}>V=(M*0,03) + (T*0,4)</p>
-              <p className={css.forWhom}>For man:</p>
-              <p className={css.formula}>V=(M*0,04) + (T*0,6)</p>
-              <p className={css.calculationInfo}>
-                <span>*</span> V is the volume of the water norm in liters per
-                day, M is your body weight, T is the time of active sports, or
-                another type of activity commensurate in terms of loads (in the
-                absence of these, you must set 0)
-              </p>
-              <p className={css.requiredTime}>
-                The required amount of water in liters per day:{" "}
-                {waterToDrink ? (
-                  <span style={{ color: "#9be1a0", fontWeight: "700" }}>
-                    {Math.round(waterToDrink * 10) / 10}
-                  </span>
-                ) : (
-                  "__"
-                )}
-              </p>
-              <div className={css.howMuchBlock}>
-                <label className={css.howMuchWill} htmlFor={howMuchFieldId}>
-                  Write down how much water you will drink:
-                </label>
-                <Field
-                  className={css.field}
-                  type="text"
-                  name="howMuch"
-                  id={howMuchFieldId}
-                />
-                <ErrorMessage name="howMuch" component="span" />
+            <div className={css.flexContainer}>
+              <div className={css.leftPart}>
+                <div id="my-radio-group" className={css.label}>
+                  Your gender identity
+                </div>
+                <div role="group" className={css.genderBlock}>
+                  <label htmlFor={pickedWomanFieldId} className={css.value}>
+                    <Field
+                      id={pickedWomanFieldId}
+                      type="radio"
+                      name="picked"
+                      value="female"
+                      className={css.radio}
+                    />
+                    Woman
+                  </label>
+                  <label htmlFor={pickedManFieldId} className={css.value}>
+                    <Field
+                      id={pickedManFieldId}
+                      type="radio"
+                      name="picked"
+                      value="male"
+                      className={css.radio}
+                    />
+                    Man
+                  </label>
+                  <ErrorMessage name="picked" component="span" />
+                </div>
+                <div className={css.fillInForm}>
+                  <label htmlFor={nameFieldId} className={css.label}>
+                    Name
+                  </label>
+                  <Field
+                    className={css.field}
+                    type="text"
+                    name="name"
+                    id={nameFieldId}
+                  />
+                  <ErrorMessage name="name" component="span" />
+                </div>
+                <div className={css.fillInForm}>
+                  <label htmlFor={emailFieldId} className={css.label}>
+                    Email
+                  </label>
+                  <Field
+                    className={css.field}
+                    type="email"
+                    name="email"
+                    id={emailFieldId}
+                  />
+                  <ErrorMessage name="email" component="span" />
+                </div>
+                <div className={css.fillInForm}>
+                  <label htmlFor={weightFieldId} className={css.label}>
+                    Your weight in kilograms:
+                  </label>
+                  <Field
+                    className={css.field}
+                    type="text"
+                    name="weight"
+                    id={weightFieldId}
+                  />
+                  <ErrorMessage name="weight" component="span" />
+                </div>
+                <div className={css.fillInForm}>
+                  <label htmlFor={timeFieldId} className={css.label}>
+                    The time of active participation in sports:
+                  </label>
+                  <Field
+                    className={css.field}
+                    type="text"
+                    name="time"
+                    id={timeFieldId}
+                  />
+                  <ErrorMessage name="time" component="span" />
+                </div>
+              </div>
+              <div className={css.addInfo}>
+                <h5 className={css.dailyNorma}>My daily norma</h5>
+                <p className={css.forWhom}>For woman:</p>
+                <p className={css.formula}>V=(M*0,03) + (T*0,4)</p>
+                <p className={css.forWhom}>For man:</p>
+                <p className={css.formula}>V=(M*0,04) + (T*0,6)</p>
+                <p className={css.calculationInfo}>
+                  <span>*</span> V is the volume of the water norm in liters per
+                  day, M is your body weight, T is the time of active sports, or
+                  another type of activity commensurate in terms of loads (in
+                  the absence of these, you must set 0)
+                </p>
+                <p className={css.requiredTime}>
+                  The required amount of water in liters per day:{" "}
+                  {waterToDrink ? (
+                    <span style={{ color: "#9be1a0", fontWeight: "700" }}>
+                      {Math.round(waterToDrink * 10) / 10}
+                    </span>
+                  ) : (
+                    "__"
+                  )}
+                </p>
+                <div className={css.howMuchBlock}>
+                  <label className={css.howMuchWill} htmlFor={howMuchFieldId}>
+                    Write down how much water you will drink:
+                  </label>
+                  <Field
+                    className={css.field}
+                    type="text"
+                    name="howMuch"
+                    id={howMuchFieldId}
+                  />
+                  <ErrorMessage name="howMuch" component="span" />
+                </div>
               </div>
             </div>
             <FormValuesDisplay />
@@ -225,6 +246,7 @@ function Setting({ isOpen, onRequestClose }) {
               Save
             </button>
           </Form>
+          {/* )} */}
         </Formik>
       </div>
     </Modal>

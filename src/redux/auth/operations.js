@@ -102,6 +102,9 @@ export const updateUser = createAsyncThunk(
     console.log("values", formattedValues);
     try {
       const response = await axios.patch("/auth/settings", formattedValues, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
         params: { email },
       });
       // setAuthHeader(response.data.data.accessToken);

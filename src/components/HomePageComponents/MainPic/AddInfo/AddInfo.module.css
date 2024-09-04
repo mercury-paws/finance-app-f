@@ -87,3 +87,9 @@
     font-size: 12px;
   }
 }
+
+@media screen and (min-width: 1380px) {
+  .addInfo {
+    padding-left: 398px;
+  }
+}

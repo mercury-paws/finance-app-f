@@ -103,3 +103,10 @@
     line-height: 150%;
   }
 }
+
+@media screen and (min-width: 1380px) {
+  .signInForm {
+    padding: 169px 134px 141px 134px;
+    width: 672px;
+  }
+}

@@ -69,17 +69,20 @@
     line-height: 187%;
   }
 }
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: 1380px) {
   .progressBar {
-    padding-top: 215px;
-    padding-left: 187px;
+    margin-top: 195px;
+    margin-left: 148px;
+    width: 296px;
   }
 
-  .progressBarContainer {
-    height: 7px;
-    width: 200px;
-    border: 1px solid #000;
-    border-radius: 8px;
-    position: relative;
+  .progressBarLine {
+    position: absolute;
+    height: 8px;
+    border-radius: 9px;
+  }
+  .progressNumbers {
+    font-size: 12px;
+    line-height: 187%;
   }
 }
