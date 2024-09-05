@@ -33,9 +33,17 @@
   box-sizing: border-box;
   border: 1px solid rgba(47, 47, 47, 0.2);
   border-radius: 15px;
-  padding: 16px 184px 16px 16px;
+  padding: 16px 0px 16px 16px;
   width: 311px;
   height: 50px;
+}
+.passField {
+  position: relative;
+}
+.faIcon {
+  position: absolute;
+  top: 60%;
+  left: 87%;
 }
 
 .btn {
@@ -48,7 +56,7 @@
   text-align: center;
   background-color: #9be1a0;
   border-radius: 30px;
-
+  margin-top: 15px;
   width: 311px;
   height: 50px;
 }
@@ -86,17 +94,26 @@
   }
 
   .field {
-    padding: 16px 293px 16px 16px;
+    padding: 16px 293px 0px 16px;
     width: 436px;
     height: 56px;
+  }
+  .passField {
+    position: relative;
+  }
+  .faIcon {
+    position: absolute;
+    top: 60%;
+    left: 90%;
   }
 
   .btn {
     font-size: 16px;
     line-height: 150%;
-
+    margin-top: 15px;
     width: 436px;
     height: 60px;
+    margin-top: 15px;
   }
   .offer {
     font-size: 16px;
@@ -106,7 +123,18 @@
 
 @media screen and (min-width: 1380px) {
   .signInForm {
-    padding: 169px 134px 141px 134px;
+    padding: 182px 134px 137px 134px;
     width: 672px;
+  }
+  .btn {
+    margin-top: 15px;
+  }
+  .passField {
+    position: relative;
+  }
+  .faIcon {
+    position: absolute;
+    top: 60%;
+    left: 95%;
   }
 }

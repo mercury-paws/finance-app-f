@@ -72,7 +72,7 @@ function SignIn() {
 
             <ErrorMessage name="email" component="span" />
           </div>
-          <div>
+          <div className={css.passField}>
             <label htmlFor={passwordFieldId} className={css.label}>
               Password
             </label>
@@ -83,7 +83,11 @@ function SignIn() {
               id={passwordFieldId}
             />
             <div onClick={toggleShowPassword}>
-              {showPassword ? <FaEye /> : <FaEyeSlash />}
+              {showPassword ? (
+                <FaEye className={css.faIcon} />
+              ) : (
+                <FaEyeSlash className={css.faIcon} />
+              )}
             </div>
             <ErrorMessage name="password" component="span" />
           </div>

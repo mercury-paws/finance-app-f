@@ -4,7 +4,7 @@
 .settingsContainer {
   box-sizing: border-box;
   position: absolute;
-  left: 55%;
+  left: -170px;
   bottom: -12px;
   border-radius: 15px;
   padding: 14px 57px 14px 20px;

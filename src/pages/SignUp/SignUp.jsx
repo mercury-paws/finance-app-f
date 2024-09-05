@@ -12,9 +12,13 @@ import { register } from "../../redux/auth/operations";
 // import MainPic from "../../components/StartPageComponents/MainPic/MainPic";
 
 const FeedbackSchema = Yup.object().shape({
-  email: Yup.string().email("Must be a valid email!").required("Required"),
-  password: Yup.string().min(6, "Too Short!").required("Required"),
-  repeatPassword: Yup.string().min(6, "Too Short!").required("Required"),
+  email: Yup.string()
+    .email("Must be a valid email!")
+    .required("Email is required"),
+  password: Yup.string().min(6, "Too Short!").required("Password is required"),
+  repeatPassword: Yup.string()
+    .min(6, "Too Short!")
+    .required("Repeat the password"),
 });
 
 const initialValues = {
@@ -67,7 +71,7 @@ function SignUp() {
         validationSchema={FeedbackSchema}
       >
         <Form className={css.form}>
-          <div>
+          <div className={css.passField}>
             <label htmlFor={emailFieldId} className={css.label}>
               Email
             </label>
@@ -77,9 +81,13 @@ function SignUp() {
               name="email"
               id={emailFieldId}
             />
-            <ErrorMessage name="email" component="span" />
+            <ErrorMessage
+              className={css.errorMessage}
+              name="email"
+              component="span"
+            />
           </div>
-          <div>
+          <div className={css.passField}>
             <label htmlFor={passwordFieldId} className={css.label}>
               Password
             </label>
@@ -90,12 +98,20 @@ function SignUp() {
               id={passwordFieldId}
             />
             <div onClick={toggleShowPassword}>
-              {showPassword ? <FaEye /> : <FaEyeSlash />}
+              {showPassword ? (
+                <FaEye className={css.faIcon} />
+              ) : (
+                <FaEyeSlash className={css.faIcon} />
+              )}
             </div>
 
-            <ErrorMessage name="password" component="span" />
+            <ErrorMessage
+              name="password"
+              component="span"
+              className={css.errorMessage}
+            />
           </div>
-          <div>
+          <div className={css.passField}>
             <label htmlFor={repeatPasswordFieldId} className={css.label}>
               Repeat password
             </label>
@@ -106,9 +122,17 @@ function SignUp() {
               id={repeatPasswordFieldId}
             />
             <div onClick={toggleShowRepeatPassword}>
-              {showRepeatPassword ? <FaEye /> : <FaEyeSlash />}
+              {showRepeatPassword ? (
+                <FaEye className={css.faIcon} />
+              ) : (
+                <FaEyeSlash className={css.faIcon} />
+              )}
             </div>
-            <ErrorMessage name="repeatPassword" component="span" />
+            <ErrorMessage
+              className={css.errorMessage}
+              name="repeatPassword"
+              component="span"
+            />
           </div>
           <button className={css.btn} type="submit">
             Sign Up

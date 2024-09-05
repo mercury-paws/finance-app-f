@@ -6,6 +6,7 @@ import Modal from "react-modal";
 import { useDispatch, useSelector } from "react-redux";
 import { updateUser } from "../../../redux/auth/operations";
 import { selectUser } from "../../../redux/auth/selectors";
+import { FaUpload } from "react-icons/fa6";
 
 Modal.setAppElement("#root");
 
@@ -33,12 +34,9 @@ const FeedbackSchema = Yup.object().shape({
 
 function Setting({ isOpen, onRequestClose }) {
   const [waterToDrink, setWaterToDrink] = useState();
-  // const [selectedImage, setSelectedImage] = useState(null);
 
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
-
-  console.log(user.name);
 
   const initialValues = {
     picked: user.gender || "",
@@ -114,139 +112,153 @@ function Setting({ isOpen, onRequestClose }) {
           onSubmit={handleSubmit}
           validationSchema={FeedbackSchema}
         >
-          {/* {({ setFieldValue }) => ( */}
-          <Form encType="multipart/form-data">
-            <h1 className={css.settingsHeader}>Setting</h1>
-            <div className={css.pic}>
-              <input
-                id={photoFieldId}
-                name="photo"
-                type="file"
-                // onChange={(event) => {
-                //   setFieldValue("photo", event.target.files[0]);
-                //   console.log(event.target.files[0]);
-                // }}
-              />
-            </div>
-            <div className={css.flexContainer}>
-              <div className={css.leftPart}>
-                <div id="my-radio-group" className={css.label}>
-                  Your gender identity
-                </div>
-                <div role="group" className={css.genderBlock}>
-                  <label htmlFor={pickedWomanFieldId} className={css.value}>
+          {({ setFieldValue }) => (
+            <Form encType="multipart/form-data">
+              <h1 className={css.settingsHeader}>Settings</h1>
+              <div className={css.pic}>
+                {user.photo ? (
+                  <img
+                    className={css.userPhoto}
+                    src={user.photo}
+                    alt={`Photo of ${user.name}`}
+                  />
+                ) : (
+                  "No photo"
+                )}
+                <label htmlFor={photoFieldId} className={css.picLabel}>
+                  {" "}
+                  <FaUpload /> Upload the photo
+                </label>
+                <input
+                  id={photoFieldId}
+                  name="photo"
+                  type="file"
+                  className={css.visuallyHidden}
+                  onChange={(event) => {
+                    setFieldValue("photo", event.target.files[0]);
+                    console.log(event.target.files[0]);
+                  }}
+                />
+              </div>
+              <div className={css.flexContainer}>
+                <div className={css.leftPart}>
+                  <div id="my-radio-group" className={css.label}>
+                    Your gender identity
+                  </div>
+                  <div role="group" className={css.genderBlock}>
+                    <label htmlFor={pickedWomanFieldId} className={css.value}>
+                      <Field
+                        id={pickedWomanFieldId}
+                        type="radio"
+                        name="picked"
+                        value="female"
+                        className={css.radio}
+                      />
+                      Woman
+                    </label>
+                    <label htmlFor={pickedManFieldId} className={css.value}>
+                      <Field
+                        id={pickedManFieldId}
+                        type="radio"
+                        name="picked"
+                        value="male"
+                        className={css.radio}
+                      />
+                      Man
+                    </label>
+                    <ErrorMessage name="picked" component="span" />
+                  </div>
+                  <div className={css.fillInForm}>
+                    <label htmlFor={nameFieldId} className={css.label}>
+                      Name
+                    </label>
                     <Field
-                      id={pickedWomanFieldId}
-                      type="radio"
-                      name="picked"
-                      value="female"
-                      className={css.radio}
+                      className={css.field}
+                      type="text"
+                      name="name"
+                      id={nameFieldId}
                     />
-                    Woman
-                  </label>
-                  <label htmlFor={pickedManFieldId} className={css.value}>
+                    <ErrorMessage name="name" component="span" />
+                  </div>
+                  <div className={css.fillInForm}>
+                    <label htmlFor={emailFieldId} className={css.label}>
+                      Email
+                    </label>
                     <Field
-                      id={pickedManFieldId}
-                      type="radio"
-                      name="picked"
-                      value="male"
-                      className={css.radio}
+                      className={css.field}
+                      type="email"
+                      name="email"
+                      id={emailFieldId}
                     />
-                    Man
-                  </label>
-                  <ErrorMessage name="picked" component="span" />
+                    <ErrorMessage name="email" component="span" />
+                  </div>
+                  <div className={css.fillInForm}>
+                    <label htmlFor={weightFieldId} className={css.label}>
+                      Your weight in kilograms:
+                    </label>
+                    <Field
+                      className={css.field}
+                      type="text"
+                      name="weight"
+                      id={weightFieldId}
+                    />
+                    <ErrorMessage name="weight" component="span" />
+                  </div>
+                  <div className={css.fillInForm}>
+                    <label htmlFor={timeFieldId} className={css.label}>
+                      The time of active participation in sports:
+                    </label>
+                    <Field
+                      className={css.field}
+                      type="text"
+                      name="time"
+                      id={timeFieldId}
+                    />
+                    <ErrorMessage name="time" component="span" />
+                  </div>
                 </div>
-                <div className={css.fillInForm}>
-                  <label htmlFor={nameFieldId} className={css.label}>
-                    Name
-                  </label>
-                  <Field
-                    className={css.field}
-                    type="text"
-                    name="name"
-                    id={nameFieldId}
-                  />
-                  <ErrorMessage name="name" component="span" />
-                </div>
-                <div className={css.fillInForm}>
-                  <label htmlFor={emailFieldId} className={css.label}>
-                    Email
-                  </label>
-                  <Field
-                    className={css.field}
-                    type="email"
-                    name="email"
-                    id={emailFieldId}
-                  />
-                  <ErrorMessage name="email" component="span" />
-                </div>
-                <div className={css.fillInForm}>
-                  <label htmlFor={weightFieldId} className={css.label}>
-                    Your weight in kilograms:
-                  </label>
-                  <Field
-                    className={css.field}
-                    type="text"
-                    name="weight"
-                    id={weightFieldId}
-                  />
-                  <ErrorMessage name="weight" component="span" />
-                </div>
-                <div className={css.fillInForm}>
-                  <label htmlFor={timeFieldId} className={css.label}>
-                    The time of active participation in sports:
-                  </label>
-                  <Field
-                    className={css.field}
-                    type="text"
-                    name="time"
-                    id={timeFieldId}
-                  />
-                  <ErrorMessage name="time" component="span" />
+                <div className={css.addInfo}>
+                  <h5 className={css.dailyNorma}>My daily norma</h5>
+                  <p className={css.forWhom}>For woman:</p>
+                  <p className={css.formula}>V=(M*0,03) + (T*0,4)</p>
+                  <p className={css.forWhom}>For man:</p>
+                  <p className={css.formula}>V=(M*0,04) + (T*0,6)</p>
+                  <p className={css.calculationInfo}>
+                    <span>*</span> V is the volume of the water norm in liters
+                    per day, M is your body weight, T is the time of active
+                    sports, or another type of activity commensurate in terms of
+                    loads (in the absence of these, you must set 0)
+                  </p>
+                  <p className={css.requiredTime}>
+                    The required amount of water in liters per day:{" "}
+                    {waterToDrink ? (
+                      <span style={{ color: "#9be1a0", fontWeight: "700" }}>
+                        {Math.round(waterToDrink * 10) / 10}
+                      </span>
+                    ) : (
+                      "__"
+                    )}
+                  </p>
+                  <div className={css.howMuchBlock}>
+                    <label className={css.howMuchWill} htmlFor={howMuchFieldId}>
+                      Write down how much water you will drink:
+                    </label>
+                    <Field
+                      className={css.field}
+                      type="text"
+                      name="howMuch"
+                      id={howMuchFieldId}
+                    />
+                    <ErrorMessage name="howMuch" component="span" />
+                  </div>
                 </div>
               </div>
-              <div className={css.addInfo}>
-                <h5 className={css.dailyNorma}>My daily norma</h5>
-                <p className={css.forWhom}>For woman:</p>
-                <p className={css.formula}>V=(M*0,03) + (T*0,4)</p>
-                <p className={css.forWhom}>For man:</p>
-                <p className={css.formula}>V=(M*0,04) + (T*0,6)</p>
-                <p className={css.calculationInfo}>
-                  <span>*</span> V is the volume of the water norm in liters per
-                  day, M is your body weight, T is the time of active sports, or
-                  another type of activity commensurate in terms of loads (in
-                  the absence of these, you must set 0)
-                </p>
-                <p className={css.requiredTime}>
-                  The required amount of water in liters per day:{" "}
-                  {waterToDrink ? (
-                    <span style={{ color: "#9be1a0", fontWeight: "700" }}>
-                      {Math.round(waterToDrink * 10) / 10}
-                    </span>
-                  ) : (
-                    "__"
-                  )}
-                </p>
-                <div className={css.howMuchBlock}>
-                  <label className={css.howMuchWill} htmlFor={howMuchFieldId}>
-                    Write down how much water you will drink:
-                  </label>
-                  <Field
-                    className={css.field}
-                    type="text"
-                    name="howMuch"
-                    id={howMuchFieldId}
-                  />
-                  <ErrorMessage name="howMuch" component="span" />
-                </div>
-              </div>
-            </div>
-            <FormValuesDisplay />
-            <button className={css.btn} type="submit">
-              Save
-            </button>
-          </Form>
-          {/* )} */}
+              <FormValuesDisplay />
+              <button className={css.btn} type="submit">
+                Save
+              </button>
+            </Form>
+          )}
         </Formik>
       </div>
     </Modal>

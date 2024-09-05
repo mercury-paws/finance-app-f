@@ -5,6 +5,12 @@
   margin: 0 auto;
   width: 343px;
   /* height: 411px; */
+  position: relative;
+}
+.logo {
+  position: absolute;
+  top: 32px;
+  left: 32px;
 }
 
 /* .startPage > :nth-child(1) {

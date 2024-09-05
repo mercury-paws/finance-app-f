@@ -1,5 +1,5 @@
 .signUpForm {
-  padding: 216px 16px 216px 16px;
+  padding: 184px 16px 184px 16px;
   /* width: 311px; */
   width: 311px;
   border-radius: 30px;
@@ -21,7 +21,7 @@
   font-size: 14px;
   line-height: 129%;
   letter-spacing: -0.01em;
-  gap: 16px;
+  gap: 32px;
 }
 
 .label {
@@ -33,9 +33,23 @@
   box-sizing: border-box;
   border: 1px solid rgba(47, 47, 47, 0.2);
   border-radius: 15px;
-  padding: 16px 184px 16px 16px;
+  padding: 16px 0px 16px 16px;
   width: 311px;
   height: 50px;
+}
+.passField {
+  position: relative;
+}
+.faIcon {
+  position: absolute;
+  top: 60%;
+  left: 87%;
+}
+.errorMessage {
+  position: absolute;
+  top: 82px;
+  left: 10px;
+  color: red;
 }
 
 .btn {
@@ -48,7 +62,7 @@
   text-align: center;
   background-color: #9be1a0;
   border-radius: 30px;
-
+  margin-top: 15px;
   width: 311px;
   height: 50px;
 }
@@ -87,15 +101,23 @@
   }
 
   .field {
-    padding: 16px 293px 16px 16px;
+    padding: 16px 293px 0px 16px;
     width: 436px;
     height: 56px;
+  }
+  .passField {
+    position: relative;
+  }
+  .faIcon {
+    position: absolute;
+    top: 60%;
+    left: 90%;
   }
 
   .btn {
     font-size: 16px;
     line-height: 150%;
-
+    margin-top: 15px;
     width: 436px;
     height: 60px;
   }
@@ -113,12 +135,23 @@
 
 @media screen and (min-width: 1380px) {
   .signUpForm {
-    padding: 125px 134px 90px 134px;
+    padding: 135px 134px 103px 134px;
     width: 672px;
   }
   .form {
     margin: 24px 0px 24px 0px;
 
     gap: 10px;
+  }
+  .btn {
+    margin-top: 25px;
+  }
+  .passField {
+    position: relative;
+  }
+  .faIcon {
+    position: absolute;
+    top: 60%;
+    left: 95%;
   }
 }

@@ -45,6 +45,8 @@
 .pic {
   height: 103px;
   margin-bottom: 40px;
+  position: relative;
+  text-align: center;
 }
 .radio {
   accent-color: #9be1a0;
@@ -84,7 +86,31 @@
 }
 
 .field::placeholder {
-  color: teal;
+  color: #9be1a0;
+}
+.userPhoto {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border: none;
+  border-radius: 50%;
+
+  display: block;
+  margin: 0 auto 15px auto;
+}
+
+.visuallyHidden {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  color: #9be1a0;
+  white-space: nowrap;
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
 }
 
 .dailyNorma {
