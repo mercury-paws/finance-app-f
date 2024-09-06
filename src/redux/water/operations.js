@@ -5,6 +5,8 @@ const setAuthHeader = (token) => {
   axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 };
 
+// axios.defaults.baseURL = "https://water-app-b.onrender.com/";
+
 axios.defaults.baseURL = "http://localhost:3000/water-app";
 
 //Базовий тип екшену це рядок "contacts/fetchAll"

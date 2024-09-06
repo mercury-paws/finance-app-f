@@ -31,7 +31,7 @@
 @media screen and (min-width: 768px) {
   .pagination {
     gap: 16px;
-    width: 200px;
+    width: 220px;
   }
 
   .month {

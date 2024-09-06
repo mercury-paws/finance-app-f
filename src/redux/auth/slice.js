@@ -1,5 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { logIn, register, logOut, refreshUser, updateUser } from "./operations";
+import {
+  logIn,
+  register,
+  logOut,
+  refreshUser,
+  updateUser,
+  findPhotos,
+} from "./operations";
 
 const authSlice = createSlice({
   name: "auth",
@@ -13,6 +20,7 @@ const authSlice = createSlice({
     isRefreshing: false,
     loading: false,
     error: false,
+    photos: [],
   },
   extraReducers: (builder) =>
     builder
@@ -70,6 +78,9 @@ const authSlice = createSlice({
         console.log(state.user);
         state.isLoggedIn = true;
         state.isRefreshing = false;
+      })
+      .addCase(findPhotos.fulfilled, (state, action) => {
+        state.photos = action.payload;
       }),
 });
 

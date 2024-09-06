@@ -1,6 +1,7 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
+// axios.defaults.baseURL = "https://water-app-b.onrender.com/";
 axios.defaults.baseURL = "http://localhost:3000/water-app";
 axios.defaults.withCredentials = true;
 
@@ -16,6 +17,20 @@ const clearAuthHeader = () => {
 };
 
 // POST - register @ /auth/register
+
+export const findPhotos = createAsyncThunk(
+  "auth/photos",
+  async (_, thunkAPI) => {
+    try {
+      const response = await axios.get("/auth/photos");
+      return response.data.data.photos;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(
+        error.response?.data?.message || error.message
+      );
+    }
+  }
+);
 
 export const register = createAsyncThunk(
   "auth/register",
