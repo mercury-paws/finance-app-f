@@ -47,20 +47,28 @@
   line-height: 129%;
   letter-spacing: -0.01em;
   text-align: center;
-  color: var(--main);
+  transition: background-color 0.4s ease-in-out;
+}
+.homePageRegister:hover {
+  background-color: #80d385;
+  color: black;
 }
 .homePageSignIn {
   border: 1px solid #323f47;
+  color: black;
   border-radius: 30px;
   padding: 14px 28px;
-  /* width: 104px;
-  height: 46px; */
-  font-family: var(--font-family);
   font-weight: 700;
   font-size: 14px;
   line-height: 129%;
   letter-spacing: -0.01em;
   text-align: center;
+  transition: color 0.4s ease-in-out, border 0.4s ease-in-out;
+}
+
+.homePageSignIn:hover {
+  color: #9be1a0;
+  border: 1px solid #9be1a0;
 }
 
 .homePageBtns {

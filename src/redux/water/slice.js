@@ -3,7 +3,6 @@ import { fetchWaterMonth, fetchWaterDay } from "./operations";
 import { addWater } from "./operations";
 import { deleteWater } from "./operations";
 import { updateWater } from "./operations";
-// import { updateContact } from "./operations";
 import { logOut } from "../auth/operations";
 
 const slice = createSlice({
@@ -45,28 +44,9 @@ const slice = createSlice({
         state.loading = true;
       })
       .addCase(addWater.fulfilled, (state, action) => {
-        // Ensure action.payload is correctly used
         const newDayItem = action.payload;
-
-        // Update state.items
         state.items.push(newDayItem);
-
-        // // Update state.dayItems
-        // const existingDayItemIndex = state.dayItems.findIndex(
-        //   (item) =>
-        //     item.day === newDayItem.day &&
-        //     item.month === newDayItem.month &&
-        //     item.year === newDayItem.year
-        // );
-
-        // if (existingDayItemIndex !== -1) {
-        //   // Update existing day item
-        //   state.dayItems[existingDayItemIndex] = newDayItem;
-        // } else {
-        // Add new day item
         state.dayItems.push(newDayItem);
-        // }
-
         state.loading = false;
       })
       .addCase(addWater.rejected, (state) => {
@@ -98,7 +78,6 @@ const slice = createSlice({
         state.error = false;
       })
       .addCase(updateWater.fulfilled, (state, action) => {
-        console.log("Payload:", action.payload);
         const updatedWater = action.payload;
         state.items = state.items.map((item) =>
           item._id === updatedWater._id ? updatedWater : item
@@ -107,11 +86,11 @@ const slice = createSlice({
           item._id === updatedWater._id ? updatedWater : item
         );
         state.loading = false;
+      })
+      .addCase(updateWater.rejected, (state) => {
+        state.loading = false;
+        state.error = true;
       }),
-  //   .addCase(updateContact.rejected, (state) => {
-  //     state.loading.update = false;
-  //     state.error = true;
-  //   }),
 });
 
 export default slice.reducer;

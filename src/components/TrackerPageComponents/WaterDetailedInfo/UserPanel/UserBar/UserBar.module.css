@@ -1,5 +1,6 @@
 .btnContainer {
   margin-left: 167px;
+  margin-bottom: 15px;
 }
 
 .btn {
@@ -43,6 +44,8 @@
     font-size: 16px;
     line-height: 150%;
     padding: 6px 12px;
-    /* margin-left: 483px; */
+  }
+  .btnContainer {
+    margin-bottom: 0px;
   }
 }

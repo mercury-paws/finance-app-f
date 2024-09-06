@@ -10,7 +10,6 @@ import { NavLink } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { logIn } from "../../redux/auth/operations";
 import toast, { Toaster } from "react-hot-toast";
-// import MainPic from "../../components/StartPageComponents/MainPic/MainPic";
 
 const FeedbackSchema = Yup.object().shape({
   email: Yup.string().email("Must be a valid email!").required("Required"),
@@ -23,9 +22,6 @@ const initialValues = {
 };
 
 function SignIn() {
-  {
-    /* <Toaster/> */
-  }
   const [showPassword, setShowPassword] = useState(false);
   let dispatch = useDispatch();
 
@@ -36,7 +32,7 @@ function SignIn() {
     dispatch(logIn(values))
       .unwrap()
       .then((data) => {
-        toast.success("Success!");
+        toast.success("Successfully signed in!");
         actions.resetForm();
       })
       .catch((error) => {
@@ -94,7 +90,7 @@ function SignIn() {
           <button className={css.btn} type="submit">
             Sign In
           </button>
-          <Toaster />
+          <Toaster position="top-right" />
         </Form>
       </Formik>
       <p className={css.offer}>

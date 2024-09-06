@@ -9,11 +9,15 @@ function UserBarPopover() {
   const [modalSettingsOpen, setModalSettingsOpen] = useState(false);
 
   const handleSettingsModalOpen = () => {
-    setModalSettingsOpen(true);
+    setTimeout(() => {
+      setModalSettingsOpen(true);
+    }, "200");
   };
 
   const closeSettingsModal = () => {
-    setModalSettingsOpen(false);
+    setTimeout(() => {
+      setModalSettingsOpen(false);
+    }, "300");
   };
 
   const [modalLogoutOpen, setModalLogoutOpen] = useState(false);

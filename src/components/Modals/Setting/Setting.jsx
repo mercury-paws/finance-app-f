@@ -189,6 +189,7 @@ function Setting({ isOpen, onRequestClose }) {
                       type="email"
                       name="email"
                       id={emailFieldId}
+                      readOnly
                     />
                     <ErrorMessage name="email" component="span" />
                   </div>

@@ -6,9 +6,11 @@ import { ErrorMessage } from "formik";
 import { useState } from "react";
 import { FaEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { register } from "../../redux/auth/operations";
+import toast, { Toaster } from "react-hot-toast";
+
 // import MainPic from "../../components/StartPageComponents/MainPic/MainPic";
 
 const FeedbackSchema = Yup.object().shape({
@@ -33,6 +35,7 @@ function SignUp() {
   const [showPassword, setShowPassword] = useState(false);
   const [showRepeatPassword, setShowRepeatPassword] = useState(false);
   let dispatch = useDispatch();
+  let navigate = useNavigate();
 
   const handleSubmit = (values, actions) => {
     if (values.password !== values.repeatPassword) {
@@ -40,13 +43,27 @@ function SignUp() {
       setSubmitted("");
     } else {
       setError("");
-      setSubmitted("Passwords match, form submitted");
+      setSubmitted("Passwords match");
       let newUser = {
         email: values.email,
         password: values.password,
       };
       // console.log(newUser);
-      dispatch(register(newUser));
+      dispatch(register(newUser))
+        .unwrap()
+        .then((data) => {
+          toast.success("Successfully registered a user!");
+          setTimeout(() => {
+            navigate("/signin");
+          }, 1500);
+          actions.resetForm();
+        })
+        .catch((error) => {
+          toast.error("Login failed: " + error);
+          console.error("Login failed:", error);
+          // actions.resetForm();
+        });
+
       actions.resetForm();
     }
   };
@@ -142,6 +159,7 @@ function SignUp() {
           ) : (
             <div style={{ color: "green" }}>{submitted}</div>
           )}
+          <Toaster />
         </Form>
       </Formik>
       <p className={css.offer}>

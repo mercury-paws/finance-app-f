@@ -1,18 +1,14 @@
 import WaterItem from "../WaterItem/WaterItem";
-import { useEffect, useState } from "react";
-import axios from "axios";
+import { useEffect } from "react";
 import css from "./WaterList.module.css";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { selectDayWater } from "../../../../../redux/water/selectors";
 import "swiper/css";
-import "swiper/swiper-bundle.css";
+import "swiper/css/scrollbar";
 import { Scrollbar } from "swiper/modules";
-// import "swiper/modules/scrollbar/scrollbar.min.css";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { fetchWaterDay } from "../../../../../redux/water/operations";
-import { getMonthNameByIndex } from "../../../../../constants/constants";
-import { useMemo } from "react";
 
 function WaterList({ currentMonth, chosenDay, currentYear, chosenDate }) {
   // added {} dunno why was working earlier

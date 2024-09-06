@@ -4,33 +4,28 @@ import css from "./TrackerPage.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { calculateFormattedDate } from "../../constants/constants.js";
 import { useState, useEffect } from "react";
-// import { useSelector } from "react-redux";
-// import { selectIsRefreshing } from "../../redux/auth/selectors.js";
-import { refreshUser } from "../../redux/auth/operations.js";
 import { selectUser } from "../../redux/auth/selectors.js";
-import { selectIsRefreshing } from "../../redux/auth/selectors.js";
+import toast, { Toaster } from "react-hot-toast";
 import Logo from "../../components/Logo/Logo.jsx";
 function HomePage() {
-  // const user = useSelector(selectUser);
-  // const dispatch = useDispatch();
-  // const isRefreshing = useSelector(selectIsRefreshing);
-
-  // useEffect(() => {
-  //   dispatch(refreshUser());
-  // }, [dispatch]);
-
   let date = calculateFormattedDate();
 
   const [chosenDay, setChosenDay] = useState(date.day.replace(",", ""));
   const [currentMonth, setCurrentMonth] = useState(date.month);
   const [currentYear, setCurrentYear] = useState(date.year);
   const [currentDate, setCurrentDate] = useState("Today");
+  const user = useSelector(selectUser);
+
+  useEffect(() => {
+    if (user) {
+      toast.success("User data updated!");
+    }
+  }, [user]);
+
   return (
     <>
-      {/* {isRefreshing ? (
-        <b>Refreshing user, please wait</b>
-      ) : ( */}
       <div className={css.startPage}>
+        <Toaster />
         <div className={css.logo}>
           <Logo />
         </div>
@@ -55,7 +50,6 @@ function HomePage() {
           setChosenDay={setChosenDay}
         />
       </div>
-      {/* )} */}
     </>
   );
 }

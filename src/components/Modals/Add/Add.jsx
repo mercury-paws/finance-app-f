@@ -11,6 +11,7 @@ import { fetchWaterDay } from "../../../redux/water/operations";
 import Modal from "react-modal";
 import { addWater } from "../../../redux/water/operations";
 import { useDispatch } from "react-redux";
+import toast, { Toaster } from "react-hot-toast";
 
 Modal.setAppElement("#root");
 
@@ -56,7 +57,7 @@ function Add({ isOpen, onRequestClose, chosenDay, currentMonth, currentYear }) {
   const timeFieldId = useId();
   const valueFieldId = useId();
 
-  const handleSubmit = (values, actions) => {
+  const handleSubmit = async (values, actions) => {
     const formattedValues = {
       ...values,
       ml: values.ml.toString(),
@@ -69,19 +70,21 @@ function Add({ isOpen, onRequestClose, chosenDay, currentMonth, currentYear }) {
     };
 
     console.log(queryDayParams, chosenDay);
+    try {
+      await dispatch(
+        addWater({
+          newAddWater: formattedValues,
+          queryDayParams,
+        })
+      ).unwrap();
+      await dispatch(fetchWaterDay(queryDayParams)).unwrap();
 
-    dispatch(
-      addWater({
-        newAddWater: formattedValues,
-        queryDayParams,
-      })
-    ).then(() => {
-      // Refresh the water data for the selected day after adding
-      dispatch(fetchWaterDay(queryDayParams)); // currentDayQuery
-    });
-
-    actions.resetForm();
-    onRequestClose();
+      toast.success("Information was added");
+      actions.resetForm();
+      onRequestClose();
+    } catch (error) {
+      toast.error("Error. Please try again later");
+    }
   };
 
   let difference = 50;
@@ -154,6 +157,7 @@ function Add({ isOpen, onRequestClose, chosenDay, currentMonth, currentYear }) {
             <button className={css.btn} type="submit">
               Save
             </button>
+            <Toaster />
           </Form>
         </Formik>
       </div>

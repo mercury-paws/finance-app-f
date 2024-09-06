@@ -11,7 +11,7 @@
   height: 100%;
   width: 100%;
   z-index: 99999999;
-  transition: opacity 1s ease;
+  transition: opacity 2s ease-in-out;
 }
 
 .modalContent {
@@ -30,6 +30,7 @@
   border-radius: 15px;
   transition: opacity 1s ease;
   overflow-y: scroll;
+  transition: opacity 2s ease-in-out;
 }
 
 .settingContainer {
@@ -47,6 +48,8 @@
   margin-bottom: 40px;
   position: relative;
   text-align: center;
+  display: flex;
+  flex-direction: column;
 }
 .radio {
   accent-color: #9be1a0;
