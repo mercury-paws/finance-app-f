@@ -32,7 +32,7 @@ function SignIn() {
     dispatch(logIn(values))
       .unwrap()
       .then((data) => {
-        toast.success("Successfully signed in!");
+        // toast.success("Successfully signed in!");
         actions.resetForm();
       })
       .catch((error) => {
@@ -55,7 +55,7 @@ function SignIn() {
         validationSchema={FeedbackSchema}
       >
         <Form className={css.form}>
-          <div>
+          <div className={css.passField}>
             <label htmlFor={emailFieldId} className={css.label}>
               Email
             </label>
@@ -66,7 +66,11 @@ function SignIn() {
               id={emailFieldId}
             />
 
-            <ErrorMessage name="email" component="span" />
+            <ErrorMessage
+              name="email"
+              component="span"
+              className={css.errorMessage}
+            />
           </div>
           <div className={css.passField}>
             <label htmlFor={passwordFieldId} className={css.label}>
@@ -85,7 +89,11 @@ function SignIn() {
                 <FaEyeSlash className={css.faIcon} />
               )}
             </div>
-            <ErrorMessage name="password" component="span" />
+            <ErrorMessage
+              name="password"
+              component="span"
+              className={css.errorMessage}
+            />
           </div>
           <button className={css.btn} type="submit">
             Sign In

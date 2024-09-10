@@ -10,6 +10,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { register } from "../../redux/auth/operations";
 import toast, { Toaster } from "react-hot-toast";
+import VerifyEmail from "../../components/Modals/Verify/VerifyEmail";
 
 // import MainPic from "../../components/StartPageComponents/MainPic/MainPic";
 
@@ -34,6 +35,8 @@ function SignUp() {
   const [submitted, setSubmitted] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [showRepeatPassword, setShowRepeatPassword] = useState(false);
+  const [modalVerifyOpen, setModalVerifyOpen] = useState(false);
+
   let dispatch = useDispatch();
   let navigate = useNavigate();
 
@@ -52,19 +55,18 @@ function SignUp() {
       dispatch(register(newUser))
         .unwrap()
         .then((data) => {
-          toast.success("Successfully registered a user!");
-          setTimeout(() => {
-            navigate("/signin");
-          }, 1500);
           actions.resetForm();
+          setModalVerifyOpen(true);
+          setSubmitted("");
+          setError("");
         })
         .catch((error) => {
-          toast.error("Login failed: " + error);
+          toast.error("Login failed!");
           console.error("Login failed:", error);
           // actions.resetForm();
         });
 
-      actions.resetForm();
+      // actions.resetForm();
     }
   };
 
@@ -151,14 +153,39 @@ function SignUp() {
               component="span"
             />
           </div>
+          <div
+            style={{
+              position: "relative",
+            }}
+          >
+            {error ? (
+              <div
+                style={{
+                  color: "red",
+                  position: "absolute",
+                  top: "0px",
+                  left: "10px",
+                }}
+              >
+                {error}
+              </div>
+            ) : (
+              <div
+                style={{
+                  color: "green",
+                  position: "absolute",
+                  top: "0px",
+                  left: "10px",
+                }}
+              >
+                {submitted}
+              </div>
+            )}
+          </div>
           <button className={css.btn} type="submit">
             Sign Up
           </button>
-          {error ? (
-            <div style={{ color: "red" }}>{error}</div>
-          ) : (
-            <div style={{ color: "green" }}>{submitted}</div>
-          )}
+
           <Toaster />
         </Form>
       </Formik>
@@ -168,6 +195,9 @@ function SignUp() {
           Sign In
         </NavLink>
       </p>
+      {modalVerifyOpen && (
+        <VerifyEmail isOpen={modalVerifyOpen} setIsOpen={setModalVerifyOpen} />
+      )}
     </div>
   );
 }

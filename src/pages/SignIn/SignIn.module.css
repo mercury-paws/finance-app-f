@@ -45,6 +45,12 @@
   top: 60%;
   left: 87%;
 }
+.errorMessage {
+  position: absolute;
+  top: 85px;
+  left: 10px;
+  color: red;
+}
 
 .btn {
   box-sizing: border-box;
