@@ -2,6 +2,7 @@ import Calendar from "./Calendar/Calendar";
 import CalendarPagination from "./CalendarPagination/CalendarPagination";
 import css from "./MonthInfo.module.css";
 import { useState } from "react";
+import Chart from "./Chart/Chart";
 
 function MonthInfo({
   chosenDate,
@@ -11,6 +12,7 @@ function MonthInfo({
   setCurrentYear,
 }) {
   // const date = chooseBiggerDate(day, month)
+  const [chart, setChart] = useState(true);
 
   return (
     <>
@@ -21,15 +23,20 @@ function MonthInfo({
           setCurrentMonth={setCurrentMonth}
           currentYear={currentYear}
           setCurrentYear={setCurrentYear}
+          setChart={setChart}
+          chart={chart}
         />
       </div>
-
+      {/* {chart ? (
+        <Chart chosenDate={chosenDate} />
+      ) : ( */}
       <Calendar
         currentMonth={currentMonth}
         currentYear={currentYear}
         chosenDate={chosenDate}
-        // chosenDate={chosenDate}
+        chart={chart}
       />
+      {/* )} */}
     </>
   );
 }

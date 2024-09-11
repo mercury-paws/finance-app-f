@@ -13,14 +13,13 @@ import { useSelector } from "react-redux";
 import { selectWater } from "../../../../../../redux/water/selectors.js";
 import { useMemo } from "react";
 import { selectUser } from "../../../../../../redux/auth/selectors.js";
+import Chart from "../Chart/Chart.jsx";
 
-function Calendar({ currentMonth, currentYear, chosenDate }) {
+function Calendar({ currentMonth, currentYear, chosenDate, chart }) {
   const [days, setDays] = useState([]);
   const dispatch = useDispatch();
   const foundWaterData = useSelector(selectWater);
   const user = useSelector(selectUser);
-
-  console.log(user.waterVolume);
 
   useEffect(() => {
     let date = calculateFormattedDate(getMonthIndex(currentMonth), currentYear);
@@ -44,8 +43,6 @@ function Calendar({ currentMonth, currentYear, chosenDate }) {
     dispatch(fetchWaterMonth(currentMonthYear));
   }, [dispatch, currentMonthYear]);
 
-  console.log("foundWaterData", foundWaterData);
-
   const waterDataByDay = useMemo(() => {
     const waterData = foundWaterData || [];
     const waterMap = {};
@@ -63,29 +60,35 @@ function Calendar({ currentMonth, currentYear, chosenDate }) {
         Math.round((waterMap[day] * 100) / (user.waterVolume * 1000))
       );
     });
-
-    console.log("waterMap", waterMap);
     return waterMap;
   }, [foundWaterData, user.waterVolume]);
 
   return (
     <>
-      <ul className={css.yearList}>
-        {days.map((day) => {
-          const waterAmount = waterDataByDay[day] || 0;
+      {chart ? (
+        <Chart
+          days={days}
+          chosenDate={chosenDate}
+          currentMonthYear={currentMonthYear}
+        />
+      ) : (
+        <ul className={css.yearList}>
+          {days.map((day) => {
+            const waterAmount = waterDataByDay[day] || 0;
 
-          return (
-            <li key={day}>
-              <CalendarItem
-                day={day}
-                chosenDate={chosenDate}
-                waterAmount={waterAmount}
-                currentMonthYear={currentMonthYear}
-              />
-            </li>
-          );
-        })}
-      </ul>
+            return (
+              <li key={day}>
+                <CalendarItem
+                  day={day}
+                  chosenDate={chosenDate}
+                  waterAmount={waterAmount}
+                  currentMonthYear={currentMonthYear}
+                />
+              </li>
+            );
+          })}
+        </ul>
+      )}
     </>
   );
 }

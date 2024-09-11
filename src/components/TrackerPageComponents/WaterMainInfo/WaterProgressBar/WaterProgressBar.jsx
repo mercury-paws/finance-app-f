@@ -21,8 +21,6 @@ function WaterProgressBar() {
     progressBar = 100;
   }
 
-  console.log(progressBar);
-
   return (
     <div className={css.progressBar}>
       <p className={css.today}>Today</p>

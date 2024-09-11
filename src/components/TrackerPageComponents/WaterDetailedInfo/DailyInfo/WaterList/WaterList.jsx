@@ -15,7 +15,6 @@ function WaterList({ currentMonth, chosenDay, currentYear, chosenDate }) {
   const foundWaterDayData = useSelector(selectDayWater);
   const dispatch = useDispatch();
 
-  console.log(foundWaterDayData);
   useEffect(() => {
     if (chosenDay && currentMonth && currentYear) {
       dispatch(

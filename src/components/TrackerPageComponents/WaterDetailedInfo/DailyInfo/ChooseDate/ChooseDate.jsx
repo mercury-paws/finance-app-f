@@ -32,8 +32,6 @@ function ChooseDate({
     return new Date();
   }, []);
 
-  console.log(parsedDate, dateToCompare);
-
   useEffect(() => {
     if (chosenDay) {
       setCurrentDate(`${chosenDay}, ${currentMonth}`);

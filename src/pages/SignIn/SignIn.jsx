@@ -36,7 +36,7 @@ function SignIn() {
         actions.resetForm();
       })
       .catch((error) => {
-        toast.error("Login failed: " + error.message);
+        toast.error("Login failed: ", error);
         console.error("Login failed:", error);
         // actions.resetForm();
       });

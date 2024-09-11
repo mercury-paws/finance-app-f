@@ -27,6 +27,16 @@
   letter-spacing: -0.01em;
   text-align: center;
 }
+.paginationChart {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+  justify-content: center;
+  align-items: center;
+}
+.chart {
+  cursor: pointer;
+}
 
 @media screen and (min-width: 768px) {
   .pagination {

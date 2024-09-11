@@ -32,8 +32,7 @@ function HomePage() {
         <Outlet />
       </div>
 
-      {location.pathname === "/" ? <MainPic /> : <div></div>}
-      {isVisible && location.pathname !== "/" && <MainPic />}
+      {(location.pathname === "/" || isVisible) && <MainPic />}
     </div>
   );
 }

@@ -13,6 +13,8 @@ function CalendarPagination({
   currentYear,
   setCurrentMonth,
   setCurrentYear,
+  setChart,
+  chart,
 }) {
   const chooseLesserDate = () => {
     let monthIndex = getMonthIndex(currentMonth);
@@ -47,18 +49,28 @@ function CalendarPagination({
     setCurrentYear(`${date.year}`);
   }, [setCurrentMonth, setCurrentYear]);
 
+  const toggleSetChart = () => {
+    !setChart(!chart);
+  };
   return (
-    <div className={css.pagination}>
-      <button onClick={chooseLesserDate} className={css.left}>
-        {" "}
-        <FaAngleLeft style={{ width: "14px", height: "20px" }} />
-      </button>
-      <p className={css.month}>
-        {currentMonth} {currentYear}
-      </p>
-      <button onClick={chooseBiggerDate} className={css.right}>
-        <FaAngleRight style={{ width: "14px", height: "20px" }} />
-      </button>
+    <div className={css.paginationChart}>
+      <div className={css.pagination}>
+        <button onClick={chooseLesserDate} className={css.left}>
+          {" "}
+          <FaAngleLeft style={{ width: "14px", height: "20px" }} />
+        </button>
+        <p className={css.month}>
+          {currentMonth} {currentYear}
+        </p>
+        <button onClick={chooseBiggerDate} className={css.right}>
+          <FaAngleRight style={{ width: "14px", height: "20px" }} />
+        </button>
+      </div>
+      <div className={css.chart} onClick={toggleSetChart}>
+        <svg width="24" height="24">
+          <use href="../../../../../../../public/symbol-defs.svg#icon-pie-chart-02"></use>
+        </svg>
+      </div>
     </div>
   );
 }
