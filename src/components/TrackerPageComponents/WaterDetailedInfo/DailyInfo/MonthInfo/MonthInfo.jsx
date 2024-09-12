@@ -27,9 +27,7 @@ function MonthInfo({
           chart={chart}
         />
       </div>
-      {/* {chart ? (
-        <Chart chosenDate={chosenDate} />
-      ) : ( */}
+
       <Calendar
         currentMonth={currentMonth}
         currentYear={currentYear}
