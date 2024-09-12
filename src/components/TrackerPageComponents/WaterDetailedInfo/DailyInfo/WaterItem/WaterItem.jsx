@@ -32,7 +32,7 @@ function WaterItem({ ml, time, id, currentMonth, chosenDay, currentYear }) {
   return (
     <div className={css.waterItem}>
       <svg className={css.cupIcon} width="32" height="36">
-        <use href="../../../../../assets/symbol-defs.svg#cup"></use>
+        <use href="/symbol-defs.svg#cup"></use>
       </svg>
       <div className={css.mlTime}>
         <p className={css.ml}>{ml} ml</p>

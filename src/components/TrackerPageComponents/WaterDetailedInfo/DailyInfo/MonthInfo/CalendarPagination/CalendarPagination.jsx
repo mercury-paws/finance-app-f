@@ -68,7 +68,7 @@ function CalendarPagination({
       </div>
       <div className={css.chart} onClick={toggleSetChart}>
         <svg width="24" height="24">
-          <use href="../../../../../../assets/symbol-defs.svg#icon-pie-chart-02"></use>
+          <use href="/symbol-defs.svg#icon-pie-chart-02"></use>
         </svg>
       </div>
     </div>
