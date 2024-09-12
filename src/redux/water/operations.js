@@ -6,6 +6,8 @@ const setAuthHeader = (token) => {
 };
 
 axios.defaults.baseURL = "https://water-app-b.onrender.com/";
+axios.defaults.withCredentials = true;
+// copies this 15/25 12/09/24
 
 // axios.defaults.baseURL = "http://localhost:3000/water-app";
 
