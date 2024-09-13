@@ -12,6 +12,7 @@ import Modal from "react-modal";
 import { addWater } from "../../../redux/water/operations";
 import { useDispatch } from "react-redux";
 import toast, { Toaster } from "react-hot-toast";
+import { AiOutlineClose } from "react-icons/ai";
 
 Modal.setAppElement("#root");
 
@@ -107,6 +108,9 @@ function Add({ isOpen, onRequestClose, chosenDay, currentMonth, currentYear }) {
       className={css.modalContent}
     >
       <div className={css.addContainer}>
+        <div className={css.closeIcon}>
+          <AiOutlineClose onClick={onRequestClose} />
+        </div>
         <h4 className={css.header}>Add water</h4>
         <p className={css.doSmth}>Choose a value:</p>
         <p className={css.amount}>Amount of water:</p>

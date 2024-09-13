@@ -35,6 +35,14 @@
 
 .settingContainer {
   padding: 40px 20px 40px 20px;
+  position: relative;
+}
+
+.closeIcon {
+  position: absolute;
+  top: 5%;
+  left: 92%;
+  cursor: pointer;
 }
 .settingsHeader {
   font-weight: 700;
@@ -285,6 +293,10 @@
     line-height: 150%;
     letter-spacing: -0.01em;
   }
+  .closeIcon {
+    top: 7%;
+    left: 92%;
+  }
 }
 @media screen and (min-width: 1380px) {
   .modalContent {
@@ -382,5 +394,9 @@
     font-size: 16px;
     line-height: 150%;
     letter-spacing: -0.01em;
+  }
+  .closeIcon {
+    top: 7%;
+    left: 92%;
   }
 }

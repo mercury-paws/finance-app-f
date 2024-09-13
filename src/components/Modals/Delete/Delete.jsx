@@ -2,6 +2,7 @@ import css from "./Delete.module.css";
 import Modal from "react-modal";
 import { deleteWater } from "../../../redux/water/operations";
 import { useDispatch } from "react-redux";
+import { AiOutlineClose } from "react-icons/ai";
 
 Modal.setAppElement("#root");
 
@@ -20,6 +21,9 @@ function Delete({ isOpen, onRequestClose, id }) {
       className={css.modalContent}
     >
       <div className={css.deleteContainer}>
+        <div className={css.closeIcon}>
+          <AiOutlineClose onClick={onRequestClose} />
+        </div>
         <h4 className={css.doSmth}>Delete entry</h4>
         <p className={css.want}>Are you sure you want to delete the entry?</p>
         <div className={css.btnBlock}>

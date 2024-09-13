@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { updateUser } from "../../../redux/auth/operations";
 import { selectUser } from "../../../redux/auth/selectors";
 import { FaUpload } from "react-icons/fa6";
+import { AiOutlineClose } from "react-icons/ai";
 
 Modal.setAppElement("#root");
 
@@ -107,6 +108,9 @@ function Setting({ isOpen, onRequestClose }) {
       className={css.modalContent}
     >
       <div className={css.settingContainer}>
+      <div className={css.closeIcon}>
+            <AiOutlineClose onClick={onRequestClose} />
+          </div>
         <Formik
           initialValues={initialValues}
           onSubmit={handleSubmit}

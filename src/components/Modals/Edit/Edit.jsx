@@ -10,6 +10,7 @@ import Modal from "react-modal";
 import { useDispatch } from "react-redux";
 import { updateWater } from "../../../redux/water/operations";
 import { fetchWaterDay } from "../../../redux/water/operations";
+import { AiOutlineClose } from "react-icons/ai";
 
 Modal.setAppElement("#root");
 
@@ -104,6 +105,9 @@ function Edit({
       className={css.modalContent}
     >
       <div className={css.editContainer}>
+        <div className={css.closeIcon}>
+          <AiOutlineClose onClick={onRequestClose} />
+        </div>
         <h4 className={css.header}>Edit the entered amount of water</h4>
         <p className={css.doSmth}>Correct entered data:</p>
         <p className={css.amount}>Amount of water:</p>

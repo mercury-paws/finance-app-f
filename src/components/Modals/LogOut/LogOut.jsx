@@ -24,7 +24,7 @@ function LogOut({ isOpen, onRequestClose }) {
       >
         <div className={css.logoutContainer}>
           <div className={css.closeIcon}>
-            <AiOutlineClose />
+            <AiOutlineClose onClick={onRequestClose} />
           </div>
           <h4 className={css.doSmth}>Log out</h4>
           <p className={css.want}>Do you really want to leave?</p>
