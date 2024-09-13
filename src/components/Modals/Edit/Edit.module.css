@@ -38,7 +38,7 @@ max-height: 100%; */
 .closeIcon {
   position: absolute;
   top: 5%;
-  left: 92%;
+  left: 90%;
   cursor: pointer;
 }
 .header {
@@ -221,16 +221,12 @@ max-height: 100%; */
     line-height: 150%;
   }
   .closeIcon {
-    top: 7%;
+    top: 5%;
     left: 92%;
   }
 }
 @media screen and (min-width: 1380px) {
   .modalContent {
     top: 74px;
-  }
-  .closeIcon {
-    top: 7%;
-    left: 92%;
   }
 }

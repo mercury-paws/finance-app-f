@@ -40,7 +40,7 @@
 
 .closeIcon {
   position: absolute;
-  top: 5%;
+  top: 2%;
   left: 92%;
   cursor: pointer;
 }
@@ -294,8 +294,8 @@
     letter-spacing: -0.01em;
   }
   .closeIcon {
-    top: 7%;
-    left: 92%;
+    top: 3%;
+    left: 95%;
   }
 }
 @media screen and (min-width: 1380px) {
@@ -394,9 +394,5 @@
     font-size: 16px;
     line-height: 150%;
     letter-spacing: -0.01em;
-  }
-  .closeIcon {
-    top: 7%;
-    left: 92%;
   }
 }
