@@ -11,7 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 // import { selectIsLoggedIn } from "../redux/auth/selectors.js";
 import { useEffect } from "react";
 import { refreshUser } from "../redux/auth/operations.js";
-import { selectIsRefreshing, selectUser } from "../redux/auth/selectors.js";
+import { selectIsRefreshing } from "../redux/auth/selectors.js";
 import RestrictedRoute from "./RestrictedRoute.jsx";
 import PrivateRoute from "./PrivateRoute.jsx";
 

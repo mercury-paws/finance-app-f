@@ -32,6 +32,13 @@ max-height: 100%; */
 
 .logoutContainer {
   padding: 40px 20px;
+  position: relative;
+}
+
+.closeIcon {
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 .doSmth {
