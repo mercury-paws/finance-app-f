@@ -5,8 +5,11 @@ import css from "./HomePage.module.css";
 import { Outlet } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import Logo from "../../components/Logo/Logo.jsx";
+
 function HomePage() {
+  
   const [isVisible, setIsVisible] = useState(window.innerWidth >= 1380);
+
   useEffect(() => {
     const handleResize = () => {
       setIsVisible(window.innerWidth >= 1380);

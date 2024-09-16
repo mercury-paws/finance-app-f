@@ -12,7 +12,6 @@ import { register } from "../../redux/auth/operations";
 import toast, { Toaster } from "react-hot-toast";
 import VerifyEmail from "../../components/Modals/Verify/VerifyEmail";
 
-// import MainPic from "../../components/StartPageComponents/MainPic/MainPic";
 
 const FeedbackSchema = Yup.object().shape({
   email: Yup.string()
@@ -51,7 +50,7 @@ function SignUp() {
         email: values.email,
         password: values.password,
       };
-      // console.log(newUser);
+
       dispatch(register(newUser))
         .unwrap()
         .then((data) => {
@@ -63,10 +62,10 @@ function SignUp() {
         .catch((error) => {
           toast.error("Login failed!");
           console.error("Login failed:", error);
-          // actions.resetForm();
+    
         });
 
-      // actions.resetForm();
+ 
     }
   };
 

@@ -11,7 +11,7 @@ function MonthInfo({
   currentYear,
   setCurrentYear,
 }) {
-  // const date = chooseBiggerDate(day, month)
+
   const [chart, setChart] = useState(true);
 
   return (

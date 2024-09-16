@@ -21,7 +21,6 @@ function ChooseDate({
     setCurrentMonth(date.month);
     setCurrentYear(date.year);
     setIsToday(true);
-    // setCurrentDate(`${date.day}, ${date.month}`);
   };
 
   const parsedDate = useMemo(() => {

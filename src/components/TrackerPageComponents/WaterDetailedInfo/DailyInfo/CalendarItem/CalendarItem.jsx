@@ -27,7 +27,6 @@ function CalendarItem({ day, chosenDate, waterAmount, currentMonthYear }) {
     ml: waterAmount,
   };
 
-  // need to amend so that upon loading the fetch water showed the todays day water
   const chooseDate = () => {
     chosenDate(day);
     dispatch(fetchWaterDay(currentDay));

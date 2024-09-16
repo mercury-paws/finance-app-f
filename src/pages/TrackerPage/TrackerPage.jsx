@@ -7,6 +7,7 @@ import { useState, useEffect } from "react";
 import { selectUser } from "../../redux/auth/selectors.js";
 import toast, { Toaster } from "react-hot-toast";
 import Logo from "../../components/Logo/Logo.jsx";
+
 function HomePage() {
   let date = calculateFormattedDate();
 
