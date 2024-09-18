@@ -1,8 +1,7 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { selectWater } from "../../../../../redux/water/selectors";
+import { useDispatch } from "react-redux";
+
 import { fetchWaterDay } from "../../../../../redux/water/operations";
-import { useMemo } from "react";
+
 import css from "./CalendarItem.module.css";
 import clsx from "clsx";
 import { getMonthIndex } from "../../../../../constants/constants";
@@ -10,7 +9,7 @@ import { getMonthIndex } from "../../../../../constants/constants";
 function CalendarItem({ day, chosenDate, waterAmount, currentMonthYear }) {
   const dispatch = useDispatch();
 
-  const today = new Date(); // Create a new Date object for the current date and time
+  const today = new Date();
   const dayNumber = today.getDate();
   const monthNumber = today.getMonth() + 1;
   const yearNumber = today.getFullYear();

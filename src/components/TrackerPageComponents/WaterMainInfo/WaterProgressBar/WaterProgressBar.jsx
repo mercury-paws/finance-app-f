@@ -7,8 +7,6 @@ function WaterProgressBar() {
   let dayWater = useSelector(selectDayWater);
   const user = useSelector(selectUser);
 
-  // Math.round((item.ml * 100) / (user.waterVolume * 1000)
-
   let progress = dayWater
     .map((day) => day.ml)
     .reduce((total, num) => total + Number(num), 0);

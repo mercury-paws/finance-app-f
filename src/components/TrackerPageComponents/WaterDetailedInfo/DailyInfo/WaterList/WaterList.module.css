@@ -23,6 +23,7 @@
   transition: opacity 0.3s;
   padding-top: 10px;
   margin-top: 25px;
+  margin-top: -15px; /* to be amended */
 }
 
 .swiper-scrollbar-drag {

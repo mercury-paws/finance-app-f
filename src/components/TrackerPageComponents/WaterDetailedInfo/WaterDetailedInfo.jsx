@@ -1,9 +1,8 @@
 import DailyInfo from "./DailyInfo/DailyInfo.jsx";
 import MonthInfo from "./DailyInfo/MonthInfo/MonthInfo.jsx";
 import UserPanel from "./UserPanel/UserPanel.jsx";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { calculateFormattedDate } from "../../../constants/constants.js";
 import { fetchWaterDay } from "../../../redux/water/operations.js";
 import css from "./WaterDetailedInfo.module.css";
 

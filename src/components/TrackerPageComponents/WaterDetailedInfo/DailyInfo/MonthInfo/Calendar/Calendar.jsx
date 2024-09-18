@@ -6,7 +6,6 @@ import {
 } from "../../../../../../constants/constants.js";
 import { calculateFormattedDate } from "../../../../../../constants/constants.js";
 import { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { fetchWaterMonth } from "../../../../../../redux/water/operations.js";
 import { useSelector } from "react-redux";

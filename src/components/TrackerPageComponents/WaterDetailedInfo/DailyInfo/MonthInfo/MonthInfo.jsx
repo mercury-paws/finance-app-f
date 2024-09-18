@@ -2,7 +2,6 @@ import Calendar from "./Calendar/Calendar";
 import CalendarPagination from "./CalendarPagination/CalendarPagination";
 import css from "./MonthInfo.module.css";
 import { useState } from "react";
-import Chart from "./Chart/Chart";
 
 function MonthInfo({
   chosenDate,
