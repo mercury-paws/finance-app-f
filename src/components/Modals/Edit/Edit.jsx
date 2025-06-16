@@ -21,7 +21,13 @@ const FeedbackSchema = Yup.object().shape({
       "Must be a valid time in the format HH:MM"
     )
     .required("Required"),
-  ml: Yup.string()
+  note: Yup.string()
+    .matches(
+      /^[a-zA-Z]/,
+      "Must be a valid spent desitnation"
+    )
+    .required("Required"),
+  spent: Yup.string()
     .min(0, "Too Small!")
     .max(2000, "Too Much!")
     .required("Required"),
@@ -35,21 +41,25 @@ function Edit({
   chosenDay,
   currentYear,
   time,
-  ml,
+  spent,
+  note,
 }) {
   let dispatch = useDispatch();
 
-  const [value, setValue] = useState(Number(ml));
+  const [spentVal, setSpent] = useState(Number(spent));
+  const [noteVal, setNote] = useState(note);
 
   const initialValues = {
     time: time,
-    ml: value,
+    spent: spentVal,
+    note: noteVal,
   };
 
   const handleSubmit = (values, actions) => {
     const formattedValues = {
       ...values,
-      ml: values.ml.toString(),
+      spent: values.spent.toString(),
+      note: values.note.toString(),
     };
 
     const queryDayParams = {
@@ -59,7 +69,7 @@ function Edit({
       id,
     };
 
-    console.log(queryDayParams, values.ml, time);
+    console.log(queryDayParams, values.spent, values.note, time);
 
     dispatch(
       updateWater({
@@ -82,19 +92,9 @@ function Edit({
   };
 
   const timeFieldId = useId();
-  const valueFieldId = useId();
+  const spentFieldId = useId();
+  const noteFieldId = useId();
 
-  let difference = Number(50);
-
-  const decreaseValue = () => {
-    let decreasedValue = value - difference;
-    setValue(decreasedValue);
-  };
-
-  const addValue = () => {
-    let addedValue = value + difference;
-    setValue(addedValue);
-  };
 
   return (
     <Modal
@@ -110,12 +110,12 @@ function Edit({
         </div>
         <h4 className={css.header}>Edit the entered amount of water</h4>
         <p className={css.doSmth}>Correct entered data:</p>
-        <p className={css.amount}>Amount of water:</p>
+        {/* <p className={css.amount}>Amount of water:</p>
         <div className={css.addWaterBlock}>
           {<FaMinusCircle className={css.minus} onClick={decreaseValue} />}
           <p className={css.ml}>50 ml</p>
           {<FaPlusCircle className={css.plus} onClick={addValue} />}
-        </div>
+        </div> */}
 
         <Formik
           initialValues={initialValues}
@@ -126,7 +126,7 @@ function Edit({
           <Form className={css.form}>
             <div className={css.timeBlock}>
               <label className={css.time} htmlFor={timeFieldId}>
-                Recording time:
+                Time:
               </label>
               <Field
                 className={css.field}
@@ -142,19 +142,32 @@ function Edit({
               />
             </div>
             <div className={css.valueBlock}>
-              <label htmlFor={valueFieldId} className={css.value}>
-                Enter the value of the water used:
+              <label htmlFor={spentFieldId} className={css.value}>
+                Amend the amount spent:
               </label>
               <Field
                 className={css.field}
                 type="text"
-                name="ml"
-                id={valueFieldId}
-                value={value}
+                name="spent"
+                id={spentFieldId}
               />
 
-              <ErrorMessage className={css.error} name="ml" component="span" />
+              <ErrorMessage className={css.error} name="spent" component="span" />
             </div>
+            <div className={css.valueBlock}>
+                          <label htmlFor={noteFieldId} className={css.value}>
+                            Amend the note:
+                          </label>
+                          <Field
+                            className={css.field}
+                            type="text"
+                            name="note"
+                            id={noteFieldId}
+                            
+                          />
+            
+                          <ErrorMessage className={css.error} name="note" component="span" />
+                        </div>
             <button className={css.btn} type="submit">
               Save
             </button>

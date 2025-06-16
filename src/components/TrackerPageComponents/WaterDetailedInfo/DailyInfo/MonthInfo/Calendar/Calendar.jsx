@@ -48,17 +48,17 @@ function Calendar({ currentMonth, currentYear, chosenDate, chart }) {
 
     waterData.forEach((item) => {
       if (waterMap[item.day]) {
-        waterMap[item.day] = Number(waterMap[item.day]) + Number(item.ml);
+        waterMap[item.day] = Number(waterMap[item.day]) + Number(item.spent);
       } else {
-        waterMap[item.day] = Number(item.ml);
+        waterMap[item.day] = Number(item.spent);
       }
     });
 
-    Object.keys(waterMap).forEach((day) => {
-      waterMap[day] = String(
-        Math.round((waterMap[day] * 100) / (user.waterVolume * 1000))
-      );
-    });
+    // Object.keys(waterMap).forEach((day) => {
+    //   waterMap[day] = String(
+    //     Math.round((waterMap[day] * 100) / (user.waterVolume * 1000))
+    //   );
+    // });
     return waterMap;
   }, [foundWaterData, user.waterVolume]);
 

@@ -24,17 +24,17 @@ function Chart({ days }) {
 
     waterData.forEach((item) => {
       if (waterMap[item.day]) {
-        waterMap[item.day] = Number(waterMap[item.day]) + Number(item.ml);
+        waterMap[item.day] = Number(waterMap[item.day]) + Number(item.spent);
       } else {
-        waterMap[item.day] = Number(item.ml);
+        waterMap[item.day] = Number(item.spent);
       }
     });
 
-    Object.keys(waterMap).forEach((day) => {
-      waterMap[day] = String(
-        Math.round((waterMap[day] * 100) / (user.waterVolume * 1000))
-      );
-    });
+    // Object.keys(waterMap).forEach((day) => {
+    //   waterMap[day] = String(
+    //     Math.round((waterMap[day] * 100) / (user.waterVolume * 1000))
+    //   );
+    // });
 
     console.log("foundWaterData", foundWaterData);
 
@@ -45,13 +45,13 @@ function Chart({ days }) {
     return days.map((day) => {
       const totalMlForDay = foundWaterData.reduce((acc, el) => {
         if (Number(el.day) === Number(day)) {
-          acc += parseInt(el.ml, 10);
+          acc += parseInt(el.spent, 10);
         }
         return acc;
       }, 0);
       return {
         name: `${day}`,
-        l: totalMlForDay / 1000,
+        spent: totalMlForDay,
       };
     });
   };
@@ -76,14 +76,14 @@ function Chart({ days }) {
           </defs>
           <XAxis dataKey="name" />
           <YAxis
-            tickFormatter={(value) => `${value} L`}
-            ticks={[0, 0.5, 1, 1.5, 2, `${volume}`]}
+            tickFormatter={(value) => `${value} CZK`}
+            ticks={[200, 500, 1000, 1500, 2000, `${volume}`]}
           />
           <CartesianGrid strokeDasharray="3 3" />
           <Tooltip />
           <Area
             type="monotone"
-            dataKey="l"
+            dataKey="spent"
             stroke="#9be1a0"
             fillOpacity={1}
             fill="url(#colorl)"

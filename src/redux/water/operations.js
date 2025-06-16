@@ -5,11 +5,12 @@ const setAuthHeader = (token) => {
   axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 };
 
-axios.defaults.baseURL = "https://water-app-b.onrender.com/";
-axios.defaults.withCredentials = true;
-// copies this 15/25 12/09/24
+axios.defaults.baseURL = "http://localhost:3000";
+// axios.defaults.baseURL = "https://water-app-b.onrender.com/";
+// axios.defaults.withCredentials = true;
 
-// axios.defaults.baseURL = "http://localhost:3000/water-app";
+
+
 
 //Базовий тип екшену це рядок "contacts/fetchAll"
 export const fetchWaterMonth = createAsyncThunk(

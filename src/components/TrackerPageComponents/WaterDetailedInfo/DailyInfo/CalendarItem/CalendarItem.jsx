@@ -48,7 +48,7 @@ function CalendarItem({ day, chosenDate, waterAmount, currentMonthYear }) {
   return (
     <div onClick={chooseDate} className={css.dayInfo}>
       <p className={clsx(css.day, getClassName(waterAmount))}>{day}</p>
-      <p className={css.waterAmount}>{waterAmount} %</p>
+      <p className={css.waterAmount}>{waterAmount} czk</p>
     </div>
   );
 }

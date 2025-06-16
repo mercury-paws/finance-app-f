@@ -52,7 +52,8 @@ function WaterList({ currentMonth, chosenDay, currentYear, chosenDate }) {
             {foundWaterDayData.map((data) => (
               <SwiperSlide key={data._id}>
                 <WaterItem
-                  ml={data.ml}
+                  spent={data.spent}
+                  note={data.note}
                   time={data.time}
                   id={data._id}
                   currentMonth={currentMonth}
