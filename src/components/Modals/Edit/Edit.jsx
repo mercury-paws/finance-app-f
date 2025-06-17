@@ -1,16 +1,13 @@
 import css from "./Edit.module.css";
-// import { FaPlus } from "react-icons/fa";
-import { FaPlusCircle } from "react-icons/fa";
-// import { FaMinus } from "react-icons/fa";
-import { FaMinusCircle } from "react-icons/fa";
 import { Formik, Form, ErrorMessage, Field } from "formik";
 import * as Yup from "yup";
-import { useEffect, useId, useState } from "react";
+import { useId, useState } from "react";
 import Modal from "react-modal";
 import { useDispatch } from "react-redux";
 import { updateWater } from "../../../redux/water/operations";
 import { fetchWaterDay } from "../../../redux/water/operations";
 import { AiOutlineClose } from "react-icons/ai";
+import { noteOptions } from "../../../constants/constants";
 
 Modal.setAppElement("#root");
 
@@ -139,7 +136,8 @@ function Edit({
                 className={css.error}
                 name="time"
                 component="span"
-              />
+                />
+               
             </div>
             <div className={css.valueBlock}>
               <label htmlFor={spentFieldId} className={css.value}>
@@ -160,12 +158,17 @@ function Edit({
                           </label>
                           <Field
                             className={css.field}
-                            type="text"
+                            as="select"
                             name="note"
                             id={noteFieldId}
-                            
-                          />
+                          >
+                              <option value="">-- Select a note --</option>
+                {noteOptions.map((note, index) => (
+                  <option key={index} value={note}>{ note}</option>
+                )) }
             
+              
+                          </Field>
                           <ErrorMessage className={css.error} name="note" component="span" />
                         </div>
             <button className={css.btn} type="submit">

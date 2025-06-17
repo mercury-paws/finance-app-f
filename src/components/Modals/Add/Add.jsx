@@ -9,6 +9,7 @@ import { addWater } from "../../../redux/water/operations";
 import { useDispatch } from "react-redux";
 import toast, { Toaster } from "react-hot-toast";
 import { AiOutlineClose } from "react-icons/ai";
+import { noteOptions } from "../../../constants/constants";
 
 Modal.setAppElement("#root");
 
@@ -27,7 +28,7 @@ const FeedbackSchema = Yup.object().shape({
     .required("Required"),
   spent: Yup.string()
     .min(0, "Too Small!")
-    .max(2000, "Too Much!")
+    .max(50000, "Too Much!")
     .required("Required"),
 });
 
@@ -42,6 +43,7 @@ const day = now.getDate();
 const month = now.getMonth();
 const year = now.getFullYear();
 let monthName = getMonthNameByIndex(month);
+
 const currentDayQuery = {
   day,
   month: monthName,
@@ -51,12 +53,12 @@ const currentDayQuery = {
 function Add({ isOpen, onRequestClose, chosenDay, currentMonth, currentYear }) {
   const dispatch = useDispatch();
   const [spent, setSpent] = useState(50);
-  const [note, setNote] = useState("shop");
+
 
   const initialValues = {
     time: `${time}`,
     spent: spent,
-    note: note,
+    note: "",
   };
 
   const timeFieldId = useId();
@@ -160,12 +162,18 @@ function Add({ isOpen, onRequestClose, chosenDay, currentMonth, currentYear }) {
                 Enter the note:
               </label>
               <Field
-                className={css.field}
-                type="text"
-                name="note"
-                id={noteFieldId}
-                
-              />
+                                          className={css.field}
+                                          as="select"
+                                          name="note"
+                                          id={noteFieldId}
+                                        >
+                                            <option value="">-- Select a note --</option>
+                              {noteOptions.map((note, index) => (
+                                <option key={index} value={note}>{ note}</option>
+                              )) }
+                          
+                            
+                                        </Field>
 
               <ErrorMessage className={css.error} name="note" component="span" />
             </div>

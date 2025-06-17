@@ -67,3 +67,22 @@ export const calculateFormattedDate = (monthIndex, year) => {
 
   return formattedDate;
 };
+
+export const noteOptions = [
+  "food",
+  "pizza",
+  "cat",
+  "shaurma",
+  "pool",
+  "phone",
+  "transport",
+  "restaurant",
+  "shops",
+  "Ukraine",
+  "flat",
+  "policy",
+  "dm",
+  "pepco",
+  "parents",
+  "other",
+];

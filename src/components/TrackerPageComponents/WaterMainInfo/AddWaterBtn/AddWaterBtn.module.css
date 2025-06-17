@@ -1,6 +1,6 @@
 .AddWaterBtn {
   padding-left: 180px;
-  padding-top: 35px;
+  padding-top: 16px;
 }
 .btn {
   border-radius: 30px;
@@ -28,7 +28,7 @@
 @media screen and (min-width: 768px) {
   .AddWaterBtn {
     padding-left: 462px;
-    padding-top: 36px;
+    padding-top: 0;
   }
   .btn {
     padding: 18px 30px;
@@ -41,7 +41,7 @@
 @media screen and (min-width: 1380px) {
   .AddWaterBtn {
     padding-left: 402px;
-    padding-top: 68px;
+    /* padding-top: 18px; */
   }
   .btn {
     padding: 18px 30px;

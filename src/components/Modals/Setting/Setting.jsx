@@ -28,7 +28,7 @@ const FeedbackSchema = Yup.object().shape({
     .required("Required"),
   howMuch: Yup.number("Must be a valid number!")
     .min(0.5, "Too little")
-    .max(5, "Must be a valid time from 0 to 24 hours")
+    .max(60000, "Must be a valid amount from 0 to 60000 czk per month")
     .required("Required"),
   photo: Yup.mixed().required("Photo is required"),
 });
@@ -45,7 +45,7 @@ function Setting({ isOpen, onRequestClose }) {
     email: user.email || "",
     weight: user.weight || "",
     time: user.sportTime || "",
-    howMuch: user.waterVolume || "",
+    howMuch: user.planToSpend || "",
     photo: user.photo || "",
   };
 
@@ -78,7 +78,7 @@ function Setting({ isOpen, onRequestClose }) {
       email: values.email,
       weight: values.weight,
       sportTime: values.time,
-      waterVolume: values.howMuch,
+      planToSpend: values.howMuch,
       photo: values.photo,
     };
     dispatch(

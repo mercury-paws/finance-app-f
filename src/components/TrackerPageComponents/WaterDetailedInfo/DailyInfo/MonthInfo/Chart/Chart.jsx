@@ -16,7 +16,7 @@ import css from "./Chart.module.css";
 function Chart({ days }) {
   const foundWaterData = useSelector(selectWater);
   const user = useSelector(selectUser);
-  let volume = user.waterVolume;
+
 
   const waterDataByDay = useMemo(() => {
     const waterData = foundWaterData || [];
@@ -30,11 +30,7 @@ function Chart({ days }) {
       }
     });
 
-    // Object.keys(waterMap).forEach((day) => {
-    //   waterMap[day] = String(
-    //     Math.round((waterMap[day] * 100) / (user.waterVolume * 1000))
-    //   );
-    // });
+ 
 
     console.log("foundWaterData", foundWaterData);
 
@@ -76,10 +72,10 @@ function Chart({ days }) {
           </defs>
           <XAxis dataKey="name" />
           <YAxis
-            tickFormatter={(value) => `${value} CZK`}
-            ticks={[200, 500, 1000, 1500, 2000, `${volume}`]}
+            tickFormatter={(value) => `${value}`}
+            ticks={[1000, 5000, 10000, 15000]}
           />
-          <CartesianGrid strokeDasharray="3 3" />
+          <CartesianGrid strokeDasharray="5 5" />
           <Tooltip />
           <Area
             type="monotone"

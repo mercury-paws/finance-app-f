@@ -2,6 +2,8 @@ import AddWaterBtn from "./AddWaterBtn/AddWaterBtn";
 import WaterDailyNorma from "./WaterDailyNorma/WaterDailyNorma";
 import WaterProgressBar from "./WaterProgressBar/WaterProgressBar";
 import css from "./WaterMainInfo.module.css";
+import Bar from "./Bar/Bar";
+
 function WaterMainInfo({
   chosenDay,
   setCurrentDate,
@@ -16,11 +18,13 @@ function WaterMainInfo({
     <div className={css.waterMainInfo}>
       <WaterDailyNorma />
       <WaterProgressBar />
-      <AddWaterBtn
+      <Bar />
+      
+      {/* <AddWaterBtn
         chosenDay={chosenDay}
         currentMonth={currentMonth}
         currentYear={currentYear}
-      />
+      /> */}
     </div>
   );
 }

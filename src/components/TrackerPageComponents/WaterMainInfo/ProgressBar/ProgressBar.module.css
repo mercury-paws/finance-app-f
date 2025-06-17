@@ -1,37 +1,38 @@
 .progressBar {
   box-sizing: border-box;
-  margin-top: 16px;
-  margin-left: 53px;
   display: flex;
-  flex-direction: column;
-  gap: 7px;
-  width: 198px;
+  flex-direction: row;
+  gap: 5px;
+  width: 150px;
   background-color: #fff;
-  padding: 12px;
+  padding: 10px;
   border: none;
   border-radius: 15px;
+  justify-content: center;
+  align-items: center;
 }
 .progressBarContainer {
-  height: 7px;
-  width: 174px;
+  height: 5px;
+  width: 50px;
   border: 1px solid #000;
   border-radius: 8px;
   position: relative;
 }
 .today {
-  font-weight: 700;
-  font-size: 14px;
+  font-weight: 600;
+  font-size: 12px;
   line-height: 100%;
+  width: 90px;
 }
 
 .progressBarLine {
   position: absolute;
-  height: 7px;
+  height: 5px;
   background-color: #9be1a0;
 }
 .progressNumbers {
   font-weight: 400;
-  font-size: 10px;
+  font-size: 8px;
   line-height: 100%;
   color: rgba(47, 47, 47, 0.6);
   display: flex;
@@ -41,22 +42,21 @@
 
 @media screen and (min-width: 768px) {
   .progressBar {
-    margin-top: 16px;
-    margin-left: 158px;
-    gap: 7px;
+    gap: 10px;
     width: 295px;
-    padding: 20px;
+    padding: 16px;
   }
   .progressBarContainer {
     border: 2px solid #000;
     height: 8px;
-    width: 255px;
+    width: 155px;
     border-radius: 9px;
     position: relative;
   }
   .today {
-    font-size: 15px;
+    font-size: 16px;
     line-height: 149%;
+    width: 120px;
   }
 
   .progressBarLine {
@@ -71,9 +71,7 @@
 }
 @media screen and (min-width: 1380px) {
   .progressBar {
-    margin-top: 16px;
-    margin-left: 148px;
-    width: 296px;
+    width: 275px;
   }
 
   .progressBarLine {
@@ -81,6 +79,14 @@
     height: 8px;
     border-radius: 9px;
   }
+  .progressBarContainer {
+    width: 135px;
+  }
+
+  .today {
+    width: 120px;
+  }
+
   .progressNumbers {
     font-size: 12px;
     line-height: 187%;

@@ -15,9 +15,7 @@ function CalendarItem({ day, chosenDate, waterAmount, currentMonthYear }) {
   const yearNumber = today.getFullYear();
   const monthNumberCalc = getMonthIndex(currentMonthYear.month) + 1;
 
-  if (waterAmount > 100) {
-    waterAmount = 100;
-  }
+
 
   const currentDay = {
     day,
@@ -48,7 +46,7 @@ function CalendarItem({ day, chosenDate, waterAmount, currentMonthYear }) {
   return (
     <div onClick={chooseDate} className={css.dayInfo}>
       <p className={clsx(css.day, getClassName(waterAmount))}>{day}</p>
-      <p className={css.waterAmount}>{waterAmount} czk</p>
+      <p className={css.waterAmount}>{waterAmount}</p>
     </div>
   );
 }

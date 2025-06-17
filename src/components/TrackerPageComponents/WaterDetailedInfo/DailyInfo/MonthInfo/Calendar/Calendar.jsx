@@ -54,13 +54,9 @@ function Calendar({ currentMonth, currentYear, chosenDate, chart }) {
       }
     });
 
-    // Object.keys(waterMap).forEach((day) => {
-    //   waterMap[day] = String(
-    //     Math.round((waterMap[day] * 100) / (user.waterVolume * 1000))
-    //   );
-    // });
+
     return waterMap;
-  }, [foundWaterData, user.waterVolume]);
+  }, [foundWaterData, user.planToSpend]);
 
   return (
     <>
