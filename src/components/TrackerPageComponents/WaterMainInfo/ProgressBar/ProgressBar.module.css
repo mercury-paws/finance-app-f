@@ -8,21 +8,28 @@
   padding: 10px;
   border: none;
   border-radius: 15px;
-  justify-content: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
   align-items: center;
 }
 .progressBarContainer {
   height: 5px;
-  width: 50px;
+  width: 55px;
   border: 1px solid #000;
   border-radius: 8px;
   position: relative;
 }
 .today {
-  font-weight: 600;
-  font-size: 12px;
+  font-weight: 400;
+  font-size: 10px;
   line-height: 100%;
-  width: 90px;
+}
+
+.today > p {
+  width: 60px;
 }
 
 .progressBarLine {
@@ -49,14 +56,16 @@
   .progressBarContainer {
     border: 2px solid #000;
     height: 8px;
-    width: 155px;
+    width: 135px;
     border-radius: 9px;
     position: relative;
   }
   .today {
     font-size: 16px;
     line-height: 149%;
-    width: 120px;
+  }
+  .today > p {
+    width: 110px;
   }
 
   .progressBarLine {
@@ -80,13 +89,12 @@
     border-radius: 9px;
   }
   .progressBarContainer {
-    width: 135px;
+    width: 125px;
   }
 
-  .today {
-    width: 120px;
+  .today > p {
+    width: 100px;
   }
-
   .progressNumbers {
     font-size: 12px;
     line-height: 187%;

@@ -1,14 +1,17 @@
-// import { useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 // import { selectWater } from "../../../../redux/water/selectors";
-// import { selectUser } from "../../../../redux/auth/selectors";
+import { selectUser } from "../../../../redux/auth/selectors";
 import css from "./Bar.module.css";
-import { noteOptions } from "../../../../constants/constants";
+// import { noteOptions } from "../../../../constants/constants";
 import ProgressBar from "../ProgressBar/ProgressBar";
 
 function Bar() {
-  console.log("noteOptions", noteOptions)
+
+  const user = useSelector(selectUser);
+  const noteOptions = Object.keys(user.note);
+
   return (
-    <div     className={css.bar}>
+    <div className={css.bar}>
       {noteOptions.map((note) => (
         
         <ProgressBar key={note} note={note} />

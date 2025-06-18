@@ -12,13 +12,14 @@ function WaterDailyNorma() {
     .map((day) => day.spent)
     .reduce((total, num) => total + Number(num), 0);
 
-  let difference = user.planToSpend - progress;
+  let plan = user.planToSpend;
+  let difference = plan - progress;
   
   return (
     <div className={css.norm}>
       <div className={css.dailyNorma}>
       <p className={css.waterVolume}>
-        {user.planToSpend ? user.planToSpend : "1000"} CZK
+        {plan ? plan : "1000"} CZK
       </p>
       <p className={css.myDN}> / Month</p>
       

@@ -6,10 +6,11 @@ import { getMonthNameByIndex } from "../../../constants/constants";
 import { fetchWaterDay } from "../../../redux/water/operations";
 import Modal from "react-modal";
 import { addWater } from "../../../redux/water/operations";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import toast, { Toaster } from "react-hot-toast";
 import { AiOutlineClose } from "react-icons/ai";
-import { noteOptions } from "../../../constants/constants";
+// import { noteOptions } from "../../../constants/constants";
+import { selectUser } from "../../../redux/auth/selectors";
 
 Modal.setAppElement("#root");
 
@@ -53,7 +54,9 @@ const currentDayQuery = {
 function Add({ isOpen, onRequestClose, chosenDay, currentMonth, currentYear }) {
   const dispatch = useDispatch();
   const [spent, setSpent] = useState(50);
+  const user = useSelector(selectUser);
 
+  const noteOptions = Object.keys(user.note);
 
   const initialValues = {
     time: `${time}`,

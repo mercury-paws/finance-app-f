@@ -12,24 +12,40 @@ function ProgressBar({ note }) {
       .filter((day) => day.note === note)
       .reduce((sum, day) => sum + Number(day.spent), 0);
   
+  const noteValues = user.note[note];
+  
   let progressBar = Math.round(
-    (Number(totalSpent) / (Number(user.planToSpend))) * 100
+    (Number(totalSpent) / (Number(noteValues))) * 100
   );
 
-
+  let difference = noteValues - totalSpent
+  
   return (
 
-      <div className={css.progressBar}>
-      <p className={css.today}>{note}: { totalSpent}</p>
+    <div className={css.progressBar}>
+      <div className={css.today}>
+        <p>{note}: {totalSpent}</p>
+        <p>{difference >= 0 ? "left: " : "over: "}
+          {difference}
+        </p>
+      </div>
+     
+      <div className={css.progressBarContainerNum}>
       <div className={css.progressBarContainer}>
         <div
           className={css.progressBarLine}
-          style={{ width: `${progressBar}%` }}
-        ></div>
+          
+            style={ difference >= 0 ?
+              { width: `${progressBar}%` } : { width: "100%", backgroundColor:"#ff0000" }
+            }
+        >
+          
+        </div>
       </div>
-      {/* <p className={css.progressNumbers}>
-        <span>0%</span> <span>50%</span> <span>100%</span>
-      </p> */}
+      <p className={css.progressNumbers}>
+        <span>0%</span> <span>50%</span> <span>{noteValues}</span>
+        </p>
+        </div>
     </div>
     
   );

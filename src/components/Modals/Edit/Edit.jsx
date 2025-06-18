@@ -3,11 +3,12 @@ import { Formik, Form, ErrorMessage, Field } from "formik";
 import * as Yup from "yup";
 import { useId, useState } from "react";
 import Modal from "react-modal";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { updateWater } from "../../../redux/water/operations";
 import { fetchWaterDay } from "../../../redux/water/operations";
 import { AiOutlineClose } from "react-icons/ai";
-import { noteOptions } from "../../../constants/constants";
+import { selectUser } from "../../../redux/auth/selectors";
+// import { noteOptions } from "../../../constants/constants";
 
 Modal.setAppElement("#root");
 
@@ -42,6 +43,8 @@ function Edit({
   note,
 }) {
   let dispatch = useDispatch();
+  const user = useSelector(selectUser);
+  const noteOptions = Object.keys(user.note);
 
   const [spentVal, setSpent] = useState(Number(spent));
   const [noteVal, setNote] = useState(note);
@@ -93,6 +96,7 @@ function Edit({
   const noteFieldId = useId();
 
 
+  
   return (
     <Modal
       isOpen={isOpen}

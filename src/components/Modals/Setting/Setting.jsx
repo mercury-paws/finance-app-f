@@ -1,7 +1,7 @@
 import css from "./Setting.module.css";
-import { Formik, Form, Field, ErrorMessage, useFormikContext } from "formik";
+import { Formik, Form, Field, ErrorMessage, FieldArray } from "formik";
 import * as Yup from "yup";
-import { useState, useEffect, useId } from "react";
+import { useState, useId } from "react";
 import Modal from "react-modal";
 import { useDispatch, useSelector } from "react-redux";
 import { updateUser } from "../../../redux/auth/operations";
@@ -12,25 +12,23 @@ import { AiOutlineClose } from "react-icons/ai";
 Modal.setAppElement("#root");
 
 const FeedbackSchema = Yup.object().shape({
-  picked: Yup.string().required("Required"),
   name: Yup.string()
     .min(4, "Too short")
     .max(20, "Too long")
     .required("Required"),
   email: Yup.string().email("Must be a valid email!").required("Required"),
-  weight: Yup.number("Must be a valid number!")
-    .min(25, "Too short")
-    .max(250, "Too long")
-    .required("Required"),
-  time: Yup.number()
-    .min(0, "Must be a valid time from 0 to 24 hours")
-    .max(24, "Must be a valid time from 0 to 24 hours")
-    .required("Required"),
-  howMuch: Yup.number("Must be a valid number!")
-    .min(0.5, "Too little")
-    .max(60000, "Must be a valid amount from 0 to 60000 czk per month")
-    .required("Required"),
   photo: Yup.mixed().required("Photo is required"),
+  note: Yup.array()
+    .of(
+      Yup.object().shape({
+        key: Yup.string().required("Required"),
+        value: Yup.number()
+          .typeError("Must be a number")
+          .min(1, "Too low")
+          .max(25000, "Too high")
+          .required("Required"),
+      })
+    )
 });
 
 function Setting({ isOpen, onRequestClose }) {
@@ -40,46 +38,30 @@ function Setting({ isOpen, onRequestClose }) {
   const user = useSelector(selectUser);
 
   const initialValues = {
-    picked: user.gender || "",
+    
     name: user.name || "",
     email: user.email || "",
-    weight: user.weight || "",
-    time: user.sportTime || "",
-    howMuch: user.planToSpend || "",
+    note:  user.note
+    ? Object.entries(user.note).map(([key, value]) => ({
+        key,
+        value,
+      }))
+    : [{ key: "", value: "" }],
     photo: user.photo || "",
-  };
-
-  const FormValuesDisplay = () => {
-    const { values } = useFormikContext();
-
-    useEffect(() => {
-      if (values.picked) {
-        const timer = setTimeout(() => {
-          let calculatedWater = 0;
-          if (values.picked === "female") {
-            calculatedWater =
-              Number(values.weight) * 0.03 + Number(values.time) * 0.4;
-          } else if (values.picked === "male") {
-            calculatedWater =
-              Number(values.weight) * 0.04 + Number(values.time) * 0.6;
-          }
-          setWaterToDrink(calculatedWater);
-        }, 2000);
-
-        return () => clearTimeout(timer);
-      }
-    }, [values.picked, values.weight, values.time]); // Depend on values to recalculate
+    planToSpend: user.planToSpend || "",
   };
 
   const handleSubmit = (values) => {
+
+    const formattedNote = Object.fromEntries(
+      values.note.map(({ key, value }) => [key, Number(value)])
+    );
     const formattedValues = {
-      gender: values.picked.toLowerCase(),
       name: values.name,
       email: values.email,
-      weight: values.weight,
-      sportTime: values.time,
-      planToSpend: values.howMuch,
+      note: formattedNote,
       photo: values.photo,
+      planToSpend: values.planToSpend,
     };
     dispatch(
       updateUser({
@@ -90,13 +72,9 @@ function Setting({ isOpen, onRequestClose }) {
     onRequestClose();
   };
 
-  const pickedWomanFieldId = useId();
-  const pickedManFieldId = useId();
   const nameFieldId = useId();
   const emailFieldId = useId();
-  const weightFieldId = useId();
-  const timeFieldId = useId();
-  const howMuchFieldId = useId();
+  const planToSpendFieldId = useId();
   const photoFieldId = useId();
 
   return (
@@ -146,32 +124,7 @@ function Setting({ isOpen, onRequestClose }) {
               </div>
               <div className={css.flexContainer}>
                 <div className={css.leftPart}>
-                  <div id="my-radio-group" className={css.label}>
-                    Your gender identity
-                  </div>
-                  <div role="group" className={css.genderBlock}>
-                    <label htmlFor={pickedWomanFieldId} className={css.value}>
-                      <Field
-                        id={pickedWomanFieldId}
-                        type="radio"
-                        name="picked"
-                        value="female"
-                        className={css.radio}
-                      />
-                      Woman
-                    </label>
-                    <label htmlFor={pickedManFieldId} className={css.value}>
-                      <Field
-                        id={pickedManFieldId}
-                        type="radio"
-                        name="picked"
-                        value="male"
-                        className={css.radio}
-                      />
-                      Man
-                    </label>
-                    <ErrorMessage name="picked" component="span" />
-                  </div>
+
                   <div className={css.fillInForm}>
                     <label htmlFor={nameFieldId} className={css.label}>
                       Name
@@ -198,67 +151,65 @@ function Setting({ isOpen, onRequestClose }) {
                     <ErrorMessage name="email" component="span" />
                   </div>
                   <div className={css.fillInForm}>
-                    <label htmlFor={weightFieldId} className={css.label}>
-                      Your weight in kilograms:
+                    <label htmlFor={planToSpendFieldId} className={css.label}>
+                      Plan to Spend
                     </label>
                     <Field
                       className={css.field}
-                      type="text"
-                      name="weight"
-                      id={weightFieldId}
+                      type="number"
+                      name="planToSpend"
+                      id={planToSpendFieldId}
+                     
                     />
-                    <ErrorMessage name="weight" component="span" />
+                    <ErrorMessage name="planToSpend" component="span" />
                   </div>
-                  <div className={css.fillInForm}>
-                    <label htmlFor={timeFieldId} className={css.label}>
-                      The time of active participation in sports:
-                    </label>
-                    <Field
-                      className={css.field}
-                      type="text"
-                      name="time"
-                      id={timeFieldId}
-                    />
-                    <ErrorMessage name="time" component="span" />
                   </div>
+                <div className={css.rightPart}>
+                  <FieldArray name="note">
+                    {({ push, remove, form }) => (
+    <div className={css.spentDestinationForm}>
+      <label className={css.label}>Spent destinations:</label>
+      {form.values.note.map((item, index) => (
+        <div className={css.fillInFormC} key={index}>
+          <Field
+            className={css.fieldC}
+            name={`note[${index}].key`}
+            placeholder="Category"
+          />
+          <ErrorMessage name={`note[${index}].key`} component="span" />
+
+          <Field
+            className={css.fieldC}
+            name={`note[${index}].value`}
+            placeholder="Amount"
+            type="number"
+          />
+          <ErrorMessage name={`note[${index}].value`} component="span" />
+
+          <button
+            type="button"
+            className={css.btnC}
+            onClick={() => remove(index)}
+          >
+            Remove
+          </button>
+        </div>
+      ))}
+      <button
+        type="button"
+        className={css.btnC}
+        onClick={() => push({ key: "", value: "" })}
+      >
+        Add More
+      </button>
+    </div>
+  )}
+</FieldArray>
+                  
                 </div>
-                <div className={css.addInfo}>
-                  <h5 className={css.dailyNorma}>My daily norma</h5>
-                  <p className={css.forWhom}>For woman:</p>
-                  <p className={css.formula}>V=(M*0,03) + (T*0,4)</p>
-                  <p className={css.forWhom}>For man:</p>
-                  <p className={css.formula}>V=(M*0,04) + (T*0,6)</p>
-                  <p className={css.calculationInfo}>
-                    <span>*</span> V is the volume of the water norm in liters
-                    per day, M is your body weight, T is the time of active
-                    sports, or another type of activity commensurate in terms of
-                    loads (in the absence of these, you must set 0)
-                  </p>
-                  <p className={css.requiredTime}>
-                    The required amount of water in liters per day:{" "}
-                    {waterToDrink ? (
-                      <span style={{ color: "#9be1a0", fontWeight: "700" }}>
-                        {Math.round(waterToDrink * 10) / 10}
-                      </span>
-                    ) : (
-                      "__"
-                    )}
-                  </p>
-                  <div className={css.howMuchBlock}>
-                    <label className={css.howMuchWill} htmlFor={howMuchFieldId}>
-                      Write down how much water you will drink:
-                    </label>
-                    <Field
-                      className={css.field}
-                      type="text"
-                      name="howMuch"
-                      id={howMuchFieldId}
-                    />
-                    <ErrorMessage name="howMuch" component="span" />
-                  </div>
-                </div>
+               
               </div>
-              <FormValuesDisplay />
+           
               <button className={css.btn} type="submit">
                 Save
               </button>
@@ -266,6 +217,7 @@ function Setting({ isOpen, onRequestClose }) {
           )}
         </Formik>
       </div>
+      
     </Modal>
   );
 }

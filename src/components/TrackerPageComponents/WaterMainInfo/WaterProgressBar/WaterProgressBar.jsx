@@ -16,7 +16,7 @@ function WaterProgressBar() {
   let progressBar = Math.round(
     (Number(progress) / (Number(user.planToSpend))) * 100
   );
-
+  let difference = user.planToSpend-progress;
 
   return (
     <div className={css.progressBar}>
@@ -24,7 +24,9 @@ function WaterProgressBar() {
       <div className={css.progressBarContainer}>
         <div
           className={css.progressBarLine}
-          style={{ width: `${progressBar}%` }}
+          style={ difference >= 0 ?
+            { width: `${progressBar}%` } : { width: "100%", backgroundColor:"#ff0000" }
+          }
         ></div>
       </div>
       <p className={css.progressNumbers}>
