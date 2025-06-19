@@ -16,7 +16,7 @@ function AddWaterBtn({ chosenDay, currentMonth, currentYear }) {
   return (
     <div className={css.AddWaterBtn}>
       <button className={css.btn} onClick={handleAddModalOpen}>
-        <FaPlus className={css.plusIcon} /> Add water
+        <FaPlus className={css.plusIcon} /> Add
       </button>
       {modalOpen && (
         <Add

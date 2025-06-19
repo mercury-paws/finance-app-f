@@ -2,9 +2,19 @@ import { useSelector } from "react-redux";
 import { selectWater } from "../../../../redux/water/selectors";
 import { selectUser } from "../../../../redux/auth/selectors";
 import css from "./ProgressBar.module.css";
+// import { useEffect } from "react";
+// import { fetchWaterMonth } from "../../../../redux/water/operations";
 
 function ProgressBar({ note }) {
+  // let dispatch = useDispatch();
 
+  // useEffect(() => {
+  //   console.log("Dispatching fetchWaterDay")
+  //       dispatch(
+       
+  //       fetchWaterMonth("May")
+  //     );
+  //   }, [dispatch]);
   const foundWaterData = useSelector(selectWater);
   const user = useSelector(selectUser);
 

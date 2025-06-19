@@ -9,7 +9,7 @@ import { addWater } from "../../../redux/water/operations";
 import { useDispatch, useSelector } from "react-redux";
 import toast, { Toaster } from "react-hot-toast";
 import { AiOutlineClose } from "react-icons/ai";
-// import { noteOptions } from "../../../constants/constants";
+import { getCurrentTimeString } from "../../../constants/constants";
 import { selectUser } from "../../../redux/auth/selectors";
 
 Modal.setAppElement("#root");
@@ -34,11 +34,11 @@ const FeedbackSchema = Yup.object().shape({
 });
 
 const now = new Date();
-let hours = now.getHours();
-let minutes = now.getMinutes();
-hours = hours < 10 ? `0${hours}` : hours;
-minutes = minutes < 10 ? `0${minutes}` : minutes;
-const time = `${hours}:${minutes}`;
+// let hours = now.getHours();
+// let minutes = now.getMinutes();
+// hours = hours < 10 ? `0${hours}` : hours;
+// minutes = minutes < 10 ? `0${minutes}` : minutes;
+// const time = `${hours}:${minutes}`;
 
 const day = now.getDate();
 const month = now.getMonth();
@@ -59,7 +59,7 @@ function Add({ isOpen, onRequestClose, chosenDay, currentMonth, currentYear }) {
   const noteOptions = Object.keys(user.note);
 
   const initialValues = {
-    time: `${time}`,
+    time: getCurrentTimeString(),
     spent: spent,
     note: "",
   };

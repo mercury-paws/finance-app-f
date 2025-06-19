@@ -68,18 +68,12 @@ export const calculateFormattedDate = (monthIndex, year) => {
   return formattedDate;
 };
 
-export const noteOptions = [
 
-
-
-
-  "restaurant",
-
-  "Ukraine",
-
-
-
-  "pepco",
-  "parents",
-  "other",
-];
+export function getCurrentTimeString() {
+  const now = new Date();
+  let hours = now.getHours();
+  let minutes = now.getMinutes();
+  hours = hours < 10 ? `0${hours}` : hours;
+  minutes = minutes < 10 ? `0${minutes}` : minutes;
+  return `${hours}:${minutes}`;
+}

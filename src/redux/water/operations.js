@@ -10,8 +10,6 @@ axios.defaults.baseURL = "http://localhost:3000";
 // axios.defaults.withCredentials = true;
 
 
-
-
 //Базовий тип екшену це рядок "contacts/fetchAll"
 export const fetchWaterMonth = createAsyncThunk(
   "water/fetchWaterMonth",
