@@ -7,7 +7,7 @@ import Delete from "../../../../Modals/Delete/Delete.jsx";
 import { useSelector } from "react-redux";
 import { selectDayWater } from "../../../../../redux/water/selectors.js";
 
-function WaterItem({ spent, note, time, id, currentMonth, chosenDay, currentYear }) {
+function WaterItem({ spent, note, time, id, currentMonth, chosenDay, currentYear, details }) {
   const [editModalOpen, setEditModalOpen] = useState(false);
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
 
@@ -36,8 +36,12 @@ function WaterItem({ spent, note, time, id, currentMonth, chosenDay, currentYear
       </svg>
       <div className={css.mlTime}>
         <p className={css.ml}>{spent} czk</p>
-        <p className={css.time}>{note}</p>
-        <p className={css.time}>{time}</p>
+        <div className={css.textNote}>
+          <p className={css.time}>{note}</p>
+          <p className={css.time}>  {details?.length > 10 ? `${details.slice(0, 10)}...` : details || ""}</p>
+        </div>
+        
+        {/* <p className={css.time}>{time}</p> */}
       </div>
       <div className={css.btnBlock}>
         <button className={css.btn} onClick={handleEditModalOpen}>
@@ -54,6 +58,7 @@ function WaterItem({ spent, note, time, id, currentMonth, chosenDay, currentYear
             time={time}
             spent={spent}
             note={note}
+            details={details}
           />
         )}
         <button className={css.btn} onClick={handleDeleteModalOpen}>

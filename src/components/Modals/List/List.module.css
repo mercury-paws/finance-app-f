@@ -1,0 +1,170 @@
+.overlay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(47, 47, 47, 0.6);
+  opacity: 1;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 99999999;
+  transition: opacity 1s ease;
+}
+
+.modalContent {
+  position: fixed;
+  top: 250px;
+  left: auto;
+  right: auto;
+  bottom: auto;
+  margin: 0 auto;
+  /* max-width: 100%;
+max-height: 100%; */
+  background-color: #fff;
+  height: auto;
+  width: 343px;
+  border-radius: 15px;
+  transition: opacity 1s ease;
+}
+
+.listContainer {
+  padding: 40px 20px;
+  position: relative;
+  height: auto;
+}
+
+.closeIcon {
+  position: absolute;
+  top: 15px;
+  left: 305px;
+  cursor: pointer;
+}
+
+.doSmth {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 120%;
+  letter-spacing: -0.01em;
+  text-align: center;
+  margin-bottom: 10px;
+}
+.want {
+  margin-top: 10px;
+
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 129%;
+  letter-spacing: -0.01em;
+  text-align: center;
+}
+
+.btnBlock {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 28px;
+  gap: 9px;
+}
+.doBtn {
+  box-sizing: border-box;
+  border-radius: 30px;
+  padding: 14px 118px;
+  width: 304px;
+  height: 46px;
+  border: none;
+  background-color: #9be1a0;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 129%;
+  letter-spacing: -0.01em;
+  text-align: center;
+}
+.cancelBtn {
+  box-sizing: border-box;
+  border-radius: 30px;
+  padding: 14px 129px;
+  width: 304px;
+  height: 46px;
+  border: none;
+  background-color: #f0eff4;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 129%;
+  letter-spacing: -0.01em;
+  text-align: center;
+  color: rgba(50, 63, 71, 0.3);
+  transition: color 0.4s ease-in-out;
+}
+.cancelBtn:hover {
+  color: black;
+}
+.waterListItems {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+@media screen and (min-width: 768px) {
+  .modalContent {
+    top: 358px;
+    /* max-width: 100%;
+  max-height: 100%; */
+    height: auto;
+    width: 716px;
+  }
+  .closeIcon {
+    top: 20px;
+    left: 675px;
+  }
+  .logoutContainer {
+    padding: 55px 40px 40px 40px;
+  }
+
+  .doSmth {
+    font-size: 20px;
+    line-height: 114%;
+
+    margin-bottom: 12px;
+  }
+  .want {
+    margin-top: 12px;
+    font-size: 18px;
+    line-height: 133%;
+  }
+
+  .btnBlock {
+    margin-top: 24px;
+    gap: 10px;
+    flex-direction: row;
+  }
+  .doBtn {
+    padding: 18px 55px;
+    width: 170px;
+    height: 60px;
+    font-size: 16px;
+    line-height: 150%;
+  }
+  .cancelBtn {
+    padding: 18px 60px;
+    width: 170px;
+    height: 60px;
+    font-size: 16px;
+    line-height: 150%;
+  }
+}
+
+@media screen and (min-width: 1380px) {
+  .modalContent {
+    top: 74px;
+    height: auto;
+  }
+  .closeIcon {
+    top: 25px;
+    left: 675px;
+  }
+}

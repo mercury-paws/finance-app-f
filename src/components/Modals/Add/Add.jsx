@@ -62,17 +62,20 @@ function Add({ isOpen, onRequestClose, chosenDay, currentMonth, currentYear }) {
     time: getCurrentTimeString(),
     spent: spent,
     note: "",
+    details: "",
   };
 
   const timeFieldId = useId();
   const spentFieldId = useId();
   const noteFieldId = useId();
+  const detailsFieldId = useId();
 
   const handleSubmit = async (values, actions) => {
     const formattedValues = {
       ...values,
       spent: values.spent.toString(),
       note: values.note.toString(),
+      details: values.details.toString(),
     };
 
     const queryDayParams = {
@@ -177,7 +180,16 @@ function Add({ isOpen, onRequestClose, chosenDay, currentMonth, currentYear }) {
                           
                             
                                         </Field>
-
+                                        <Field
+                                          className={css.field}
+                                          type="text"
+                                          name="details"
+                                          id={detailsFieldId}
+                                        />
+                                            
+                          
+                            
+                                        
               <ErrorMessage className={css.error} name="note" component="span" />
             </div>
             <button className={css.btn} type="submit">

@@ -5,7 +5,7 @@ import { useId, useState } from "react";
 import Modal from "react-modal";
 import { useDispatch, useSelector } from "react-redux";
 import { updateWater } from "../../../redux/water/operations";
-import { fetchWaterDay } from "../../../redux/water/operations";
+import { fetchWaterDay, fetchWaterMonth } from "../../../redux/water/operations";
 import { AiOutlineClose } from "react-icons/ai";
 import { selectUser } from "../../../redux/auth/selectors";
 // import { noteOptions } from "../../../constants/constants";
@@ -29,6 +29,9 @@ const FeedbackSchema = Yup.object().shape({
     .min(0, "Too Small!")
     .max(2000, "Too Much!")
     .required("Required"),
+    details: Yup.string()
+    .min(0, "Too Small!")
+    .max(2000, "Too Much!"),
 });
 
 function Edit({
@@ -41,6 +44,7 @@ function Edit({
   time,
   spent,
   note,
+  details,
 }) {
   let dispatch = useDispatch();
   const user = useSelector(selectUser);
@@ -48,11 +52,13 @@ function Edit({
 
   const [spentVal, setSpent] = useState(Number(spent));
   const [noteVal, setNote] = useState(note);
+  const [detailsVal, setDetailsNote] = useState(details);
 
   const initialValues = {
     time: time,
     spent: spentVal,
     note: noteVal,
+    details: detailsVal,
   };
 
   const handleSubmit = (values, actions) => {
@@ -60,17 +66,16 @@ function Edit({
       ...values,
       spent: values.spent.toString(),
       note: values.note.toString(),
+      details: values.details.toString(),
     };
 
     const queryDayParams = {
-      // day: chosenDay,
-      // month: currentMonth,
-      // year: currentYear,
       id,
     };
 
     console.log(queryDayParams, values.spent, values.note, time);
 
+   
     dispatch(
       updateWater({
         updateWater: formattedValues,
@@ -85,6 +90,15 @@ function Edit({
           year: currentYear,
         })
       );
+      }).then(() => {
+        // Refresh the water data for the selected day after adding
+        dispatch(
+          fetchWaterMonth({
+         
+            month: currentMonth,
+            year: currentYear,
+          })
+        )
     });
 
     actions.resetForm();
@@ -94,8 +108,7 @@ function Edit({
   const timeFieldId = useId();
   const spentFieldId = useId();
   const noteFieldId = useId();
-
-
+  const detailsFieldId = useId();
   
   return (
     <Modal
@@ -173,7 +186,18 @@ function Edit({
             
               
                           </Field>
-                          <ErrorMessage className={css.error} name="note" component="span" />
+              <ErrorMessage className={css.error} name="note" component="span" />
+              <Field
+                                                        className={css.field}
+                                                        type="text"
+                                                        name="details"
+                                                        id={detailsFieldId}
+                                                      />
+                                                          
+                                        
+                                          
+                                                      
+                            <ErrorMessage className={css.error} name="note" component="span" />
                         </div>
             <button className={css.btn} type="submit">
               Save

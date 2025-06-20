@@ -8,10 +8,10 @@
   border-radius: 15px;
   display: flex;
   flex-direction: row;
-  gap: 10px;
-  justify-content: space-between;
+  /* gap: 5px; */
+  justify-content: space-around;
   align-items: center;
-  flex-shrink: unset;
+  border: 1px solid #000;
 }
 
 .cupIcon {
@@ -19,9 +19,12 @@
   fill: #9be1a0;
 }
 
-/* .mlTime {
-  width: 95px;
-} */
+/* 
+.mlTime {
+  display: flex;
+  flex-direction: column; */
+/* gap: 8px; */
+/* } */
 
 .btnBlock {
   display: flex;
@@ -57,13 +60,9 @@
   .waterItem {
     box-sizing: border-box;
     padding: 20px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
+
     width: 192px;
     height: 86px;
-    border: none;
     border-radius: 15px;
   }
 
@@ -71,13 +70,6 @@
     background-color: transparent;
     fill: #9be1a0;
   }
-
-  /* 
-  .mlTime {
-    display: flex;
-    flex-direction: column; */
-  /* gap: 8px; */
-  /* } */
 
   .btnBlock {
     display: flex;
@@ -92,7 +84,7 @@
   .time {
     font-weight: 400;
     font-size: 12px;
-    line-height: 110%;
+    line-height: 187%;
     color: rgba(47, 47, 47, 0.6);
   }
   .penIcon {

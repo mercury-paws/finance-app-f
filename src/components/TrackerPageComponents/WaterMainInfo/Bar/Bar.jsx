@@ -5,7 +5,8 @@ import css from "./Bar.module.css";
 // import { noteOptions } from "../../../../constants/constants";
 import ProgressBar from "../ProgressBar/ProgressBar";
 
-function Bar() {
+function Bar({currentMonth}) {
+
 
   const user = useSelector(selectUser);
   const noteOptions = Object.keys(user.note);
@@ -14,7 +15,7 @@ function Bar() {
     <div className={css.bar}>
       {noteOptions.map((note) => (
         
-        <ProgressBar key={note} note={note} />
+        <ProgressBar key={note} note={note} currentMonth={currentMonth} />
         
       ))}
     </div>

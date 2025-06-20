@@ -7,32 +7,32 @@
 //     Tooltip,
 //     ResponsiveContainer,
 //   } from "recharts";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
-  import css from "./Charts.module.css";
-import { fetchWaterDay } from "../../../../redux/water/operations";
-import { selectWater } from "../../../../redux/water/selectors";
+// import { useDispatch, useSelector } from "react-redux";
+// import { useEffect } from "react";
+//   import css from "./Charts.module.css";
+// import { fetchWaterDay } from "../../../../redux/water/operations";
+// import { selectWater } from "../../../../redux/water/selectors";
   
 function Charts() {
     console.log("Charts component rendered");
 
-      let dispatch = useDispatch();
-      const water = useSelector(selectWater);
+    //   let dispatch = useDispatch();
+    //   const water = useSelector(selectWater);
     
 
-    useEffect(() => {console.log("Dispatching fetchWaterDay")
-        dispatch(
+    // useEffect(() => {console.log("Dispatching fetchWaterDay")
+    //     dispatch(
             
-        fetchWaterDay({ year: "2025" })
-      );
-    }, [dispatch]);
+    //     fetchWaterDay({ year: "2025" })
+    //   );
+    // }, [dispatch]);
       
 
-    useEffect(() => {
-        if (water) {
-          console.log("Water data:", water);
-        }
-      }, [water]);
+    // useEffect(() => {
+    //     if (water) {
+    //       console.log("Water data:", water);
+    //     }
+    //   }, [water]);
     
       
       return (

@@ -18,7 +18,7 @@ function WaterMainInfo({
     <div className={css.waterMainInfo}>
       <WaterDailyNorma />
       <WaterProgressBar />
-      <Bar />
+      <Bar currentMonth={currentMonth} />
       
       {/* <AddWaterBtn
         chosenDay={chosenDay}

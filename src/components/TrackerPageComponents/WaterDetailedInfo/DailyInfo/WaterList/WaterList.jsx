@@ -55,6 +55,7 @@ function WaterList({ currentMonth, chosenDay, currentYear, chosenDate }) {
                   spent={data.spent}
                   note={data.note}
                   time={data.time}
+                  details={data.details}
                   id={data._id}
                   currentMonth={currentMonth}
                   chosenDay={chosenDay}
