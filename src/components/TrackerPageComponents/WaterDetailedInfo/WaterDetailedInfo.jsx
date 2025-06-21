@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { fetchWaterDay } from "../../../redux/water/operations.js";
 import css from "./WaterDetailedInfo.module.css";
-import Charts from "./Charts/Charts.jsx";
+import Settings from "./Charts/Settings/Settings.jsx";
 
 function WaterDetailedInfo({
   chosenDay,
@@ -43,7 +43,7 @@ function WaterDetailedInfo({
         currentDate={currentDate}
         setCurrentDate={setCurrentDate}
       />
-      <Charts />
+      <Settings />
       <MonthInfo
         chosenDate={chosenDate}
         currentMonth={currentMonth}
