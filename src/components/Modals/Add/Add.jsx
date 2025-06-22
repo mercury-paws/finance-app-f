@@ -11,21 +11,9 @@ import toast, { Toaster } from "react-hot-toast";
 import { AiOutlineClose } from "react-icons/ai";
 import { getCurrentTimeString } from "../../../constants/constants";
 import { selectUser } from "../../../redux/auth/selectors";
+import { FeedbackSchema } from "../../../validation/Schemas";
 
 Modal.setAppElement("#root");
-
-const FeedbackSchema = Yup.object().shape({
-  time: Yup.string()
-    .matches(
-      /^([01]\d|2[0-3]):([0-5]\d)$/,
-      "Must be a valid time in the format HH:MM"
-    )
-    .required("Required"),
-  note: Yup.string()
-    .matches(/^[a-zA-Z]/, "Must be a valid spent desitnation")
-    .required("Required"),
-  spent: Yup.string().min(0, "Too Small!").max(50000, "Too Much!"),
-});
 
 const now = new Date();
 // let hours = now.getHours();

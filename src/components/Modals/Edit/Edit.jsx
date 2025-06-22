@@ -11,26 +11,10 @@ import {
 } from "../../../redux/water/operations";
 import { AiOutlineClose } from "react-icons/ai";
 import { selectUser } from "../../../redux/auth/selectors";
+import { FeedbackSchema } from "../../../validation/Schemas";
 // import { noteOptions } from "../../../constants/constants";
 
 Modal.setAppElement("#root");
-
-const FeedbackSchema = Yup.object().shape({
-  time: Yup.string()
-    .matches(
-      /^([01]\d|2[0-3]):([0-5]\d)$/,
-      "Must be a valid time in the format HH:MM"
-    )
-    .required("Required"),
-  note: Yup.string()
-    .matches(/^[a-zA-Z]/, "Must be a valid spent desitnation")
-    .required("Required"),
-  spent: Yup.string()
-    .min(0, "Too Small!")
-    .max(2000, "Too Much!")
-    .required("Required"),
-  details: Yup.string().min(0, "Too Small!").max(2000, "Too Much!"),
-});
 
 function Edit({
   isOpen,
