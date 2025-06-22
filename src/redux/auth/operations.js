@@ -7,10 +7,6 @@ axios.defaults.withCredentials = true;
 
 const setAuthHeader = (token) => {
   axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-  console.log(
-    "Authorization header set to:",
-    axios.defaults.headers.common["Authorization"]
-  );
 };
 const clearAuthHeader = () => {
   axios.defaults.headers.common["Authorization"] = "";
@@ -38,7 +34,6 @@ export const register = createAsyncThunk(
     try {
       const response = await axios.post("/auth/register", newUser);
       setAuthHeader(response.data.data.accessToken);
-      // console.log(response.data);
       return response.data.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(
@@ -56,7 +51,6 @@ export const logIn = createAsyncThunk(
     try {
       const response = await axios.post("/auth/login", userInfo);
       setAuthHeader(response.data.data.accessToken);
-      console.log(response.data.data.accessToken);
       return response.data.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(
@@ -88,7 +82,6 @@ export const refreshUser = createAsyncThunk(
     try {
       const response = await axios.post("/auth/refresh");
       setAuthHeader(response.data.data.accessToken);
-      console.log(response.data.data);
       return response.data.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(
@@ -110,7 +103,6 @@ export const refreshUser = createAsyncThunk(
 export const updateUser = createAsyncThunk(
   "auth/settings",
   async ({ email, formattedValues }, thunkAPI) => {
-    console.log("values", formattedValues);
     try {
       const response = await axios.patch("/auth/settings", formattedValues, {
         headers: {
@@ -119,7 +111,6 @@ export const updateUser = createAsyncThunk(
         params: { email },
       });
       // setAuthHeader(response.data.data.accessToken);
-      console.log(response.data.data);
       return response.data.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(

@@ -17,7 +17,6 @@ function Chart({ days }) {
   const foundWaterData = useSelector(selectWater);
   const user = useSelector(selectUser);
 
-
   const waterDataByDay = useMemo(() => {
     const waterData = foundWaterData || [];
     const waterMap = {};
@@ -29,10 +28,6 @@ function Chart({ days }) {
         waterMap[item.day] = Number(item.spent);
       }
     });
-
- 
-
-    console.log("foundWaterData", foundWaterData);
 
     return waterMap;
   }, [foundWaterData, user.waterVolume]);
@@ -52,8 +47,6 @@ function Chart({ days }) {
     });
   };
   const data = dataChart(days, foundWaterData);
-
-  console.log(data);
 
   return (
     <div className={css.chart}>

@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { fetchWaterDay } from "../../../redux/water/operations.js";
 import css from "./WaterDetailedInfo.module.css";
-import Settings from "./Charts/Settings/Settings.jsx";
+import Settings from "./Settings/Settings.jsx";
 
 function WaterDetailedInfo({
   chosenDay,

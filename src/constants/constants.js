@@ -1,4 +1,4 @@
-const monthDays = {
+export const monthDays = {
   January: 31,
   February: 28,
   March: 31,
@@ -68,7 +68,6 @@ export const calculateFormattedDate = (monthIndex, year) => {
   return formattedDate;
 };
 
-
 export function getCurrentTimeString() {
   const now = new Date();
   let hours = now.getHours();
@@ -111,5 +110,5 @@ export const selectYear = [
   "2029",
   "2030",
   "2031",
-  "2032"
+  "2032",
 ];

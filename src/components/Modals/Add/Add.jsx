@@ -16,21 +16,15 @@ Modal.setAppElement("#root");
 
 const FeedbackSchema = Yup.object().shape({
   time: Yup.string()
-      .matches(
-        /^([01]\d|2[0-3]):([0-5]\d)$/,
-        "Must be a valid time in the format HH:MM"
-      )
-      .required("Required"),
-  note: Yup.string()
     .matches(
-      /^[a-zA-Z]/,
-      "Must be a valid spent desitnation"
+      /^([01]\d|2[0-3]):([0-5]\d)$/,
+      "Must be a valid time in the format HH:MM"
     )
     .required("Required"),
-  spent: Yup.string()
-    .min(0, "Too Small!")
-    .max(50000, "Too Much!")
+  note: Yup.string()
+    .matches(/^[a-zA-Z]/, "Must be a valid spent desitnation")
     .required("Required"),
+  spent: Yup.string().min(0, "Too Small!").max(50000, "Too Much!"),
 });
 
 const now = new Date();
@@ -83,8 +77,6 @@ function Add({ isOpen, onRequestClose, chosenDay, currentMonth, currentYear }) {
       month: currentMonth,
       year: currentYear,
     };
-
-    console.log(queryDayParams, chosenDay);
     try {
       await dispatch(
         addWater({
@@ -102,8 +94,6 @@ function Add({ isOpen, onRequestClose, chosenDay, currentMonth, currentYear }) {
     }
   };
 
- 
-
   return (
     <Modal
       isOpen={isOpen}
@@ -118,12 +108,6 @@ function Add({ isOpen, onRequestClose, chosenDay, currentMonth, currentYear }) {
         </div>
         <h4 className={css.header}>Add number</h4>
         <p className={css.doSmth}>Choose a value:</p>
-        {/* <p className={css.amount}>Value:</p> */}
-        {/* <div className={css.addWaterBlock}>
-          {<FaMinusCircle className={css.minus} onClick={decreaseValue} />}
-          <p className={css.ml}>50 czk</p>
-          {<FaPlusCircle className={css.plus} onClick={addValue} />}
-        </div> */}
 
         <Formik
           initialValues={initialValues}
@@ -158,39 +142,43 @@ function Add({ isOpen, onRequestClose, chosenDay, currentMonth, currentYear }) {
                 type="text"
                 name="spent"
                 id={spentFieldId}
-                
               />
 
-              <ErrorMessage className={css.error} name="spent" component="span" />
+              <ErrorMessage
+                className={css.error}
+                name="spent"
+                component="span"
+              />
             </div>
             <div className={css.valueBlock}>
               <label htmlFor={noteFieldId} className={css.value}>
                 Enter the note:
               </label>
               <Field
-                                          className={css.field}
-                                          as="select"
-                                          name="note"
-                                          id={noteFieldId}
-                                        >
-                                            <option value="">-- Select a note --</option>
-                              {noteOptions.map((note, index) => (
-                                <option key={index} value={note}>{ note}</option>
-                              )) }
-                          
-                            
-                                        </Field>
-                                        <Field
-                                          className={css.field}
-                                          type="text"
-                                          name="details"
-                                          id={detailsFieldId}
-                                        />
-                                            
-                          
-                            
-                                        
-              <ErrorMessage className={css.error} name="note" component="span" />
+                className={css.field}
+                as="select"
+                name="note"
+                id={noteFieldId}
+              >
+                <option value="">-- Select a note --</option>
+                {noteOptions.map((note, index) => (
+                  <option key={index} value={note}>
+                    {note}
+                  </option>
+                ))}
+              </Field>
+              <Field
+                className={css.field}
+                type="text"
+                name="details"
+                id={detailsFieldId}
+              />
+
+              <ErrorMessage
+                className={css.error}
+                name="note"
+                component="span"
+              />
             </div>
             <button className={css.btn} type="submit">
               Save

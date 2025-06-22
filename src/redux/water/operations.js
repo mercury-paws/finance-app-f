@@ -9,10 +9,27 @@ axios.defaults.baseURL = "http://localhost:3000";
 // axios.defaults.baseURL = "https://water-app-b.onrender.com/";
 // axios.defaults.withCredentials = true;
 
-
 //Базовий тип екшену це рядок "contacts/fetchAll"
 export const fetchWaterMonth = createAsyncThunk(
   "water/fetchWaterMonth",
+  async (queryParams, thunkAPI) => {
+    try {
+      const reduxState = thunkAPI.getState();
+      const savedToken = reduxState.auth.accessToken;
+      setAuthHeader(savedToken);
+
+      const response = await axios.get("water", {
+        params: queryParams,
+      });
+      return response.data.data.items;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const fetchWaterYear = createAsyncThunk(
+  "water/fetchWaterYear",
   async (queryParams, thunkAPI) => {
     try {
       const reduxState = thunkAPI.getState();
@@ -58,8 +75,6 @@ export const addWater = createAsyncThunk(
       const response = await axios.post("water/add", newAddWater, {
         params: queryDayParams,
       });
-      console.log({ newAddWater, queryDayParams });
-      console.log(response.data);
       return response.data.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

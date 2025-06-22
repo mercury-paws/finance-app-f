@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchWaterMonth, fetchWaterDay } from "./operations";
+import { fetchWaterMonth, fetchWaterDay, fetchWaterYear } from "./operations";
 import { addWater } from "./operations";
 import { deleteWater } from "./operations";
 import { updateWater } from "./operations";
@@ -10,6 +10,7 @@ const slice = createSlice({
   initialState: {
     items: [],
     dayItems: [],
+    yearItems: [],
     loading: false,
     error: false,
   },
@@ -25,6 +26,18 @@ const slice = createSlice({
       })
       .addCase(fetchWaterMonth.rejected, (state) => {
         state.error = true;
+        state.loading = false;
+      })
+      .addCase(fetchWaterYear.rejected, (state) => {
+        state.error = true;
+        state.loading = false;
+      })
+      .addCase(fetchWaterYear.pending, (state) => {
+        state.error = false;
+        state.loading = true;
+      })
+      .addCase(fetchWaterYear.fulfilled, (state, action) => {
+        state.yearItems = action.payload;
         state.loading = false;
       })
       .addCase(fetchWaterDay.pending, (state) => {

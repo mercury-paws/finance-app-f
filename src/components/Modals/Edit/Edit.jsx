@@ -5,7 +5,10 @@ import { useId, useState } from "react";
 import Modal from "react-modal";
 import { useDispatch, useSelector } from "react-redux";
 import { updateWater } from "../../../redux/water/operations";
-import { fetchWaterDay, fetchWaterMonth } from "../../../redux/water/operations";
+import {
+  fetchWaterDay,
+  fetchWaterMonth,
+} from "../../../redux/water/operations";
 import { AiOutlineClose } from "react-icons/ai";
 import { selectUser } from "../../../redux/auth/selectors";
 // import { noteOptions } from "../../../constants/constants";
@@ -20,18 +23,13 @@ const FeedbackSchema = Yup.object().shape({
     )
     .required("Required"),
   note: Yup.string()
-    .matches(
-      /^[a-zA-Z]/,
-      "Must be a valid spent desitnation"
-    )
+    .matches(/^[a-zA-Z]/, "Must be a valid spent desitnation")
     .required("Required"),
   spent: Yup.string()
     .min(0, "Too Small!")
     .max(2000, "Too Much!")
     .required("Required"),
-    details: Yup.string()
-    .min(0, "Too Small!")
-    .max(2000, "Too Much!"),
+  details: Yup.string().min(0, "Too Small!").max(2000, "Too Much!"),
 });
 
 function Edit({
@@ -73,33 +71,31 @@ function Edit({
       id,
     };
 
-    console.log(queryDayParams, values.spent, values.note, time);
-
-   
     dispatch(
       updateWater({
         updateWater: formattedValues,
         queryDayParams,
       })
-    ).then(() => {
-      // Refresh the water data for the selected day after adding
-      dispatch(
-        fetchWaterDay({
-          day: chosenDay,
-          month: currentMonth,
-          year: currentYear,
-        })
-      );
-      }).then(() => {
+    )
+      .then(() => {
         // Refresh the water data for the selected day after adding
         dispatch(
-          fetchWaterMonth({
-         
+          fetchWaterDay({
+            day: chosenDay,
             month: currentMonth,
             year: currentYear,
           })
-        )
-    });
+        );
+      })
+      .then(() => {
+        // Refresh the water data for the selected day after adding
+        dispatch(
+          fetchWaterMonth({
+            month: currentMonth,
+            year: currentYear,
+          })
+        );
+      });
 
     actions.resetForm();
     onRequestClose();
@@ -109,7 +105,7 @@ function Edit({
   const spentFieldId = useId();
   const noteFieldId = useId();
   const detailsFieldId = useId();
-  
+
   return (
     <Modal
       isOpen={isOpen}
@@ -153,8 +149,7 @@ function Edit({
                 className={css.error}
                 name="time"
                 component="span"
-                />
-               
+              />
             </div>
             <div className={css.valueBlock}>
               <label htmlFor={spentFieldId} className={css.value}>
@@ -167,38 +162,47 @@ function Edit({
                 id={spentFieldId}
               />
 
-              <ErrorMessage className={css.error} name="spent" component="span" />
+              <ErrorMessage
+                className={css.error}
+                name="spent"
+                component="span"
+              />
             </div>
             <div className={css.valueBlock}>
-                          <label htmlFor={noteFieldId} className={css.value}>
-                            Amend the note:
-                          </label>
-                          <Field
-                            className={css.field}
-                            as="select"
-                            name="note"
-                            id={noteFieldId}
-                          >
-                              <option value="">-- Select a note --</option>
-                {noteOptions.map((note, index) => (
-                  <option key={index} value={note}>{ note}</option>
-                )) }
-            
-              
-                          </Field>
-              <ErrorMessage className={css.error} name="note" component="span" />
+              <label htmlFor={noteFieldId} className={css.value}>
+                Amend the note:
+              </label>
               <Field
-                                                        className={css.field}
-                                                        type="text"
-                                                        name="details"
-                                                        id={detailsFieldId}
-                                                      />
-                                                          
-                                        
-                                          
-                                                      
-                            <ErrorMessage className={css.error} name="note" component="span" />
-                        </div>
+                className={css.field}
+                as="select"
+                name="note"
+                id={noteFieldId}
+              >
+                <option value="">-- Select a note --</option>
+                {noteOptions.map((note, index) => (
+                  <option key={index} value={note}>
+                    {note}
+                  </option>
+                ))}
+              </Field>
+              <ErrorMessage
+                className={css.error}
+                name="note"
+                component="span"
+              />
+              <Field
+                className={css.field}
+                type="text"
+                name="details"
+                id={detailsFieldId}
+              />
+
+              <ErrorMessage
+                className={css.error}
+                name="note"
+                component="span"
+              />
+            </div>
             <button className={css.btn} type="submit">
               Save
             </button>

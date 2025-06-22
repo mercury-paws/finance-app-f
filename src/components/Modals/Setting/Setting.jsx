@@ -18,17 +18,16 @@ const FeedbackSchema = Yup.object().shape({
     .required("Required"),
   email: Yup.string().email("Must be a valid email!").required("Required"),
   photo: Yup.mixed().required("Photo is required"),
-  note: Yup.array()
-    .of(
-      Yup.object().shape({
-        key: Yup.string().required("Required"),
-        value: Yup.number()
-          .typeError("Must be a number")
-          .min(1, "Too low")
-          .max(25000, "Too high")
-          .required("Required"),
-      })
-    )
+  note: Yup.array().of(
+    Yup.object().shape({
+      key: Yup.string().required("Required"),
+      value: Yup.number()
+        .typeError("Must be a number")
+        .min(1, "Too low")
+        .max(25000, "Too high")
+        .required("Required"),
+    })
+  ),
 });
 
 function Setting({ isOpen, onRequestClose }) {
@@ -38,21 +37,19 @@ function Setting({ isOpen, onRequestClose }) {
   const user = useSelector(selectUser);
 
   const initialValues = {
-    
     name: user.name || "",
     email: user.email || "",
-    note:  user.note
-    ? Object.entries(user.note).map(([key, value]) => ({
-        key,
-        value,
-      }))
-    : [{ key: "", value: "" }],
+    note: user.note
+      ? Object.entries(user.note).map(([key, value]) => ({
+          key,
+          value,
+        }))
+      : [{ key: "", value: "" }],
     photo: user.photo || "",
     planToSpend: user.planToSpend || "",
   };
 
   const handleSubmit = (values) => {
-
     const formattedNote = Object.fromEntries(
       values.note.map(({ key, value }) => [key, Number(value)])
     );
@@ -86,9 +83,9 @@ function Setting({ isOpen, onRequestClose }) {
       className={css.modalContent}
     >
       <div className={css.settingContainer}>
-      <div className={css.closeIcon}>
-            <AiOutlineClose onClick={onRequestClose} />
-          </div>
+        <div className={css.closeIcon}>
+          <AiOutlineClose onClick={onRequestClose} />
+        </div>
         <Formik
           initialValues={initialValues}
           onSubmit={handleSubmit}
@@ -118,13 +115,11 @@ function Setting({ isOpen, onRequestClose }) {
                   className={css.visuallyHidden}
                   onChange={(event) => {
                     setFieldValue("photo", event.target.files[0]);
-                    console.log(event.target.files[0]);
                   }}
                 />
               </div>
               <div className={css.flexContainer}>
                 <div className={css.leftPart}>
-
                   <div className={css.fillInForm}>
                     <label htmlFor={nameFieldId} className={css.label}>
                       Name
@@ -159,57 +154,60 @@ function Setting({ isOpen, onRequestClose }) {
                       type="number"
                       name="planToSpend"
                       id={planToSpendFieldId}
-                     
                     />
                     <ErrorMessage name="planToSpend" component="span" />
                   </div>
-                  </div>
+                </div>
                 <div className={css.rightPart}>
                   <FieldArray name="note">
                     {({ push, remove, form }) => (
-    <div className={css.spentDestinationForm}>
-      <label className={css.label}>Spent destinations:</label>
-      {form.values.note.map((item, index) => (
-        <div className={css.fillInFormC} key={index}>
-          <Field
-            className={css.fieldC}
-            name={`note[${index}].key`}
-            placeholder="Category"
-          />
-          <ErrorMessage name={`note[${index}].key`} component="span" />
+                      <div className={css.spentDestinationForm}>
+                        <label className={css.label}>Spent destinations:</label>
+                        {form.values.note.map((item, index) => (
+                          <div className={css.fillInFormC} key={index}>
+                            <Field
+                              className={css.fieldC}
+                              name={`note[${index}].key`}
+                              placeholder="Category"
+                            />
+                            <ErrorMessage
+                              name={`note[${index}].key`}
+                              component="span"
+                            />
 
-          <Field
-            className={css.fieldC}
-            name={`note[${index}].value`}
-            placeholder="Amount"
-            type="number"
-          />
-          <ErrorMessage name={`note[${index}].value`} component="span" />
+                            <Field
+                              className={css.fieldC}
+                              name={`note[${index}].value`}
+                              placeholder="Amount"
+                              type="number"
+                            />
+                            <ErrorMessage
+                              name={`note[${index}].value`}
+                              component="span"
+                            />
 
-          <button
-            type="button"
-            className={css.btnC}
-            onClick={() => remove(index)}
-          >
-            Remove
-          </button>
-        </div>
-      ))}
-      <button
-        type="button"
-        className={css.btnC}
-        onClick={() => push({ key: "", value: "" })}
-      >
-        Add More
-      </button>
-    </div>
-  )}
-</FieldArray>
-                  
+                            <button
+                              type="button"
+                              className={css.btnC}
+                              onClick={() => remove(index)}
+                            >
+                              Remove
+                            </button>
+                          </div>
+                        ))}
+                        <button
+                          type="button"
+                          className={css.btnC}
+                          onClick={() => push({ key: "", value: "" })}
+                        >
+                          Add More
+                        </button>
+                      </div>
+                    )}
+                  </FieldArray>
                 </div>
-               
               </div>
-           
+
               <button className={css.btn} type="submit">
                 Save
               </button>
@@ -217,7 +215,6 @@ function Setting({ isOpen, onRequestClose }) {
           )}
         </Formik>
       </div>
-      
     </Modal>
   );
 }

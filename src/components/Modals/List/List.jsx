@@ -6,9 +6,14 @@ import WaterListItem from "../../TrackerPageComponents/WaterDetailedInfo/DailyIn
 
 Modal.setAppElement("#root");
 
-function List({ isOpen, onRequestClose, spent, note, currentMonth, totalSpent }) {
-console.log("spent", spent)
-
+function List({
+  isOpen,
+  onRequestClose,
+  spent,
+  note,
+  currentMonth,
+  totalSpent,
+}) {
   return (
     <div>
       <Modal
@@ -23,12 +28,21 @@ console.log("spent", spent)
           <div className={css.closeIcon}>
             <AiOutlineClose onClick={onRequestClose} />
           </div>
-          <h4 className={css.doSmth}>Spent {totalSpent} for { note} in {currentMonth }</h4>
-          
-          <div className={css.waterListItems}>{spent.map((el) => (
-            <WaterListItem key={el._id} details={el.details} currentMonth={currentMonth} day={el.day} spent={el.spent}  />
-          ))}</div>
-          
+          <h4 className={css.doSmth}>
+            Spent {totalSpent} for {note} in {currentMonth}
+          </h4>
+
+          <div className={css.waterListItems}>
+            {spent.map((el) => (
+              <WaterListItem
+                key={el._id}
+                details={el.details}
+                currentMonth={currentMonth}
+                day={el.day}
+                spent={el.spent}
+              />
+            ))}
+          </div>
         </div>
       </Modal>
     </div>
