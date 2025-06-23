@@ -10,8 +10,7 @@ function MonthInfo({
   currentYear,
   setCurrentYear,
 }) {
-
-  const [chart, setChart] = useState(true);
+  const [chart, setChart] = useState(false);
 
   return (
     <>

@@ -5,19 +5,17 @@ import css from "./Bar.module.css";
 // import { noteOptions } from "../../../../constants/constants";
 import ProgressBar from "../ProgressBar/ProgressBar";
 
-function Bar({currentMonth}) {
-
-
+function Bar({ currentMonth }) {
   const user = useSelector(selectUser);
-  const noteOptions = Object.keys(user.note);
+  const noteOptions = user.note ? Object.keys(user.note) : [];
 
   return (
     <div className={css.bar}>
-      {noteOptions.map((note) => (
-        
-        <ProgressBar key={note} note={note} currentMonth={currentMonth} />
-        
-      ))}
+      {noteOptions
+        ? noteOptions.map((note) => (
+            <ProgressBar key={note} note={note} currentMonth={currentMonth} />
+          ))
+        : "Loading"}
     </div>
   );
 }

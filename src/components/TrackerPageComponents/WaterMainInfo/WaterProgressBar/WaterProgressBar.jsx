@@ -12,11 +12,13 @@ function WaterProgressBar() {
     .map((day) => day.spent)
     .reduce((total, num) => total + Number(num), 0);
 
+  const planToSpend = Number(user.planToSpend) || 0;
+  const progressNum = Number(progress) || 0;
 
-  let progressBar = Math.round(
-    (Number(progress) / (Number(user.planToSpend))) * 100
-  );
-  let difference = user.planToSpend-progress;
+  let progressBar =
+    planToSpend === 0 ? 0 : Math.round((progressNum / planToSpend) * 100);
+
+  let difference = planToSpend - progressNum;
 
   return (
     <div className={css.progressBar}>
@@ -24,8 +26,10 @@ function WaterProgressBar() {
       <div className={css.progressBarContainer}>
         <div
           className={css.progressBarLine}
-          style={ difference >= 0 ?
-            { width: `${progressBar}%` } : { width: "100%", backgroundColor:"#ff0000" }
+          style={
+            difference >= 0
+              ? { width: `${progressBar}%` }
+              : { width: "100%", backgroundColor: "#ff0000" }
           }
         ></div>
       </div>

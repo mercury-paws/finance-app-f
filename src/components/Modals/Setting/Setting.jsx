@@ -8,27 +8,9 @@ import { updateUser } from "../../../redux/auth/operations";
 import { selectUser } from "../../../redux/auth/selectors";
 import { FaUpload } from "react-icons/fa6";
 import { AiOutlineClose } from "react-icons/ai";
+import { FeedbackSettingSchema as FeedbackSchema } from "../../../validation/Schemas";
 
 Modal.setAppElement("#root");
-
-const FeedbackSchema = Yup.object().shape({
-  name: Yup.string()
-    .min(4, "Too short")
-    .max(20, "Too long")
-    .required("Required"),
-  email: Yup.string().email("Must be a valid email!").required("Required"),
-  photo: Yup.mixed().required("Photo is required"),
-  note: Yup.array().of(
-    Yup.object().shape({
-      key: Yup.string().required("Required"),
-      value: Yup.number()
-        .typeError("Must be a number")
-        .min(1, "Too low")
-        .max(25000, "Too high")
-        .required("Required"),
-    })
-  ),
-});
 
 function Setting({ isOpen, onRequestClose }) {
   const [waterToDrink, setWaterToDrink] = useState();

@@ -11,63 +11,56 @@ import Modal from "react-modal";
 import { AiOutlineClose } from "react-icons/ai";
 import { useSelector } from "react-redux";
 import { selectYearWater } from "../../../redux/water/selectors";
-// import { useMemo } from "react";
-
+import { useId, useState } from "react";
 import css from "./ChartModal.module.css";
-import Settings from "../../TrackerPageComponents/WaterDetailedInfo/Settings/Settings";
 import { useDispatch } from "react-redux";
 import { fetchWaterYear } from "../../../redux/water/operations";
 import { useEffect } from "react";
 import { monthDays } from "../../../constants/constants";
+import { selectUser } from "../../../redux/auth/selectors";
+import FormikComponent from "../../FormFields/Formik/FormikComponent";
+import { selectWater } from "../../../redux/water/selectors";
 
 Modal.setAppElement("#root");
 
 function ChartModal({ isOpen, onRequestClose, year, note }) {
   const dispatch = useDispatch();
   const foundWaterYearData = useSelector(selectYearWater);
+  const user = useSelector(selectUser);
 
+  const noteOptions = user.note ? [...Object.keys(user.note), "total"] : [];
+
+  const foundWaterData = useSelector(selectWater);
+
+  let progress = foundWaterData
+    .map((day) => day.spent)
+    .reduce((total, num) => total + Number(num), 0);
+
+  console.log(progress);
+
+  const [selectedData, setSelectedData] = useState({
+    year: year || "",
+    note: note || "",
+  });
+
+  // Fetch water data for selected year
   useEffect(() => {
-    if (!year) return;
+    if (!selectedData.year) return;
     const fetchYearWater = async () => {
       try {
-        const yearData = await dispatch(fetchWaterYear({ year })).unwrap();
+        await dispatch(fetchWaterYear({ year: selectedData.year })).unwrap();
       } catch (error) {
         console.error("Failed to fetch water data:", error);
       }
     };
     fetchYearWater();
-  }, [dispatch, year]);
-
-  console.log("water", foundWaterYearData);
-
-  // const waterDataByYear = useMemo(() => {
-  //   const waterData = foundWaterYearData || [];
-  //   const waterMap = {};
-
-  //   // filter per note
-  //   // sum up spent per month of left note
-
-  //   const dataNote = waterData.filter((el) => el.note === note);
-
-  //   dataNote.forEach((item) => {
-  //     if (waterMap[item.month]) {
-  //       waterMap[item.month] += Number(item.spent);
-  //     } else {
-  //       waterMap[item.month] = Number(item.spent);
-  //     }
-  //   });
-
-  //   console.log("foundWaterData per current month", foundWaterYearData);
-  //   console.log("year", year);
-  //   console.log("note", note);
-
-  //   return waterMap;
-  // }, [note, year, foundWaterYearData]);
+  }, [dispatch, selectedData.year]);
 
   const dataChart = (monthDays, foundWaterYearData) => {
-    const filteredDataByNote = foundWaterYearData.filter(
-      (el) => el.note === note
-    );
+    const filteredDataByNote =
+      selectedData.note === "total"
+        ? foundWaterYearData
+        : foundWaterYearData.filter((el) => el.note === selectedData.note);
 
     return monthDays.map((month) => {
       const totalSpentForMonth = filteredDataByNote.reduce((acc, el) => {
@@ -82,9 +75,28 @@ function ChartModal({ isOpen, onRequestClose, year, note }) {
       };
     });
   };
+
   const data = dataChart(Object.keys(monthDays), foundWaterYearData || []);
 
-  console.log(data);
+  const yearFieldId = useId();
+  const noteFieldId = useId();
+
+  const initialValues = {
+    year: selectedData.year,
+    note: selectedData.note,
+  };
+
+  const handleSubmit = async (values, actions) => {
+    const formattedValues = {
+      year: values.year.toString(),
+      note: values.note.toString(),
+    };
+    try {
+      setSelectedData(formattedValues);
+    } catch (error) {
+      error("Error. Please try again later");
+    }
+  };
 
   return (
     <>
@@ -100,12 +112,20 @@ function ChartModal({ isOpen, onRequestClose, year, note }) {
             <div className={css.closeIcon}>
               <AiOutlineClose onClick={onRequestClose} />
             </div>
-            <div>
-              <Settings year={year} note={note} />
-            </div>
+
+            <FormikComponent
+              handleSubmit={handleSubmit}
+              initialValues={initialValues}
+              yearFieldId={yearFieldId}
+              noteFieldId={noteFieldId}
+              options={noteOptions}
+              labelYear={"Year:"}
+              labelDestination={"Destination:"}
+              nameYear={"year"}
+              nameNote={"note"}
+            />
 
             <div className={css.chart}>
-              <p> hello</p>
               <ResponsiveContainer width="100%" height="100%">
                 <AreaChart
                   width={620}
@@ -120,10 +140,7 @@ function ChartModal({ isOpen, onRequestClose, year, note }) {
                     </linearGradient>
                   </defs>
                   <XAxis dataKey="month" />
-                  <YAxis
-                    tickFormatter={(value) => `${value}`}
-                    // ticks={[500, 1000, 50000, 10000]}
-                  />
+                  <YAxis tickFormatter={(value) => `${value}`} />
                   <CartesianGrid strokeDasharray="5 5" />
                   <Tooltip />
                   <Area

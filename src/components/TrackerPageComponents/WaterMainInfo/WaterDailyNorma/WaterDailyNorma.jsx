@@ -4,7 +4,6 @@ import { selectUser } from "../../../../redux/auth/selectors";
 import { selectWater } from "../../../../redux/water/selectors";
 
 function WaterDailyNorma() {
-
   const foundWaterData = useSelector(selectWater);
   const user = useSelector(selectUser);
 
@@ -14,34 +13,23 @@ function WaterDailyNorma() {
 
   let plan = user.planToSpend;
   let difference = plan - progress;
-  
+
   return (
     <div className={css.norm}>
       <div className={css.dailyNorma}>
-      <p className={css.waterVolume}>
-        {plan ? plan : "1000"} CZK
-      </p>
-      <p className={css.myDN}> / Month</p>
-      
-    </div>
-    <div className={css.dailyNorma}>
-    <p className={css.waterVolume}>
-      {progress ? progress : "-"} CZK
-    </p>
-    <p className={css.myDN}> spent</p>
-    
+        <p className={css.waterVolume}>{plan ? plan : 0} CZK</p>
+        <p className={css.myDN}> / Month</p>
       </div>
-    <div className={css.dailyNorma}>
-    <p className={css.waterVolume}>
-      {difference ? difference : "-"} CZK
-    </p>
-    <p className={css.myDN}> left</p>
-    
+      <div className={css.dailyNorma}>
+        <p className={css.waterVolume}>{progress ? progress : 0} CZK</p>
+        <p className={css.myDN}> spent</p>
+      </div>
+      <div className={css.dailyNorma}>
+        <p className={css.waterVolume}>{difference ? difference : 0} CZK</p>
+        <p className={css.myDN}> left</p>
       </div>
     </div>
-    
   );
 }
 
 export default WaterDailyNorma;
-

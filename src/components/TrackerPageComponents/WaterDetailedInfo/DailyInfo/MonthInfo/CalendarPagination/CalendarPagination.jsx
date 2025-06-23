@@ -50,8 +50,9 @@ function CalendarPagination({
   }, [setCurrentMonth, setCurrentYear]);
 
   const toggleSetChart = () => {
-    !setChart(!chart);
+    setChart(!chart);
   };
+
   return (
     <div className={css.paginationChart}>
       <div className={css.pagination}>
