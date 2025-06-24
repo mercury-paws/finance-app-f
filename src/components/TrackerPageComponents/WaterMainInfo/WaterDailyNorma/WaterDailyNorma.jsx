@@ -9,11 +9,13 @@ import { selectIn } from "../../../../redux/income/selectors";
 function WaterDailyNorma({ currentMonth, currentYear }) {
   const [modalOpen, setModalOpen] = useState(false);
   const foundWaterData = useSelector(selectWater);
+
   const foundInData = useSelector(selectIn);
   const user = useSelector(selectUser);
-
+  console.log(foundInData);
   let income = Number(foundInData?.[0]?.income ?? 0);
-  let note = foundInData[0].note;
+  let note = foundInData?.[0]?.note;
+  let id = foundInData?.[0]?._id;
   console.log(income);
 
   let progress = foundWaterData
@@ -60,6 +62,7 @@ function WaterDailyNorma({ currentMonth, currentYear }) {
           currentYear={currentYear}
           inc={income}
           description={note}
+          id={id}
         />
       )}
     </div>

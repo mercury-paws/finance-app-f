@@ -60,5 +60,5 @@ export const FeedbackInSchema = Yup.object().shape({
     .required("Required")
     .matches(/^\d+$/, "Must be a number")
     .test("minCheck", "Too small!", (value) => parseInt(value, 10) >= 1)
-    .test("maxCheck", "Too much!", (value) => parseInt(value, 10) <= 50000),
+    .test("maxCheck", "Too much!", (value) => parseInt(value, 10) <= 100000),
 });

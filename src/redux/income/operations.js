@@ -90,12 +90,9 @@ export const updateIn = createAsyncThunk(
       const reduxState = thunkAPI.getState();
       const savedToken = reduxState.auth.accessToken;
       setAuthHeader(savedToken);
-      const response = await axios.patch(
-        `water/${queryDayParams.id}`,
-        updateIn
-      );
+      const response = await axios.patch(`in/${queryDayParams.id}`, updateIn);
 
-      return response.data;
+      return response.data.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }

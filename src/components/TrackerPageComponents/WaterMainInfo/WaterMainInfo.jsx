@@ -6,6 +6,8 @@ import Bar from "./Bar/Bar";
 import { useEffect } from "react";
 import { fetchInMonth } from "../../../redux/income/operations";
 import { useDispatch } from "react-redux";
+import { selectIn } from "../../../redux/income/selectors";
+import { useSelector } from "react-redux";
 
 function WaterMainInfo({
   chosenDay,
@@ -18,7 +20,6 @@ function WaterMainInfo({
   setChosenDay,
 }) {
   const dispatch = useDispatch();
-
   useEffect(() => {
     dispatch(fetchInMonth({ month: currentMonth, year: currentYear }));
   }, [currentMonth, currentYear, dispatch]);
