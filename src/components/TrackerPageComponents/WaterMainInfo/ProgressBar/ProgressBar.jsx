@@ -29,12 +29,6 @@ function ProgressBar({ note, currentMonth }) {
 
   const noteValues = user.note[note];
 
-  // const planToSpend = Number(user.planToSpend) || 0;
-  // const progressNum = Number(totalSpent) || 0;
-
-  // let progressBar =
-  //   planToSpend === 0 ? 0 : Math.round((progressNum / planToSpend) * 100);
-
   let progressBar = Math.round((Number(totalSpent) / Number(noteValues)) * 100);
 
   let difference = noteValues - totalSpent;

@@ -29,7 +29,7 @@ function List({
             <AiOutlineClose onClick={onRequestClose} />
           </div>
           <h4 className={css.doSmth}>
-            Spent {totalSpent} for {note} in {currentMonth}
+            Spent {totalSpent} czk for {note} in {currentMonth}
           </h4>
 
           <div className={css.waterListItems}>

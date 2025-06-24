@@ -2,10 +2,19 @@ import css from "./WaterDailyNorma.module.css";
 import { useSelector } from "react-redux";
 import { selectUser } from "../../../../redux/auth/selectors";
 import { selectWater } from "../../../../redux/water/selectors";
+import Income from "../../../Modals/In/Income";
+import { useState } from "react";
+import { selectIn } from "../../../../redux/income/selectors";
 
-function WaterDailyNorma() {
+function WaterDailyNorma({ currentMonth, currentYear }) {
+  const [modalOpen, setModalOpen] = useState(false);
   const foundWaterData = useSelector(selectWater);
+  const foundInData = useSelector(selectIn);
   const user = useSelector(selectUser);
+
+  let income = Number(foundInData?.[0]?.income ?? 0);
+  let note = foundInData[0].note;
+  console.log(income);
 
   let progress = foundWaterData
     .map((day) => day.spent)
@@ -13,6 +22,16 @@ function WaterDailyNorma() {
 
   let plan = user.planToSpend;
   let difference = plan - progress;
+
+  let saved = income - progress;
+
+  const handleModalOpen = () => {
+    setModalOpen(true);
+  };
+
+  const handleModalClose = () => {
+    setModalOpen(false);
+  };
 
   return (
     <div className={css.norm}>
@@ -28,6 +47,21 @@ function WaterDailyNorma() {
         <p className={css.waterVolume}>{difference ? difference : 0} CZK</p>
         <p className={css.myDN}> left</p>
       </div>
+      <div className={css.dailyNorma} onClick={handleModalOpen}>
+        <p className={css.waterVolume}>{saved ? saved : 0} CZK</p>
+        <p className={css.myDN}> saved</p>
+      </div>
+
+      {modalOpen && (
+        <Income
+          isOpen={modalOpen}
+          onRequestClose={handleModalClose}
+          currentMonth={currentMonth}
+          currentYear={currentYear}
+          inc={income}
+          description={note}
+        />
+      )}
     </div>
   );
 }

@@ -142,50 +142,65 @@ function Setting({ isOpen, onRequestClose }) {
                 </div>
                 <div className={css.rightPart}>
                   <FieldArray name="note">
-                    {({ push, remove, form }) => (
-                      <div className={css.spentDestinationForm}>
-                        <label className={css.label}>Spent destinations:</label>
-                        {form.values.note.map((item, index) => (
-                          <div className={css.fillInFormC} key={index}>
-                            <Field
-                              className={css.fieldC}
-                              name={`note[${index}].key`}
-                              placeholder="Category"
-                            />
-                            <ErrorMessage
-                              name={`note[${index}].key`}
-                              component="span"
-                            />
+                    {({ push, remove, form }) => {
+                      const totalSpent = form.values.note.reduce(
+                        (sum, item) => sum + (Number(item.value) || 0),
+                        0
+                      );
 
-                            <Field
-                              className={css.fieldC}
-                              name={`note[${index}].value`}
-                              placeholder="Amount"
-                              type="number"
-                            />
-                            <ErrorMessage
-                              name={`note[${index}].value`}
-                              component="span"
-                            />
+                      return (
+                        <div className={css.spentDestinationForm}>
+                          <label className={css.label}>
+                            Spent destinations:
+                          </label>
 
-                            <button
-                              type="button"
-                              className={css.btnC}
-                              onClick={() => remove(index)}
-                            >
-                              Remove
-                            </button>
+                          {form.values.note.map((item, index) => (
+                            <div className={css.fillInFormC} key={index}>
+                              <Field
+                                className={css.fieldC}
+                                name={`note[${index}].key`}
+                                placeholder="Category"
+                              />
+                              <ErrorMessage
+                                name={`note[${index}].key`}
+                                component="span"
+                              />
+
+                              <Field
+                                className={css.fieldC}
+                                name={`note[${index}].value`}
+                                placeholder="Amount"
+                                type="number"
+                              />
+                              <ErrorMessage
+                                name={`note[${index}].value`}
+                                component="span"
+                              />
+
+                              <button
+                                type="button"
+                                className={css.btnC}
+                                onClick={() => remove(index)}
+                              >
+                                Remove
+                              </button>
+                            </div>
+                          ))}
+
+                          <button
+                            type="button"
+                            className={css.btnC}
+                            onClick={() => push({ key: "", value: "" })}
+                          >
+                            Add More
+                          </button>
+
+                          <div className={css.totalSpent}>
+                            Total to spend: <strong>{totalSpent}</strong>
                           </div>
-                        ))}
-                        <button
-                          type="button"
-                          className={css.btnC}
-                          onClick={() => push({ key: "", value: "" })}
-                        >
-                          Add More
-                        </button>
-                      </div>
-                    )}
+                        </div>
+                      );
+                    }}
                   </FieldArray>
                 </div>
               </div>
