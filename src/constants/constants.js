@@ -92,3 +92,5 @@ export const selectYear = [
   "2031",
   "2032",
 ];
+
+export const ICON_COLOR = "green";

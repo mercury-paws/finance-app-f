@@ -44,6 +44,7 @@ function WaterDetailedInfo({
         setCurrentDate={setCurrentDate}
       />
       <Settings />
+      <div> hello</div>
       <MonthInfo
         chosenDate={chosenDate}
         currentMonth={currentMonth}

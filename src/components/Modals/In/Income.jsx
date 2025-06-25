@@ -2,14 +2,17 @@ import css from "./Income.module.css";
 import { Formik, Form, ErrorMessage, Field } from "formik";
 import { useId, useState } from "react";
 import { getMonthNameByIndex } from "../../../constants/constants";
-import { deleteIn, fetchInMonth } from "../../../redux/income/operations";
 import Modal from "react-modal";
-import { addIn, updateIn } from "../../../redux/income/operations";
-import { useDispatch, useSelector } from "react-redux";
+import {
+  addIn,
+  updateIn,
+  deleteIn,
+  fetchInMonth,
+} from "../../../redux/income/operations";
+
+import { useDispatch } from "react-redux";
 import toast, { Toaster } from "react-hot-toast";
 import { AiOutlineClose } from "react-icons/ai";
-import { getCurrentTimeString } from "../../../constants/constants";
-import { selectUser } from "../../../redux/auth/selectors";
 import { FeedbackInSchema as FeedbackSchema } from "../../../validation/Schemas";
 
 Modal.setAppElement("#root");
@@ -57,13 +60,13 @@ function Income({
       year: currentYear,
     };
     try {
-      const result = await dispatch(
+      await dispatch(
         addIn({
           newAddIn: formattedValues,
           queryDayParams,
         })
       ).unwrap();
-      console.log("Update success:", result);
+
       await dispatch(fetchInMonth(queryDayParams)).unwrap();
 
       toast.success("Information was added");
@@ -92,7 +95,12 @@ function Income({
         })
       ).unwrap();
       console.log(result);
-      await dispatch(fetchInMonth(queryDayParams)).unwrap();
+      await dispatch(
+        fetchInMonth({
+          month: currentMonth,
+          year: currentYear,
+        })
+      ).unwrap();
 
       toast.success("Income was amended");
       actions.resetForm();
@@ -119,14 +127,14 @@ function Income({
         <div className={css.closeIcon}>
           <AiOutlineClose onClick={onRequestClose} />
         </div>
-        <h4 className={css.header}>Add you income in {currentMonth}</h4>
+        <h4 className={css.header}>Income in {currentMonth}</h4>
         <Formik
           initialValues={initialValues}
           enableReinitialize={true}
           onSubmit={handleSubmit}
           validationSchema={FeedbackSchema}
         >
-          {({ handleSubmit, values }) => (
+          {({ values, resetForm }) => (
             <Form className={css.form}>
               <div className={css.valueBlock}>
                 <label htmlFor={incomeFieldId} className={css.value}>
@@ -144,6 +152,9 @@ function Income({
                   name="income"
                   component="span"
                 />
+                <label htmlFor={noteFieldId} className={css.value}>
+                  Enter the note:
+                </label>
                 <Field
                   className={css.field}
                   type="text"
@@ -157,23 +168,26 @@ function Income({
                   component="span"
                 />
               </div>
-              <button className={css.btn} type="submit">
-                Save
-              </button>
-              <button
-                className={css.btn}
-                type="button"
-                onClick={() => handleAmend(values)}
-              >
-                Amend
-              </button>
-              <button
-                className={css.btn}
-                type="button"
-                onClick={() => handleDelete(values)}
-              >
-                Delete
-              </button>
+              <div className={css.btnBlock}>
+                <button className={css.btn} type="submit">
+                  Save
+                </button>
+                <button
+                  className={css.btn}
+                  type="button"
+                  onClick={() => handleAmend(values, { resetForm })}
+                >
+                  Amend
+                </button>
+                <button
+                  className={css.btn}
+                  type="button"
+                  onClick={handleDelete}
+                >
+                  Delete
+                </button>
+              </div>
+
               <Toaster />
             </Form>
           )}

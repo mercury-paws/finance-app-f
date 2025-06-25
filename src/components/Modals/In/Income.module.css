@@ -155,6 +155,15 @@
   text-align: center;
 }
 
+.btnBlock {
+  display: flex;
+  flex-direction: row;
+  gap: 3px;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
 @media screen and (min-width: 768px) {
   .modalContent {
     top: 186px;

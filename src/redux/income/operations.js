@@ -58,6 +58,7 @@ export const addIn = createAsyncThunk(
       const response = await axios.post("in/add", newAddIn, {
         params: queryDayParams,
       });
+      console.log("response.data.data", response.data.data);
       return response.data.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -84,14 +85,14 @@ export const deleteIn = createAsyncThunk(
 // // update the existing contact
 
 export const updateIn = createAsyncThunk(
-  "in/update",
+  "in/updateIn",
   async ({ updateIn, queryDayParams }, thunkAPI) => {
     try {
       const reduxState = thunkAPI.getState();
       const savedToken = reduxState.auth.accessToken;
       setAuthHeader(savedToken);
       const response = await axios.patch(`in/${queryDayParams.id}`, updateIn);
-
+      console.log("update", response.data.data);
       return response.data.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

@@ -7,6 +7,7 @@ import { useState, useEffect } from "react";
 import { selectUser } from "../../redux/auth/selectors.js";
 import toast, { Toaster } from "react-hot-toast";
 import Logo from "../../components/Logo/Logo.jsx";
+import { useRef } from "react";
 
 function HomePage() {
   let date = calculateFormattedDate();
@@ -17,16 +18,18 @@ function HomePage() {
   const [currentDate, setCurrentDate] = useState("Today");
   const user = useSelector(selectUser);
 
+  const hasShownToast = useRef(false);
+
   useEffect(() => {
-    if (user) {
+    if (user && !hasShownToast.current) {
       toast.success("User data updated!");
+      hasShownToast.current = true;
     }
   }, [user]);
 
   return (
     <>
       <div className={css.startPage}>
-        <Toaster />
         <div className={css.logo}>
           <Logo />
         </div>
@@ -50,6 +53,7 @@ function HomePage() {
           currentDate={currentDate}
           setChosenDay={setChosenDay}
         />
+        <Toaster />
       </div>
     </>
   );

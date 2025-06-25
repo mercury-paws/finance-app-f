@@ -13,6 +13,7 @@ function WaterDailyNorma({ currentMonth, currentYear }) {
   const foundInData = useSelector(selectIn);
   const user = useSelector(selectUser);
   console.log(foundInData);
+
   let income = Number(foundInData?.[0]?.income ?? 0);
   let note = foundInData?.[0]?.note;
   let id = foundInData?.[0]?._id;

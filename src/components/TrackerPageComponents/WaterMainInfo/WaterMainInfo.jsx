@@ -1,13 +1,11 @@
-import AddWaterBtn from "./AddWaterBtn/AddWaterBtn";
 import WaterDailyNorma from "./WaterDailyNorma/WaterDailyNorma";
 import WaterProgressBar from "./WaterProgressBar/WaterProgressBar";
 import css from "./WaterMainInfo.module.css";
 import Bar from "./Bar/Bar";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { fetchInMonth } from "../../../redux/income/operations";
 import { useDispatch } from "react-redux";
-import { selectIn } from "../../../redux/income/selectors";
-import { useSelector } from "react-redux";
+import useBackgroundSwiper from "../../../utils/Swiper";
 
 function WaterMainInfo({
   chosenDay,
@@ -20,21 +18,33 @@ function WaterMainInfo({
   setChosenDay,
 }) {
   const dispatch = useDispatch();
+  const backgroundStyle = useBackgroundSwiper();
+
+  const lastFetched = useRef({ month: null, year: null });
+
   useEffect(() => {
-    dispatch(fetchInMonth({ month: currentMonth, year: currentYear }));
+    if (
+      lastFetched.current.month === currentMonth &&
+      lastFetched.current.year === currentYear
+    ) {
+      return;
+    }
+
+    dispatch(fetchInMonth({ month: currentMonth, year: currentYear }))
+      .unwrap()
+      .then((result) => {
+        console.log("fetchInMonth result:", result);
+      })
+      .catch((error) => {
+        console.error("fetchInMonth error:", error);
+      });
   }, [currentMonth, currentYear, dispatch]);
 
   return (
-    <div className={css.waterMainInfo}>
+    <div className={css.waterMainInfo} style={backgroundStyle}>
       <WaterDailyNorma currentMonth={currentMonth} currentYear={currentYear} />
       <WaterProgressBar />
       <Bar currentMonth={currentMonth} />
-
-      {/* <AddWaterBtn
-        chosenDay={chosenDay}
-        currentMonth={currentMonth}
-        currentYear={currentYear}
-      /> */}
     </div>
   );
 }

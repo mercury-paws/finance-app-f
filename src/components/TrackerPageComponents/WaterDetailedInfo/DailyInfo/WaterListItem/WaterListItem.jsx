@@ -1,15 +1,12 @@
 import { useState } from "react";
 import css from "./WaterListItem.module.css";
-import { useSelector } from "react-redux";
-import { selectDayWater } from "../../../../../redux/water/selectors.js";
+import { GrMoney } from "react-icons/gr";
+import { ICON_COLOR } from "../../../../../constants/constants.js";
 
-function WaterListItem({ spent, note, day, details}) {
-
+function WaterListItem({ spent, note, day, details }) {
   return (
     <div className={css.waterItem}>
-      <svg className={css.cupIcon} width="32" height="36">
-        <use href="/symbol-defs.svg#cup"></use>
-      </svg>
+      <GrMoney color={ICON_COLOR} size={28} />
       <div className={css.mlTime}>
         <p className={css.ml}>{spent} czk</p>
         <p className={css.time}>{details}</p>
@@ -20,6 +17,3 @@ function WaterListItem({ spent, note, day, details}) {
 }
 
 export default WaterListItem;
-
-
-

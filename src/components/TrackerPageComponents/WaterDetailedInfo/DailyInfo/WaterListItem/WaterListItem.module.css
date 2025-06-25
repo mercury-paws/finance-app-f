@@ -14,18 +14,6 @@
   border: 1px solid #000;
 }
 
-.cupIcon {
-  background-color: transparent;
-  fill: #9be1a0;
-}
-
-/* 
-.mlTime {
-  display: flex;
-  flex-direction: column; */
-/* gap: 8px; */
-/* } */
-
 .btnBlock {
   display: flex;
   flex-direction: column;
@@ -66,11 +54,6 @@
     border-radius: 15px;
   }
 
-  .cupIcon {
-    background-color: transparent;
-    fill: #9be1a0;
-  }
-
   .btnBlock {
     display: flex;
     flex-direction: column;
@@ -97,4 +80,3 @@
     height: 18px;
   }
 }
-/* @media screen and (min-width: 1200px) */

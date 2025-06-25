@@ -20,6 +20,7 @@ const slice = createSlice({
         state.loading = true;
       })
       .addCase(fetchInMonth.fulfilled, (state, action) => {
+        console.log("slice fetchInMonth fulfilled with:", action.payload);
         state.items = action.payload;
         state.loading = false;
       })
@@ -47,7 +48,6 @@ const slice = createSlice({
       .addCase(addIn.fulfilled, (state, action) => {
         const newDayItem = action.payload;
         state.items.push(newDayItem);
-        state.dayItems.push(newDayItem);
         state.loading = false;
       })
       .addCase(addIn.rejected, (state) => {
@@ -81,9 +81,6 @@ const slice = createSlice({
       .addCase(updateIn.fulfilled, (state, action) => {
         const updatedWater = action.payload;
         state.items = state.items.map((item) =>
-          item._id === updatedWater._id ? updatedWater : item
-        );
-        state.dayItems = state.dayItems.map((item) =>
           item._id === updatedWater._id ? updatedWater : item
         );
         state.loading = false;

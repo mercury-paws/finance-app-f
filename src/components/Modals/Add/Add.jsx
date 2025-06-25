@@ -1,6 +1,5 @@
 import css from "./Add.module.css";
 import { Formik, Form, ErrorMessage, Field } from "formik";
-import * as Yup from "yup";
 import { useId, useState } from "react";
 import { getMonthNameByIndex } from "../../../constants/constants";
 import { fetchWaterDay } from "../../../redux/water/operations";
@@ -16,11 +15,6 @@ import { FeedbackSchema } from "../../../validation/Schemas";
 Modal.setAppElement("#root");
 
 const now = new Date();
-// let hours = now.getHours();
-// let minutes = now.getMinutes();
-// hours = hours < 10 ? `0${hours}` : hours;
-// minutes = minutes < 10 ? `0${minutes}` : minutes;
-// const time = `${hours}:${minutes}`;
 
 const day = now.getDate();
 const month = now.getMonth();
@@ -65,6 +59,7 @@ function Add({ isOpen, onRequestClose, chosenDay, currentMonth, currentYear }) {
       month: currentMonth,
       year: currentYear,
     };
+
     try {
       await dispatch(
         addWater({
@@ -72,6 +67,7 @@ function Add({ isOpen, onRequestClose, chosenDay, currentMonth, currentYear }) {
           queryDayParams,
         })
       ).unwrap();
+
       await dispatch(fetchWaterDay(queryDayParams)).unwrap();
 
       toast.success("Information was added");
@@ -86,7 +82,7 @@ function Add({ isOpen, onRequestClose, chosenDay, currentMonth, currentYear }) {
     <Modal
       isOpen={isOpen}
       onRequestClose={onRequestClose}
-      contentLabel="All"
+      contentLabel="add info"
       overlayClassName={css.overlay}
       className={css.modalContent}
     >
@@ -94,8 +90,7 @@ function Add({ isOpen, onRequestClose, chosenDay, currentMonth, currentYear }) {
         <div className={css.closeIcon}>
           <AiOutlineClose onClick={onRequestClose} />
         </div>
-        <h4 className={css.header}>Add number</h4>
-        <p className={css.doSmth}>Choose a value:</p>
+        <h4 className={css.header}>Record an Expense</h4>
 
         <Formik
           initialValues={initialValues}
@@ -123,7 +118,7 @@ function Add({ isOpen, onRequestClose, chosenDay, currentMonth, currentYear }) {
             </div>
             <div className={css.valueBlock}>
               <label htmlFor={spentFieldId} className={css.value}>
-                Enter the vamount spent:
+                Enter the amount spent:
               </label>
               <Field
                 className={css.field}
@@ -140,7 +135,7 @@ function Add({ isOpen, onRequestClose, chosenDay, currentMonth, currentYear }) {
             </div>
             <div className={css.valueBlock}>
               <label htmlFor={noteFieldId} className={css.value}>
-                Enter the note:
+                Enter the destination:
               </label>
               <Field
                 className={css.field}
@@ -148,13 +143,16 @@ function Add({ isOpen, onRequestClose, chosenDay, currentMonth, currentYear }) {
                 name="note"
                 id={noteFieldId}
               >
-                <option value="">-- Select a note --</option>
+                <option value="">-- Select a destination --</option>
                 {noteOptions.map((note, index) => (
                   <option key={index} value={note}>
                     {note}
                   </option>
                 ))}
               </Field>
+              <label htmlFor={detailsFieldId} className={css.value}>
+                Enter the note:
+              </label>
               <Field
                 className={css.field}
                 type="text"

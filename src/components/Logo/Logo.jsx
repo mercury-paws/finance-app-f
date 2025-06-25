@@ -5,7 +5,7 @@ function Logo() {
   return (
     <div className={css.logoContainer}>
       <NavLink to="/">
-        <p className={css.logo}>FinTrack</p>
+        <p className={css.logo}>Trail of Coins</p>
       </NavLink>
     </div>
   );

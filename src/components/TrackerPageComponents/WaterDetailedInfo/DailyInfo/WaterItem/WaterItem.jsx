@@ -6,8 +6,19 @@ import Edit from "../../../../Modals/Edit/Edit.jsx";
 import Delete from "../../../../Modals/Delete/Delete.jsx";
 import { useSelector } from "react-redux";
 import { selectDayWater } from "../../../../../redux/water/selectors.js";
+import { GrMoney } from "react-icons/gr";
+import { ICON_COLOR } from "../../../../../constants/constants.js";
 
-function WaterItem({ spent, note, time, id, currentMonth, chosenDay, currentYear, details }) {
+function WaterItem({
+  spent,
+  note,
+  time,
+  id,
+  currentMonth,
+  chosenDay,
+  currentYear,
+  details,
+}) {
   const [editModalOpen, setEditModalOpen] = useState(false);
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
 
@@ -31,16 +42,19 @@ function WaterItem({ spent, note, time, id, currentMonth, chosenDay, currentYear
 
   return (
     <div className={css.waterItem}>
-      <svg className={css.cupIcon} width="32" height="36">
-        <use href="/symbol-defs.svg#cup"></use>
-      </svg>
+      <GrMoney color={ICON_COLOR} size={28} />
       <div className={css.mlTime}>
         <p className={css.ml}>{spent} czk</p>
         <div className={css.textNote}>
           <p className={css.time}>{note}</p>
-          <p className={css.time}>  {details?.length > 10 ? `${details.slice(0, 10)}...` : details || ""}</p>
+          <p className={css.time}>
+            {" "}
+            {details?.length > 10
+              ? `${details.slice(0, 10)}...`
+              : details || ""}
+          </p>
         </div>
-        
+
         {/* <p className={css.time}>{time}</p> */}
       </div>
       <div className={css.btnBlock}>

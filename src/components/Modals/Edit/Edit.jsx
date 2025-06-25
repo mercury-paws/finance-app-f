@@ -1,6 +1,6 @@
 import css from "./Edit.module.css";
 import { Formik, Form, ErrorMessage, Field } from "formik";
-import * as Yup from "yup";
+import toast, { Toaster } from "react-hot-toast";
 import { useId, useState } from "react";
 import Modal from "react-modal";
 import { useDispatch, useSelector } from "react-redux";
@@ -43,7 +43,7 @@ function Edit({
     details: detailsVal,
   };
 
-  const handleSubmit = (values, actions) => {
+  const handleSubmit = async (values, actions) => {
     const formattedValues = {
       ...values,
       spent: values.spent.toString(),
@@ -55,34 +55,35 @@ function Edit({
       id,
     };
 
-    dispatch(
-      updateWater({
-        updateWater: formattedValues,
-        queryDayParams,
-      })
-    )
-      .then(() => {
-        // Refresh the water data for the selected day after adding
-        dispatch(
-          fetchWaterDay({
-            day: chosenDay,
-            month: currentMonth,
-            year: currentYear,
-          })
-        );
-      })
-      .then(() => {
-        // Refresh the water data for the selected day after adding
-        dispatch(
-          fetchWaterMonth({
-            month: currentMonth,
-            year: currentYear,
-          })
-        );
-      });
+    try {
+      await dispatch(
+        updateWater({
+          updateWater: formattedValues,
+          queryDayParams,
+        })
+      ).unwrap();
 
-    actions.resetForm();
-    onRequestClose();
+      await dispatch(
+        fetchWaterDay({
+          day: chosenDay,
+          month: currentMonth,
+          year: currentYear,
+        })
+      ).unwrap();
+
+      await dispatch(
+        fetchWaterMonth({
+          month: currentMonth,
+          year: currentYear,
+        })
+      ).unwrap();
+
+      toast.success("Information was added");
+      actions.resetForm();
+      onRequestClose();
+    } catch (error) {
+      toast.error("Error. Please try again later");
+    }
   };
 
   const timeFieldId = useId();
@@ -94,7 +95,7 @@ function Edit({
     <Modal
       isOpen={isOpen}
       onRequestClose={onRequestClose}
-      contentLabel="delete"
+      contentLabel="edit info"
       overlayClassName={css.overlay}
       className={css.modalContent}
     >
@@ -102,14 +103,7 @@ function Edit({
         <div className={css.closeIcon}>
           <AiOutlineClose onClick={onRequestClose} />
         </div>
-        <h4 className={css.header}>Edit the entered amount of water</h4>
-        <p className={css.doSmth}>Correct entered data:</p>
-        {/* <p className={css.amount}>Amount of water:</p>
-        <div className={css.addWaterBlock}>
-          {<FaMinusCircle className={css.minus} onClick={decreaseValue} />}
-          <p className={css.ml}>50 ml</p>
-          {<FaPlusCircle className={css.plus} onClick={addValue} />}
-        </div> */}
+        <h4 className={css.header}>Modify Expense Entry</h4>
 
         <Formik
           initialValues={initialValues}
@@ -154,7 +148,7 @@ function Edit({
             </div>
             <div className={css.valueBlock}>
               <label htmlFor={noteFieldId} className={css.value}>
-                Amend the note:
+                Amend the destination:
               </label>
               <Field
                 className={css.field}
@@ -162,7 +156,7 @@ function Edit({
                 name="note"
                 id={noteFieldId}
               >
-                <option value="">-- Select a note --</option>
+                <option value="">-- Select a destination --</option>
                 {noteOptions.map((note, index) => (
                   <option key={index} value={note}>
                     {note}
@@ -174,6 +168,9 @@ function Edit({
                 name="note"
                 component="span"
               />
+              <label htmlFor={detailsFieldId} className={css.value}>
+                Amend the note:
+              </label>
               <Field
                 className={css.field}
                 type="text"
@@ -190,6 +187,7 @@ function Edit({
             <button className={css.btn} type="submit">
               Save
             </button>
+            <Toaster />
           </Form>
         </Formik>
       </div>
