@@ -5,6 +5,7 @@ import img3 from "../assets/img/comp/3.jpg";
 import img4 from "../assets/img/comp/4.jpg";
 import img5 from "../assets/img/comp/5.jpg";
 import img6 from "../assets/img/comp/6.jpg";
+import img7 from "../assets/img/comp/7.jpg";
 
 const images = [
   `url(${img1})`,
@@ -13,6 +14,7 @@ const images = [
   `url(${img4})`,
   `url(${img5})`,
   `url(${img6})`,
+  `url(${img7})`,
 ];
 
 function useBackgroundSwiper() {
