@@ -1,17 +1,11 @@
 .mainPic {
   width: 343px;
-  height: 353px;
+  min-height: 353px;
+  border-radius: 30px;
 }
 
 .pic {
-  background-image: linear-gradient(
-      to bottom,
-      rgba(17, 17, 17, 0) 0%,
-      rgba(17, 17, 17, 0.4) 100%
-    ),
-    url(../../../assets/img/mob/heroMob.jpg);
-  border-radius: 30px;
-  height: 353px;
+  min-height: 353px;
 }
 
 @media screen and (min-width: 768px) {
@@ -21,12 +15,6 @@
   }
 
   .pic {
-    background-image: linear-gradient(
-        to bottom,
-        rgba(17, 17, 17, 0) 0%,
-        rgba(17, 17, 17, 0.4) 100%
-      ),
-      url(../../../assets/img/tablet/heroTablet.jpg);
     border-radius: 30px;
     height: 446px;
   }
@@ -39,12 +27,6 @@
   }
 
   .pic {
-    background-image: linear-gradient(
-        to bottom,
-        rgba(17, 17, 17, 0) 0%,
-        rgba(17, 17, 17, 0.4) 100%
-      ),
-      url(../../../assets/img/comp/heroComp.jpg);
     border-radius: 30px;
     height: 736px;
   }

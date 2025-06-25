@@ -1,9 +1,7 @@
 .signInForm {
   padding: 216px 16px 216px 16px;
   width: 311px;
-
   border-radius: 30px;
-
   background-color: #f0eff4;
 }
 
@@ -54,13 +52,13 @@
 
 .btn {
   box-sizing: border-box;
-
+  color: var(--colorbackgr);
   font-weight: 700;
   font-size: 14px;
   line-height: 129%;
   letter-spacing: -0.01em;
   text-align: center;
-  background-color: #9be1a0;
+  background-color: var(--colorbtn);
   border-radius: 30px;
   margin-top: 15px;
   width: 311px;

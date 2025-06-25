@@ -32,15 +32,12 @@ function SignIn() {
     dispatch(logIn(values))
       .unwrap()
       .then((data) => {
-  
         actions.resetForm();
       })
       .catch((error) => {
         toast.error("Login failed: ", error);
         console.error("Login failed:", error);
-    
       });
-
   };
 
   const emailFieldId = useId();
@@ -104,7 +101,7 @@ function SignIn() {
       <p className={css.offer}>
         Don't have an account?{" "}
         <NavLink to="/signup" className={css.signUp}>
-          Sing Up
+          Sign Up
         </NavLink>{" "}
       </p>
     </div>

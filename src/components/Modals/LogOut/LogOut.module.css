@@ -75,7 +75,8 @@ max-height: 100%; */
   width: 304px;
   height: 46px;
   border: none;
-  background-color: #9be1a0;
+  color: var(--colorbackgr);
+  background-color: var(--colorbtn);
   font-weight: 700;
   font-size: 14px;
   line-height: 129%;

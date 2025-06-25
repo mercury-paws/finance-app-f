@@ -16,7 +16,7 @@
 
 .cupIcon {
   background-color: transparent;
-  fill: #9be1a0;
+  fill: var(--colorbtn);
 }
 
 /* .mlTime {
@@ -66,18 +66,6 @@
     border: none;
     border-radius: 15px;
   }
-
-  .cupIcon {
-    background-color: transparent;
-    fill: #9be1a0;
-  }
-
-  /* 
-  .mlTime {
-    display: flex;
-    flex-direction: column; */
-  /* gap: 8px; */
-  /* } */
 
   .btnBlock {
     display: flex;

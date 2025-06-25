@@ -18,7 +18,7 @@
   font-size: 14px;
   line-height: 129%;
   letter-spacing: -0.01em;
-  color: #fff;
+  color: var(--colorbackgr);
   border-radius: 30px;
   padding: 0 15px;
 }

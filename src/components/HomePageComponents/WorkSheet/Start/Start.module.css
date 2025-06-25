@@ -1,22 +1,10 @@
 .homePage {
   padding: 116px 16px 0px 16px;
   width: 311px;
-
   border-radius: 30px;
   height: 335px;
   background-color: #f0eff4;
 }
-
-/* .startPage > :nth-child(1) {
-  
-}
-
-.startPage > :nth-child(2) {
-  width: 343px;
-  height: 353px;
-  border-radius: 30px;
-  background-color: #f0eff4;
-} */
 
 .homePageSlogan {
   font-family: var(--font-family);
@@ -35,12 +23,11 @@
   padding-bottom: 64px;
 }
 .homePageRegister {
-  /* width: 116px;
-  height: 46px; */
   padding: 14px 19px;
   border: none;
+  color: var(--colorbackgr);
   border-radius: 30px;
-  background-color: #9be1a0;
+  background-color: var(--colorbtn);
   font-family: var(--font-family);
   font-weight: 700;
   font-size: 14px;
@@ -50,7 +37,7 @@
   transition: background-color 0.4s ease-in-out;
 }
 .homePageRegister:hover {
-  background-color: #80d385;
+  background-color: var(--coloractive);
   color: black;
 }
 .homePageSignIn {
@@ -63,12 +50,14 @@
   line-height: 129%;
   letter-spacing: -0.01em;
   text-align: center;
-  transition: color 0.4s ease-in-out, border 0.4s ease-in-out;
+  transition:
+    color 0.4s ease-in-out,
+    border 0.4s ease-in-out;
 }
 
 .homePageSignIn:hover {
-  color: #9be1a0;
-  border: 1px solid #9be1a0;
+  color: var(--coloractive);
+  border: 1px solid var(--colorbtn);
 }
 
 .homePageBtns {

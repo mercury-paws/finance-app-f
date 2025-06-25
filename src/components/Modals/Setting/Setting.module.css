@@ -221,7 +221,8 @@
   padding: 14px 40px;
   width: 116px;
   height: 46px;
-  background-color: #9be1a0;
+  color: var(--colorbackgr);
+  background-color: var(--colorbtn);
   font-weight: 700;
   font-size: 14px;
   line-height: 129%;

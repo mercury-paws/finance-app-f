@@ -40,7 +40,7 @@ function WaterDailyNorma({ currentMonth, currentYear }) {
     <div className={css.norm}>
       <div className={css.dailyNorma}>
         <p className={css.waterVolume}>{plan ? plan : 0} CZK</p>
-        <p className={css.myDN}> / Month</p>
+        <p className={css.myDN}> month</p>
       </div>
       <div className={css.dailyNorma}>
         <p className={css.waterVolume}>{progress ? progress : 0} CZK</p>

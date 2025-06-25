@@ -1,20 +1,13 @@
 :root {
-  font-family: "Poppins", sans-serif;
+  font-family: "Roboto", sans-serif;
   color: #323f47;
-  /* background-color: #f0eff4; */
+  --colorbtn: #08068f;
+  --colorbackgr: #fff;
+  --coloractive: #2528e9;
+  --colorMainQuote: bisque;
+  --quoteFooter: #ccc;
+  --colorProgress: #6fca75;
 }
-
-/* @media screen and (min-width: 768px) */
-/* @media screen and (min-width: 1200px) */
-
-/* a {
-  font-weight: 500;
-  color: #ff9564;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #f28553;
-} */
 
 body {
   font-size: 14px;
@@ -22,7 +15,7 @@ body {
   font-weight: 400;
   line-height: normal;
   letter-spacing: -0.02em;
-  background-color: #fff;
+  background-color: var(--colorbackgr);
 }
 a {
   text-decoration-line: none;
@@ -33,7 +26,7 @@ a {
 a:hover,
 a:focus,
 a:active {
-  color: #fd9222;
+  color: var(--coloractive);
 }
 
 li {
@@ -76,7 +69,7 @@ img {
 }
 
 .stroke {
-  color: #9be1a0;
+  color: var(--coloractive);
 }
 button {
   cursor: pointer;

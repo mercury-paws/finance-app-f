@@ -35,7 +35,7 @@
 .progressBarLine {
   position: absolute;
   height: 5px;
-  background-color: #9be1a0;
+  background-color: var(--colorProgress);
 }
 .progressNumbers {
   font-weight: 400;

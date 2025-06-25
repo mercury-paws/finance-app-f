@@ -5,7 +5,6 @@ import Bar from "./Bar/Bar";
 import { useEffect, useRef } from "react";
 import { fetchInMonth } from "../../../redux/income/operations";
 import { useDispatch } from "react-redux";
-import useBackgroundSwiper from "../../../utils/Swiper";
 
 function WaterMainInfo({
   chosenDay,
@@ -18,7 +17,6 @@ function WaterMainInfo({
   setChosenDay,
 }) {
   const dispatch = useDispatch();
-  const backgroundStyle = useBackgroundSwiper();
 
   const lastFetched = useRef({ month: null, year: null });
 
@@ -41,7 +39,7 @@ function WaterMainInfo({
   }, [currentMonth, currentYear, dispatch]);
 
   return (
-    <div className={css.waterMainInfo} style={backgroundStyle}>
+    <div className={css.waterMainInfo}>
       <WaterDailyNorma currentMonth={currentMonth} currentYear={currentYear} />
       <WaterProgressBar />
       <Bar currentMonth={currentMonth} />

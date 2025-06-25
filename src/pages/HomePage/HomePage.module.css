@@ -13,20 +13,6 @@
   left: 32px;
 }
 
-/* .startPage > :nth-child(1) {
-  width: 343px;
-  border-radius: 30px;
-  height: 411px;
-  background-color: #f0eff4;
-}
-
-.startPage > :nth-child(2) {
-  width: 343px;
-  height: 353px;
-  border-radius: 30px;
-  background-color: #f0eff4;
-} */
-
 @media screen and (min-width: 768px) {
   .startPage {
     width: 704px;
@@ -39,18 +25,4 @@
     flex-direction: row;
     gap: 32;
   }
-
-  /* .startPage > :nth-child(2) {
-    width: 672px;
-    border-radius: 30px;
-    height: 736px;
-    background-color: #f0eff4;
-  }
-
-  .startPage > :nth-child(3) {
-    width: 672px;
-    height: 736px;
-    border-radius: 30px;
-    background-color: #f0eff4;
-  } */
 }

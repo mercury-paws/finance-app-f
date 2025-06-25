@@ -1,16 +1,14 @@
 import css from "./AddInfo.module.css";
-import { Link } from "react-router-dom";
+
 function AddInfo() {
   return (
     <div className={css.addInfo}>
-      <div className={css.dotDriveContainer}>
-        <div className={css.dot}></div>
-        <p className={css.drive}>Habit drive</p>
+      <div className={css.square}>
+        <blockquote className={css.quote}>
+          "It's not your salary that makes you rich, it's your spending habits."
+          <footer>- Charles A. Jaffe</footer>
+        </blockquote>
       </div>
-      <Link to="/signin" className={css.statistics}>
-        View statistics
-      </Link>
-      <p className={css.rating}>Personal rate settings</p>
     </div>
   );
 }

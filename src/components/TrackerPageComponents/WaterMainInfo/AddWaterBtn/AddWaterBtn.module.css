@@ -22,7 +22,7 @@
   transition: color 0.4s ease-in-out;
 }
 .btn:hover {
-  color: #9be1a0;
+  color: var(--coloractive);
 }
 
 @media screen and (min-width: 768px) {
