@@ -1,0 +1,30 @@
+.quoteContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  justify-content: center;
+  align-items: end;
+  padding: 5px 20px;
+  height: 150px;
+}
+
+.quoteText {
+  font-family: Georgia, serif;
+  font-size: 1rem;
+  font-style: italic;
+}
+.quoteAuthor {
+  font-size: 0.8rem;
+  color: #ccc;
+}
+@media screen and (min-width: 768px) {
+  .quoteText {
+    font-family: Georgia, serif;
+    font-size: 1.1rem;
+    font-style: italic;
+  }
+  .quoteAuthor {
+    font-size: 0.9rem;
+    color: #ccc;
+  }
+}

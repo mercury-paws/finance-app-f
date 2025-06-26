@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+
 import img1 from "../assets/img/comp/1.jpg";
 import img2 from "../assets/img/comp/2.jpg";
 import img3 from "../assets/img/comp/3.jpg";
@@ -16,7 +17,6 @@ const images = [
   `url(${img6})`,
   `url(${img7})`,
 ];
-
 function useBackgroundSwiper() {
   const [bgIndex, setBgIndex] = useState(0);
 
@@ -29,7 +29,7 @@ function useBackgroundSwiper() {
   }, []);
 
   return {
-    backgroundImage: images[bgIndex],
+    backgroundImage: `${images[bgIndex]}`,
     backgroundSize: "cover",
     backgroundPosition: "center",
     transition: "background-image 1s ease-in-out",

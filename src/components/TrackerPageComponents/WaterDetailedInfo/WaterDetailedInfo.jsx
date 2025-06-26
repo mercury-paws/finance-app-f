@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import { fetchWaterDay } from "../../../redux/water/operations.js";
 import css from "./WaterDetailedInfo.module.css";
 import Settings from "./Settings/Settings.jsx";
+import Quotes from "./Quotes/Quotes.jsx";
 
 function WaterDetailedInfo({
   chosenDay,
@@ -44,7 +45,7 @@ function WaterDetailedInfo({
         setCurrentDate={setCurrentDate}
       />
       <Settings />
-      <div> hello</div>
+      <Quotes />
       <MonthInfo
         chosenDate={chosenDate}
         currentMonth={currentMonth}
