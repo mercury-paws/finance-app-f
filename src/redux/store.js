@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import waterReducer from "./water/slice.js";
+import waterReducer from "./spent/slice.js";
 import authReducer from "./auth/slice.js";
 import inReducer from "./income/slice.js";
 import {
@@ -24,7 +24,7 @@ const persistedAuthReducer = persistReducer(authPersistConfig, authReducer);
 
 export const store = configureStore({
   reducer: {
-    water: waterReducer,
+    spent: waterReducer,
     auth: persistedAuthReducer,
     in: inReducer,
   },

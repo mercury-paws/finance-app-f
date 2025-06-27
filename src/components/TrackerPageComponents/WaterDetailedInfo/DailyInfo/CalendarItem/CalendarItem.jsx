@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 
-import { fetchWaterDay } from "../../../../../redux/water/operations";
+import { fetchWaterDay } from "../../../../../redux/spent/operations";
 
 import css from "./CalendarItem.module.css";
 import clsx from "clsx";
@@ -14,8 +14,6 @@ function CalendarItem({ day, chosenDate, waterAmount, currentMonthYear }) {
   const monthNumber = today.getMonth() + 1;
   const yearNumber = today.getFullYear();
   const monthNumberCalc = getMonthIndex(currentMonthYear.month) + 1;
-
-
 
   const currentDay = {
     day,

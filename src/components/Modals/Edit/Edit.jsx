@@ -4,11 +4,11 @@ import toast, { Toaster } from "react-hot-toast";
 import { useId, useState } from "react";
 import Modal from "react-modal";
 import { useDispatch, useSelector } from "react-redux";
-import { updateWater } from "../../../redux/water/operations";
+import { updateWater } from "../../../redux/spent/operations";
 import {
   fetchWaterDay,
   fetchWaterMonth,
-} from "../../../redux/water/operations";
+} from "../../../redux/spent/operations";
 import { AiOutlineClose } from "react-icons/ai";
 import { selectUser } from "../../../redux/auth/selectors";
 import { FeedbackSchema } from "../../../validation/Schemas";

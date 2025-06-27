@@ -20,7 +20,6 @@ const slice = createSlice({
         state.loading = true;
       })
       .addCase(fetchInMonth.fulfilled, (state, action) => {
-        console.log("slice fetchInMonth fulfilled with:", action.payload);
         state.items = action.payload;
         state.loading = false;
       })

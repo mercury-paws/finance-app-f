@@ -2,13 +2,13 @@ import WaterItem from "../WaterItem/WaterItem";
 import { useEffect } from "react";
 import css from "./WaterList.module.css";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { selectDayWater } from "../../../../../redux/water/selectors";
+import { selectDayWater } from "../../../../../redux/spent/selectors";
 import "swiper/css";
 import "swiper/css/scrollbar";
 import { Scrollbar } from "swiper/modules";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { fetchWaterDay } from "../../../../../redux/water/operations";
+import { fetchWaterDay } from "../../../../../redux/spent/operations";
 
 function WaterList({ currentMonth, chosenDay, currentYear, chosenDate }) {
   // added {} dunno why was working earlier

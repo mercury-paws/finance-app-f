@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { selectWater } from "../../../../redux/water/selectors";
+import { selectWater } from "../../../../redux/spent/selectors";
 import { selectUser } from "../../../../redux/auth/selectors";
 import css from "./WaterProgressBar.module.css";
 

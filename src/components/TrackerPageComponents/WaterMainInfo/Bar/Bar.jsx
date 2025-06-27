@@ -1,8 +1,6 @@
 import { useSelector } from "react-redux";
-// import { selectWater } from "../../../../redux/water/selectors";
 import { selectUser } from "../../../../redux/auth/selectors";
 import css from "./Bar.module.css";
-// import { noteOptions } from "../../../../constants/constants";
 import ProgressBar from "../ProgressBar/ProgressBar";
 
 function Bar({ currentMonth }) {

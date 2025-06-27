@@ -11,14 +11,14 @@ axios.defaults.baseURL = "http://localhost:3000";
 
 //Базовий тип екшену це рядок "contacts/fetchAll"
 export const fetchWaterMonth = createAsyncThunk(
-  "water/fetchWaterMonth",
+  "spent/fetchWaterMonth",
   async (queryParams, thunkAPI) => {
     try {
       const reduxState = thunkAPI.getState();
       const savedToken = reduxState.auth.accessToken;
       setAuthHeader(savedToken);
 
-      const response = await axios.get("water", {
+      const response = await axios.get("spent", {
         params: queryParams,
       });
       return response.data.data.items;
@@ -28,15 +28,15 @@ export const fetchWaterMonth = createAsyncThunk(
   }
 );
 
-export const fetchWaterYear = createAsyncThunk(
-  "water/fetchWaterYear",
+export const fetchSpentYear = createAsyncThunk(
+  "spent/fetchSpentYear",
   async (queryParams, thunkAPI) => {
     try {
       const reduxState = thunkAPI.getState();
       const savedToken = reduxState.auth.accessToken;
       setAuthHeader(savedToken);
 
-      const response = await axios.get("water", {
+      const response = await axios.get("spent", {
         params: queryParams,
       });
       return response.data.data.items;
@@ -47,13 +47,13 @@ export const fetchWaterYear = createAsyncThunk(
 );
 
 export const fetchWaterDay = createAsyncThunk(
-  "water/fetchWaterDay",
+  "spent/fetchWaterDay",
   async (queryParams, thunkAPI) => {
     try {
       const reduxState = thunkAPI.getState();
       const savedToken = reduxState.auth.accessToken;
       setAuthHeader(savedToken);
-      const response = await axios.get("water", {
+      const response = await axios.get("spent", {
         params: queryParams,
       });
       return response.data.data.items;
@@ -65,14 +65,14 @@ export const fetchWaterDay = createAsyncThunk(
 
 //Базовий тип екшену це рядок "contacts/addContact"
 export const addWater = createAsyncThunk(
-  "water/addWater",
+  "spent/addWater",
   async ({ newAddWater, queryDayParams }, thunkAPI) => {
     try {
       const reduxState = thunkAPI.getState();
       const savedToken = reduxState.auth.accessToken;
       setAuthHeader(savedToken);
 
-      const response = await axios.post("water/add", newAddWater, {
+      const response = await axios.post("spent/add", newAddWater, {
         params: queryDayParams,
       });
       return response.data.data;
@@ -83,14 +83,14 @@ export const addWater = createAsyncThunk(
 );
 
 // //Базовий тип екшену це рядок "contacts/deleteContact"
-export const deleteWater = createAsyncThunk(
-  "water/deleteWater",
+export const deleteSpent = createAsyncThunk(
+  "spent/deleteSpent",
   async (waterId, thunkAPI) => {
     try {
       const reduxState = thunkAPI.getState();
       const savedToken = reduxState.auth.accessToken;
       setAuthHeader(savedToken);
-      const response = await axios.delete(`water/${waterId}`, {});
+      const response = await axios.delete(`spent/${waterId}`, {});
       return response.data._id;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -101,14 +101,14 @@ export const deleteWater = createAsyncThunk(
 // // update the existing contact
 
 export const updateWater = createAsyncThunk(
-  "water/update",
+  "spent/update",
   async ({ updateWater, queryDayParams }, thunkAPI) => {
     try {
       const reduxState = thunkAPI.getState();
       const savedToken = reduxState.auth.accessToken;
       setAuthHeader(savedToken);
       const response = await axios.patch(
-        `water/${queryDayParams.id}`,
+        `spent/${queryDayParams.id}`,
         updateWater
       );
 

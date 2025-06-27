@@ -1,12 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchWaterMonth, fetchWaterDay, fetchWaterYear } from "./operations";
+import { fetchWaterMonth, fetchWaterDay, fetchSpentYear } from "./operations";
 import { addWater } from "./operations";
-import { deleteWater } from "./operations";
+import { deleteSpent } from "./operations";
 import { updateWater } from "./operations";
 import { logOut } from "../auth/operations";
 
 const slice = createSlice({
-  name: "water",
+  name: "spent",
   initialState: {
     items: [],
     dayItems: [],
@@ -28,15 +28,15 @@ const slice = createSlice({
         state.error = true;
         state.loading = false;
       })
-      .addCase(fetchWaterYear.rejected, (state) => {
+      .addCase(fetchSpentYear.rejected, (state) => {
         state.error = true;
         state.loading = false;
       })
-      .addCase(fetchWaterYear.pending, (state) => {
+      .addCase(fetchSpentYear.pending, (state) => {
         state.error = false;
         state.loading = true;
       })
-      .addCase(fetchWaterYear.fulfilled, (state, action) => {
+      .addCase(fetchSpentYear.fulfilled, (state, action) => {
         state.yearItems = action.payload;
         state.loading = false;
       })
@@ -66,18 +66,18 @@ const slice = createSlice({
         state.error = true;
         state.loading = false;
       })
-      .addCase(deleteWater.pending, (state) => {
+      .addCase(deleteSpent.pending, (state) => {
         state.loading = true;
         state.error = false;
       })
-      .addCase(deleteWater.fulfilled, (state, action) => {
+      .addCase(deleteSpent.fulfilled, (state, action) => {
         state.items = state.items.filter((item) => item._id !== action.payload);
         state.dayItems = state.dayItems.filter(
           (item) => item._id !== action.payload
         );
         state.loading = false;
       })
-      .addCase(deleteWater.rejected, (state) => {
+      .addCase(deleteSpent.rejected, (state) => {
         state.loading = false;
         state.error = true;
       })

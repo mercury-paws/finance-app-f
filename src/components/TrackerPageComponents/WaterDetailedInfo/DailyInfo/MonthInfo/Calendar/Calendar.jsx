@@ -7,9 +7,9 @@ import {
 import { calculateFormattedDate } from "../../../../../../constants/constants.js";
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { fetchWaterMonth } from "../../../../../../redux/water/operations.js";
+import { fetchWaterMonth } from "../../../../../../redux/spent/operations.js";
 import { useSelector } from "react-redux";
-import { selectWater } from "../../../../../../redux/water/selectors.js";
+import { selectWater } from "../../../../../../redux/spent/selectors.js";
 import { useMemo } from "react";
 import { selectUser } from "../../../../../../redux/auth/selectors.js";
 import Chart from "../Chart/Chart.jsx";
@@ -53,7 +53,6 @@ function Calendar({ currentMonth, currentYear, chosenDate, chart }) {
         waterMap[item.day] = Number(item.spent);
       }
     });
-
 
     return waterMap;
   }, [foundWaterData, user.planToSpend]);

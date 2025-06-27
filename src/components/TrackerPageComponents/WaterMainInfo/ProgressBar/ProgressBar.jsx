@@ -1,11 +1,9 @@
 import { useSelector } from "react-redux";
-import { selectWater } from "../../../../redux/water/selectors";
+import { selectWater } from "../../../../redux/spent/selectors";
 import { selectUser } from "../../../../redux/auth/selectors";
 import css from "./ProgressBar.module.css";
 import { useState } from "react";
-import { FaPen } from "react-icons/fa";
 import List from "../../../Modals/List/List";
-// import { fetchWaterMonth } from "../../../../redux/water/operations";
 
 function ProgressBar({ note, currentMonth }) {
   const [listModalOpen, setListModalOpen] = useState(false);

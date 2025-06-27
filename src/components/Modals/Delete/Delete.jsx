@@ -1,6 +1,6 @@
 import css from "./Delete.module.css";
 import Modal from "react-modal";
-import { deleteWater } from "../../../redux/water/operations";
+import { deleteSpent } from "../../../redux/spent/operations";
 import { useDispatch } from "react-redux";
 import { AiOutlineClose } from "react-icons/ai";
 
@@ -9,7 +9,7 @@ Modal.setAppElement("#root");
 function Delete({ isOpen, onRequestClose, id }) {
   let dispatch = useDispatch();
   let handleDelete = () => {
-    dispatch(deleteWater(id));
+    dispatch(deleteSpent(id));
     onRequestClose();
   };
   return (

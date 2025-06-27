@@ -10,16 +10,16 @@ import {
 import Modal from "react-modal";
 import { AiOutlineClose } from "react-icons/ai";
 import { useSelector } from "react-redux";
-import { selectYearWater } from "../../../redux/water/selectors";
+import { selectYearWater } from "../../../redux/spent/selectors";
 import { useId, useState } from "react";
 import css from "./ChartModal.module.css";
 import { useDispatch } from "react-redux";
-import { fetchWaterYear } from "../../../redux/water/operations";
+import { fetchSpentYear } from "../../../redux/spent/operations";
 import { useEffect } from "react";
 import { monthDays } from "../../../constants/constants";
 import { selectUser } from "../../../redux/auth/selectors";
 import FormikComponent from "../../FormFields/Formik/FormikComponent";
-import { selectWater } from "../../../redux/water/selectors";
+import { selectWater } from "../../../redux/spent/selectors";
 
 Modal.setAppElement("#root");
 
@@ -36,19 +36,16 @@ function ChartModal({ isOpen, onRequestClose, year, note }) {
     .map((day) => day.spent)
     .reduce((total, num) => total + Number(num), 0);
 
-  console.log(progress);
-
   const [selectedData, setSelectedData] = useState({
     year: year || "",
     note: note || "",
   });
 
-  // Fetch water data for selected year
   useEffect(() => {
     if (!selectedData.year) return;
     const fetchYearWater = async () => {
       try {
-        await dispatch(fetchWaterYear({ year: selectedData.year })).unwrap();
+        await dispatch(fetchSpentYear({ year: selectedData.year })).unwrap();
       } catch (error) {
         console.error("Failed to fetch water data:", error);
       }

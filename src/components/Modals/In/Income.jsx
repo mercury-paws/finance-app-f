@@ -88,13 +88,12 @@ function Income({
     };
 
     try {
-      const result = await dispatch(
+      await dispatch(
         updateIn({
           updateIn: formattedValues,
           queryDayParams,
         })
       ).unwrap();
-      console.log(result);
       await dispatch(
         fetchInMonth({
           month: currentMonth,

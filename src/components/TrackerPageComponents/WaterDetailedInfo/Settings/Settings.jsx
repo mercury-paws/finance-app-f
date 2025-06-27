@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 import { selectUser } from "../../../../redux/auth/selectors";
 import ChartModal from "../../../Modals/ChartModal/ChartModal";
 import FormikComponent from "../../../FormFields/Formik/FormikComponent";
-import { selectWater } from "../../../../redux/water/selectors";
+import { selectWater } from "../../../../redux/spent/selectors";
 
 const now = new Date();
 

@@ -31,10 +31,10 @@ function WaterMainInfo({
     dispatch(fetchInMonth({ month: currentMonth, year: currentYear }))
       .unwrap()
       .then((result) => {
-        console.log("fetchInMonth result:", result);
+        console.log("fetch result");
       })
       .catch((error) => {
-        console.error("fetchInMonth error:", error);
+        console.error("fetch error:");
       });
   }, [currentMonth, currentYear, dispatch]);
 

@@ -8,7 +8,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import { useSelector } from "react-redux";
-import { selectWater } from "../../../../../../redux/water/selectors";
+import { selectWater } from "../../../../../../redux/spent/selectors";
 import { useMemo } from "react";
 import { selectUser } from "../../../../../../redux/auth/selectors";
 import css from "./Chart.module.css";

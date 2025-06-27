@@ -5,7 +5,7 @@ import css from "./WaterItem.module.css";
 import Edit from "../../../../Modals/Edit/Edit.jsx";
 import Delete from "../../../../Modals/Delete/Delete.jsx";
 import { useSelector } from "react-redux";
-import { selectDayWater } from "../../../../../redux/water/selectors.js";
+import { selectDayWater } from "../../../../../redux/spent/selectors.js";
 import { GrMoney } from "react-icons/gr";
 import { ICON_COLOR } from "../../../../../constants/constants.js";
 

@@ -1,7 +1,7 @@
 import css from "./WaterDailyNorma.module.css";
 import { useSelector } from "react-redux";
 import { selectUser } from "../../../../redux/auth/selectors";
-import { selectWater } from "../../../../redux/water/selectors";
+import { selectWater } from "../../../../redux/spent/selectors";
 import Income from "../../../Modals/In/Income";
 import { useState } from "react";
 import { selectIn } from "../../../../redux/income/selectors";
@@ -12,12 +12,10 @@ function WaterDailyNorma({ currentMonth, currentYear }) {
 
   const foundInData = useSelector(selectIn);
   const user = useSelector(selectUser);
-  console.log(foundInData);
 
   let income = Number(foundInData?.[0]?.income ?? 0);
   let note = foundInData?.[0]?.note;
   let id = foundInData?.[0]?._id;
-  console.log(income);
 
   let progress = foundWaterData
     .map((day) => day.spent)
