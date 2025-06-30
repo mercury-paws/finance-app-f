@@ -34,8 +34,8 @@ function WaterList({ currentMonth, chosenDay, currentYear, chosenDate }) {
           <Swiper
             spaceBetween={10}
             scrollbar={{ draggable: true }}
-            onSwiper={(swiper) => console.log(swiper)}
-            onSlideChange={() => console.log("slide change")}
+            // onSwiper={(swiper) => console.log(swiper)}
+            // onSlideChange={() => console.log("slide change")}
             modules={[Scrollbar]}
             breakpoints={{
               320: {
