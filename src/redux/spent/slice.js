@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchWaterMonth, fetchWaterDay, fetchSpentYear } from "./operations";
-import { addWater } from "./operations";
+import { fetchSpentMonth, fetchSpentDay, fetchSpentYear } from "./operations";
+import { addSpent } from "./operations";
 import { deleteSpent } from "./operations";
 import { updateWater } from "./operations";
 import { logOut } from "../auth/operations";
@@ -16,15 +16,15 @@ const slice = createSlice({
   },
   extraReducers: (builder) =>
     builder
-      .addCase(fetchWaterMonth.pending, (state) => {
+      .addCase(fetchSpentMonth.pending, (state) => {
         state.error = false;
         state.loading = true;
       })
-      .addCase(fetchWaterMonth.fulfilled, (state, action) => {
+      .addCase(fetchSpentMonth.fulfilled, (state, action) => {
         state.items = action.payload;
         state.loading = false;
       })
-      .addCase(fetchWaterMonth.rejected, (state) => {
+      .addCase(fetchSpentMonth.rejected, (state) => {
         state.error = true;
         state.loading = false;
       })
@@ -40,29 +40,29 @@ const slice = createSlice({
         state.yearItems = action.payload;
         state.loading = false;
       })
-      .addCase(fetchWaterDay.pending, (state) => {
+      .addCase(fetchSpentDay.pending, (state) => {
         state.error = false;
         state.loading = true;
       })
-      .addCase(fetchWaterDay.fulfilled, (state, action) => {
+      .addCase(fetchSpentDay.fulfilled, (state, action) => {
         state.dayItems = action.payload;
         state.loading = false;
       })
-      .addCase(fetchWaterDay.rejected, (state) => {
+      .addCase(fetchSpentDay.rejected, (state) => {
         state.error = true;
         state.loading = false;
       })
-      .addCase(addWater.pending, (state) => {
+      .addCase(addSpent.pending, (state) => {
         state.error = false;
         state.loading = true;
       })
-      .addCase(addWater.fulfilled, (state, action) => {
+      .addCase(addSpent.fulfilled, (state, action) => {
         const newDayItem = action.payload;
         state.items.push(newDayItem);
         state.dayItems.push(newDayItem);
         state.loading = false;
       })
-      .addCase(addWater.rejected, (state) => {
+      .addCase(addSpent.rejected, (state) => {
         state.error = true;
         state.loading = false;
       })

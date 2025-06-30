@@ -19,7 +19,7 @@ import { useEffect } from "react";
 import { monthDays } from "../../../constants/constants";
 import { selectUser } from "../../../redux/auth/selectors";
 import FormikComponent from "../../FormFields/Formik/FormikComponent";
-import { selectWater } from "../../../redux/spent/selectors";
+import { selectSpent } from "../../../redux/spent/selectors";
 
 Modal.setAppElement("#root");
 
@@ -30,7 +30,7 @@ function ChartModal({ isOpen, onRequestClose, year, note }) {
 
   const noteOptions = user.note ? [...Object.keys(user.note), "total"] : [];
 
-  const foundWaterData = useSelector(selectWater);
+  const foundWaterData = useSelector(selectSpent);
 
   let progress = foundWaterData
     .map((day) => day.spent)

@@ -1,14 +1,14 @@
 import css from "./WaterDailyNorma.module.css";
 import { useSelector } from "react-redux";
 import { selectUser } from "../../../../redux/auth/selectors";
-import { selectWater } from "../../../../redux/spent/selectors";
+import { selectSpent } from "../../../../redux/spent/selectors";
 import Income from "../../../Modals/In/Income";
 import { useState } from "react";
 import { selectIn } from "../../../../redux/income/selectors";
 
 function WaterDailyNorma({ currentMonth, currentYear }) {
   const [modalOpen, setModalOpen] = useState(false);
-  const foundWaterData = useSelector(selectWater);
+  const foundWaterData = useSelector(selectSpent);
 
   const foundInData = useSelector(selectIn);
   const user = useSelector(selectUser);

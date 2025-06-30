@@ -3,7 +3,7 @@ import MonthInfo from "./DailyInfo/MonthInfo/MonthInfo.jsx";
 import UserPanel from "./UserPanel/UserPanel.jsx";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { fetchWaterDay } from "../../../redux/spent/operations.js";
+import { fetchSpentDay } from "../../../redux/spent/operations.js";
 import css from "./WaterDetailedInfo.module.css";
 import Settings from "./Settings/Settings.jsx";
 import Quotes from "./Quotes/Quotes.jsx";
@@ -22,7 +22,7 @@ function WaterDetailedInfo({
 
   useEffect(() => {
     dispatch(
-      fetchWaterDay({ day: chosenDay, month: currentMonth, year: currentYear })
+      fetchSpentDay({ day: chosenDay, month: currentMonth, year: currentYear })
     );
   }, [chosenDay, currentMonth, currentYear, dispatch]);
 

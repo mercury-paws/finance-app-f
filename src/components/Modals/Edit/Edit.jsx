@@ -6,8 +6,8 @@ import Modal from "react-modal";
 import { useDispatch, useSelector } from "react-redux";
 import { updateWater } from "../../../redux/spent/operations";
 import {
-  fetchWaterDay,
-  fetchWaterMonth,
+  fetchSpentDay,
+  fetchSpentMonth,
 } from "../../../redux/spent/operations";
 import { AiOutlineClose } from "react-icons/ai";
 import { selectUser } from "../../../redux/auth/selectors";
@@ -64,7 +64,7 @@ function Edit({
       ).unwrap();
 
       await dispatch(
-        fetchWaterDay({
+        fetchSpentDay({
           day: chosenDay,
           month: currentMonth,
           year: currentYear,
@@ -72,7 +72,7 @@ function Edit({
       ).unwrap();
 
       await dispatch(
-        fetchWaterMonth({
+        fetchSpentMonth({
           month: currentMonth,
           year: currentYear,
         })

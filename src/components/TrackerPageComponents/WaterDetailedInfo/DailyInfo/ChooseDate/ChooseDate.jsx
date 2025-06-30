@@ -1,7 +1,7 @@
 import { useEffect, useState, useMemo } from "react";
 import { calculateFormattedDate } from "../../../../../constants/constants";
 import { useDispatch } from "react-redux";
-import { fetchWaterDay } from "../../../../../redux/spent/operations";
+import { fetchSpentDay } from "../../../../../redux/spent/operations";
 import css from "./ChooseDate.module.css";
 function ChooseDate({
   chosenDay,

@@ -1,4 +1,4 @@
-import AddWaterBtn from "./AddWaterBtn/AddWaterBtn";
+import AddSpentBtn from "./AddSpentBtn/AddSpentBtn";
 import ChooseDate from "./ChooseDate/ChooseDate";
 import WaterList from "./WaterList/WaterList";
 import css from "./DailyInfo.module.css";
@@ -27,7 +27,7 @@ function DailyInfo({
           currentDate={currentDate}
           setCurrentDate={setCurrentDate}
         />
-        <AddWaterBtn
+        <AddSpentBtn
           chosenDay={chosenDay}
           currentMonth={currentMonth}
           currentYear={currentYear}

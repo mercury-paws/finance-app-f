@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { selectWater } from "../../../../redux/spent/selectors";
+import { selectSpent } from "../../../../redux/spent/selectors";
 import { selectUser } from "../../../../redux/auth/selectors";
 import css from "./ProgressBar.module.css";
 import { useState } from "react";
@@ -8,7 +8,7 @@ import List from "../../../Modals/List/List";
 function ProgressBar({ note, currentMonth }) {
   const [listModalOpen, setListModalOpen] = useState(false);
 
-  const foundWaterData = useSelector(selectWater);
+  const foundWaterData = useSelector(selectSpent);
   const user = useSelector(selectUser);
 
   const totalSpent = foundWaterData

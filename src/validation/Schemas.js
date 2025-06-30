@@ -24,7 +24,7 @@ export const FeedbackSchema = Yup.object().shape({
 
 export const FeedbackChartSchema = Yup.object().shape({
   year: Yup.string()
-    .matches(/\b[12]\d{3}\b/, "Year must be a valid")
+    .matches(/^(19|20)\d{2}$/, "Year must be a valid")
     .required("Required"),
   note: Yup.string()
     .matches(/^[a-zA-Z0-9\s.,!?'"()-]*$/, "Must be a valid spent desitnation")

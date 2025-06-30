@@ -67,7 +67,7 @@
   letter-spacing: -0.01em;
 }
 
-.addWaterBlock {
+.addSpentBlock {
   display: flex;
   flex-direction: row;
   gap: 8px;
@@ -198,7 +198,7 @@
     line-height: 150%;
     margin-bottom: 15px;
   }
-  .addWaterBlock {
+  .addSpentBlock {
     margin-bottom: 24px;
   }
 

@@ -81,6 +81,7 @@ max-height: 100%; */
   font-size: 14px;
   line-height: 129%;
   letter-spacing: -0.01em;
+  color: #fafafa;
   text-align: center;
 }
 .cancelBtn {

@@ -5,13 +5,13 @@ const setAuthHeader = (token) => {
   axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 };
 
-axios.defaults.baseURL = "http://localhost:3000";
-// axios.defaults.baseURL = "https://water-app-b.onrender.com/";
-// axios.defaults.withCredentials = true;
+// axios.defaults.baseURL = "http://localhost:3000";
+axios.defaults.baseURL = "https://finance-app-b.onrender.com";
+axios.defaults.withCredentials = true;
 
 //Базовий тип екшену це рядок "contacts/fetchAll"
-export const fetchWaterMonth = createAsyncThunk(
-  "spent/fetchWaterMonth",
+export const fetchSpentMonth = createAsyncThunk(
+  "spent/fetchSpentMonth",
   async (queryParams, thunkAPI) => {
     try {
       const reduxState = thunkAPI.getState();
@@ -46,8 +46,8 @@ export const fetchSpentYear = createAsyncThunk(
   }
 );
 
-export const fetchWaterDay = createAsyncThunk(
-  "spent/fetchWaterDay",
+export const fetchSpentDay = createAsyncThunk(
+  "spent/fetchSpentDay",
   async (queryParams, thunkAPI) => {
     try {
       const reduxState = thunkAPI.getState();
@@ -64,15 +64,15 @@ export const fetchWaterDay = createAsyncThunk(
 );
 
 //Базовий тип екшену це рядок "contacts/addContact"
-export const addWater = createAsyncThunk(
-  "spent/addWater",
-  async ({ newAddWater, queryDayParams }, thunkAPI) => {
+export const addSpent = createAsyncThunk(
+  "spent/addSpent",
+  async ({ newaddSpent, queryDayParams }, thunkAPI) => {
     try {
       const reduxState = thunkAPI.getState();
       const savedToken = reduxState.auth.accessToken;
       setAuthHeader(savedToken);
 
-      const response = await axios.post("spent/add", newAddWater, {
+      const response = await axios.post("spent/add", newaddSpent, {
         params: queryDayParams,
       });
       return response.data.data;

@@ -5,9 +5,9 @@ const setAuthHeader = (token) => {
   axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 };
 
-axios.defaults.baseURL = "http://localhost:3000";
-// axios.defaults.baseURL = "https://water-app-b.onrender.com/";
-// axios.defaults.withCredentials = true;
+// axios.defaults.baseURL = "http://localhost:3000";
+axios.defaults.baseURL = "https://finance-app-b.onrender.com";
+axios.defaults.withCredentials = true;
 
 //Базовий тип екшену це рядок "contacts/fetchAll"
 export const fetchInMonth = createAsyncThunk(

@@ -1,4 +1,4 @@
-.AddWaterBtn {
+.addSpentBtn {
   padding-left: 180px;
   padding-top: 16px;
 }
@@ -26,7 +26,7 @@
 }
 
 @media screen and (min-width: 768px) {
-  .AddWaterBtn {
+  .addSpentBtn {
     padding-left: 462px;
     padding-top: 0;
   }
@@ -39,7 +39,7 @@
   }
 }
 @media screen and (min-width: 1380px) {
-  .AddWaterBtn {
+  .addSpentBtn {
     padding-left: 402px;
     /* padding-top: 18px; */
   }

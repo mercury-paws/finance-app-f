@@ -8,7 +8,7 @@ import "swiper/css/scrollbar";
 import { Scrollbar } from "swiper/modules";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { fetchWaterDay } from "../../../../../redux/spent/operations";
+import { fetchSpentDay } from "../../../../../redux/spent/operations";
 
 function WaterList({ currentMonth, chosenDay, currentYear, chosenDate }) {
   // added {} dunno why was working earlier
@@ -18,7 +18,7 @@ function WaterList({ currentMonth, chosenDay, currentYear, chosenDate }) {
   useEffect(() => {
     if (chosenDay && currentMonth && currentYear) {
       dispatch(
-        fetchWaterDay({
+        fetchSpentDay({
           day: chosenDay,
           month: currentMonth,
           year: currentYear,

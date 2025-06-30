@@ -1,11 +1,11 @@
 import { useSelector } from "react-redux";
-import { selectWater } from "../../../../redux/spent/selectors";
+import { selectSpent } from "../../../../redux/spent/selectors";
 import { selectUser } from "../../../../redux/auth/selectors";
 import css from "./WaterProgressBar.module.css";
 
 function WaterProgressBar() {
   // let dayWater = useSelector(selectDayWater);
-  const foundWaterData = useSelector(selectWater);
+  const foundWaterData = useSelector(selectSpent);
   const user = useSelector(selectUser);
 
   let progress = foundWaterData

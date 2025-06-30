@@ -8,13 +8,13 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import { useSelector } from "react-redux";
-import { selectWater } from "../../../../../../redux/spent/selectors";
+import { selectSpent } from "../../../../../../redux/spent/selectors";
 import { useMemo } from "react";
 import { selectUser } from "../../../../../../redux/auth/selectors";
 import css from "./Chart.module.css";
 
 function Chart({ days }) {
-  const foundWaterData = useSelector(selectWater);
+  const foundWaterData = useSelector(selectSpent);
   const user = useSelector(selectUser);
 
   const waterDataByDay = useMemo(() => {

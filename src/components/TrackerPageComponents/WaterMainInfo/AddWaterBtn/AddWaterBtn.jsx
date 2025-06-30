@@ -1,9 +1,9 @@
-import css from "./AddWaterBtn.module.css";
+import css from "./addSpentBtn.module.css";
 import { FaPlus } from "react-icons/fa";
 import { useState } from "react";
 import Add from "../../../Modals/Add/Add";
 
-function AddWaterBtn({ chosenDay, currentMonth, currentYear }) {
+function addSpentBtn({ chosenDay, currentMonth, currentYear }) {
   const [modalOpen, setModalOpen] = useState(false);
 
   const handleAddModalOpen = () => {
@@ -14,7 +14,7 @@ function AddWaterBtn({ chosenDay, currentMonth, currentYear }) {
     setModalOpen(false);
   };
   return (
-    <div className={css.AddWaterBtn}>
+    <div className={css.addSpentBtn}>
       <button className={css.btn} onClick={handleAddModalOpen}>
         <FaPlus className={css.plusIcon} /> Add
       </button>
@@ -31,4 +31,4 @@ function AddWaterBtn({ chosenDay, currentMonth, currentYear }) {
   );
 }
 
-export default AddWaterBtn;
+export default addSpentBtn;

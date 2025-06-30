@@ -2,9 +2,9 @@ import css from "./Add.module.css";
 import { Formik, Form, ErrorMessage, Field } from "formik";
 import { useId, useState } from "react";
 import { getMonthNameByIndex } from "../../../constants/constants";
-import { fetchWaterDay } from "../../../redux/spent/operations";
+import { fetchSpentDay } from "../../../redux/spent/operations";
 import Modal from "react-modal";
-import { addWater } from "../../../redux/spent/operations";
+import { addSpent } from "../../../redux/spent/operations";
 import { useDispatch, useSelector } from "react-redux";
 import toast, { Toaster } from "react-hot-toast";
 import { AiOutlineClose } from "react-icons/ai";
@@ -62,13 +62,13 @@ function Add({ isOpen, onRequestClose, chosenDay, currentMonth, currentYear }) {
 
     try {
       await dispatch(
-        addWater({
-          newAddWater: formattedValues,
+        addSpent({
+          newaddSpent: formattedValues,
           queryDayParams,
         })
       ).unwrap();
 
-      await dispatch(fetchWaterDay(queryDayParams)).unwrap();
+      await dispatch(fetchSpentDay(queryDayParams)).unwrap();
 
       toast.success("Information was added");
       actions.resetForm();

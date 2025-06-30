@@ -7,9 +7,9 @@ import {
 import { calculateFormattedDate } from "../../../../../../constants/constants.js";
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { fetchWaterMonth } from "../../../../../../redux/spent/operations.js";
+import { fetchSpentMonth } from "../../../../../../redux/spent/operations.js";
 import { useSelector } from "react-redux";
-import { selectWater } from "../../../../../../redux/spent/selectors.js";
+import { selectSpent } from "../../../../../../redux/spent/selectors.js";
 import { useMemo } from "react";
 import { selectUser } from "../../../../../../redux/auth/selectors.js";
 import Chart from "../Chart/Chart.jsx";
@@ -17,7 +17,7 @@ import Chart from "../Chart/Chart.jsx";
 function Calendar({ currentMonth, currentYear, chosenDate, chart }) {
   const [days, setDays] = useState([]);
   const dispatch = useDispatch();
-  const foundWaterData = useSelector(selectWater);
+  const foundWaterData = useSelector(selectSpent);
   const user = useSelector(selectUser);
 
   useEffect(() => {
@@ -39,7 +39,7 @@ function Calendar({ currentMonth, currentYear, chosenDate, chart }) {
   );
 
   useEffect(() => {
-    dispatch(fetchWaterMonth(currentMonthYear));
+    dispatch(fetchSpentMonth(currentMonthYear));
   }, [dispatch, currentMonthYear]);
 
   const waterDataByDay = useMemo(() => {
