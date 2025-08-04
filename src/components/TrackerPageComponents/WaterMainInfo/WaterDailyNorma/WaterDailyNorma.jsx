@@ -11,11 +11,15 @@ function WaterDailyNorma({ currentMonth, currentYear }) {
   const foundWaterData = useSelector(selectSpent);
 
   const foundInData = useSelector(selectIn);
+  console.log(foundInData);
   const user = useSelector(selectUser);
 
-  let income = Number(foundInData?.[0]?.income ?? 0);
-  let note = foundInData?.[0]?.note;
-  let id = foundInData?.[0]?._id;
+  let income =
+    foundInData?.reduce((total, item) => total + Number(item.income), 0) ?? 0;
+
+  // let income = Number(foundInData?.[0]?.income ?? 0);
+  // let note = foundInData?.[0]?.note;
+  // let id = foundInData?.[0]?._id;
 
   let progress = foundWaterData
     .map((day) => day.spent)
@@ -59,9 +63,7 @@ function WaterDailyNorma({ currentMonth, currentYear }) {
           onRequestClose={handleModalClose}
           currentMonth={currentMonth}
           currentYear={currentYear}
-          inc={income}
-          description={note}
-          id={id}
+          incomes={foundInData}
         />
       )}
     </div>

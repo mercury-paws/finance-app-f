@@ -129,6 +129,7 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  margin-top: 25px;
 }
 .value {
   font-weight: 700;
@@ -162,6 +163,21 @@
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
+}
+
+.addIcon {
+  box-sizing: border-box;
+  border-radius: 50%;
+  padding: 10px 15px;
+  /* width: 116px;
+  height: 46px; */
+  color: var(--colorbackgr);
+  background-color: var(--colorProgress);
+  border: none;
+  font-weight: 700;
+  font-size: 14px;
+  margin-top: 25px;
+  text-align: center;
 }
 
 @media screen and (min-width: 768px) {
