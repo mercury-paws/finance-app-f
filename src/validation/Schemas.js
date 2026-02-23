@@ -5,7 +5,7 @@ export const FeedbackSchema = Yup.object().shape({
   time: Yup.string()
     .matches(
       /^([01]\d|2[0-3]):([0-5]\d)$/,
-      "Must be a valid time in the format HH:MM"
+      "Must be a valid time in the format HH:MM",
     )
     .required("Required"),
   note: Yup.string()
@@ -51,7 +51,7 @@ export const FeedbackSettingSchema = Yup.object().shape({
         .min(1, "Too low")
         .max(25000, "Too high")
         .required("Required"),
-    })
+    }),
   ),
 });
 
@@ -60,5 +60,5 @@ export const FeedbackInSchema = Yup.object().shape({
     .required("Required")
     .matches(/^\d+$/, "Must be a number")
     .test("minCheck", "Too small!", (value) => parseInt(value, 10) >= 1)
-    .test("maxCheck", "Too much!", (value) => parseInt(value, 10) <= 100000),
+    .test("maxCheck", "Too much!", (value) => parseInt(value, 10) <= 170000),
 });
